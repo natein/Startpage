@@ -1,0 +1,11 @@
+main {
+  width: 100%;
+  height: calc(100vh - 120px);
+  background-color: var(--accent-color-light);
+  padding: 20px;
+}
+
+.block {
+  width: 400px;
+  background-color: var(--app-background-color);
+}

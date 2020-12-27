@@ -1,0 +1,15 @@
+header {
+  display: flex;
+  width: 100%;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  background-color: var(--accent-color-contrast);
+}
+
+h1 {
+  display: inline;
+  font-size: 30px;
+  color: var(--header-footer-text-color);
+}
