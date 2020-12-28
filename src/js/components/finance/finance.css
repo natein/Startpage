@@ -15,4 +15,16 @@ h3 {
   font-size: 0.7rem;
   margin: 5px;
 }
+
+.currencyChoiceBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#line-chart {
+  height: 300px;
+}
 /*# sourceMappingURL=finance.css.map */

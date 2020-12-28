@@ -8,6 +8,13 @@ class Finance {
     this.render();
     this.getFinanceData();
     // this.getYearCurrencyData();
+    // this.axesLinearChart();
+  }
+  
+  render() {
+    const caption = document.createElement("h3");
+    caption.textContent = "Finance";
+    this.parentNode.appendChild(caption);
   }
 
   async getFinanceData() {
@@ -15,7 +22,7 @@ class Finance {
       "https://www.nbrb.by/api/exrates/rates?periodicity=0"
     );
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     // function createCurrencyList() {
     const eur = data.find((currency) => currency.Cur_Abbreviation === "EUR");
@@ -54,7 +61,9 @@ class Finance {
 
     // createCurrencyList();
 
-    const currencyChoice = document.createElement("div");
+    const currencyChoiceBlock = document.createElement("div");
+    currencyChoiceBlock.classList.add("currencyChoiceBlock");
+    currencyChoiceBlock.textContent = "Select currency pair ";
     const selectLeft = document.createElement("select");
     selectLeft.name = "selectLeft";
     const selectRight = document.createElement("select");
@@ -64,36 +73,34 @@ class Finance {
 
     data.forEach((currency) => {
       const option = document.createElement("option");
-      // option.classList.add('currency');
       option.value = `${currency.Cur_ID}`;
-      // option.dataset.currency = `${currency.Cur_Abbreviation}`;
+      if (currency.Cur_Abbreviation === "EUR") option.selected = true;
       option.textContent = `${currency.Cur_Abbreviation}`;
       fragmentLeft.appendChild(option);
     });
 
     data.forEach((currency) => {
       const option = document.createElement("option");
-      // option.classList.add('currency');
       option.value = `${currency.Cur_ID}`;
-      // option.dataset.currency = `${currency.Cur_Abbreviation}`;
+      if (currency.Cur_Abbreviation === "USD") option.selected = true;
       option.textContent = `${currency.Cur_Abbreviation}`;
       fragmentRight.appendChild(option);
     });
+
     selectLeft.appendChild(fragmentLeft);
     selectRight.appendChild(fragmentRight);
-    currencyChoice.appendChild(selectLeft);
-    currencyChoice.appendChild(selectRight);
-    this.parentNode.appendChild(currencyChoice);
+    currencyChoiceBlock.appendChild(selectLeft);
+    currencyChoiceBlock.appendChild(selectRight);
+    this.parentNode.appendChild(currencyChoiceBlock);
 
+    const chartBlock = document.createElement("div");
+    chartBlock.classList.add("chartBlock");
+    chartBlock.innerHTML = `<canvas id="line-chart"></canvas>`;
+    this.parentNode.appendChild(chartBlock);
     const ctx = document.getElementById("line-chart").getContext("2d");
     let chart;
 
-    const dates = [];
-    const updatedDates = [];
-    let currencyDynamicsLeft = [];
-    let currencyDynamicsRight = [];
-
-    function axesLinearChart(updatedDate, currencyDynamic) {
+    function axesLinearChart(updatedDate, currencyDynamic, rateCurrencyPair) {
       if (chart) {
         chart.destroy();
       }
@@ -103,21 +110,16 @@ class Finance {
         data: {
           datasets: [
             {
-              label: "Cases",
+              label: `${
+                updatedDate[updatedDate.length - 1]
+              } Rate: ${rateCurrencyPair}`,
               data: currencyDynamic,
               fill: false,
               borderColor: "red",
               backgroundColor: "red",
-              borderWidth: 0,
+              radius: 1,
+              borderWidth: 1,
             },
-            // {
-            //    label: "Recovered",
-            //    data: currencyDynamicsRight,
-            //    fill: false,
-            //    borderColor: "#009688",
-            //    backgroundColor: "#009688",
-            //    borderWidth: 0,
-            // },
           ],
           labels: updatedDate,
         },
@@ -127,8 +129,13 @@ class Finance {
         },
       });
     }
+    
+    const dates = [];
+    const updatedDates = [];
+    let currencyDynamicsLeft = [];
+    let currencyDynamicsRight = [];
 
-    async function getYearCurrencyData(currencyId = 292, select) {
+    async function getYearCurrencyData(currencyId, select) {
       const currentDate = new Date();
       const dataDate = currentDate.toString().split(" ");
       const day = dataDate[0];
@@ -162,9 +169,9 @@ class Finance {
 
       const chartLine = [];
       currencyDynamicsLeft.forEach((item, i) =>
-        chartLine.push(item / currencyDynamicsRight[i])
+        chartLine.push((item / currencyDynamicsRight[i]).toFixed(4))
       );
-      axesLinearChart(updatedDates, chartLine);
+      axesLinearChart(updatedDates, chartLine, chartLine[chartLine.length - 1]);
       console.log(chartLine);
       // console.log(yearData);
       // console.log(currencyDynamicsLeft);
@@ -172,7 +179,9 @@ class Finance {
       // console.log(updatedDates);
     }
     getYearCurrencyData(292, "selectLeft");
-    getYearCurrencyData(145, "selectRight");
+    setTimeout(() => {
+      getYearCurrencyData(145, "selectRight");
+    }, 500);
 
     let flag = false;
     function addClickedCurrency(e) {
@@ -188,12 +197,6 @@ class Finance {
 
     selectLeft.addEventListener("click", addClickedCurrency);
     selectRight.addEventListener("click", addClickedCurrency);
-  }
-
-  render() {
-    const caption = document.createElement("h3");
-    caption.textContent = "Finance";
-    this.parentNode.appendChild(caption);
   }
 }
 
