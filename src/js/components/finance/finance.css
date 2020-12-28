@@ -1,4 +1,18 @@
 h3 {
   font-size: 30px;
 }
+
+.currencyList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.currencyList p {
+  font-size: 0.7rem;
+  margin: 5px;
+}
 /*# sourceMappingURL=finance.css.map */

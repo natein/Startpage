@@ -1,3 +1,13 @@
 h3 {
   font-size: 30px;
 }
+
+.currencyList{
+  display: flex;
+  justify-content: space-between;
+}
+
+.currencyList p{
+  font-size: 0.7rem;
+  margin: 5px;
+}
