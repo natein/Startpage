@@ -1,11 +1,13 @@
 // import './finance.scss';
 import "./finance.css";
-
+// import Chart from "chart.js";
 class Finance {
   constructor(parentNode) {
     // parentNode - это обычный div, в который вставляешь свои элементы
     this.parentNode = parentNode;
     this.currencyList = document.createElement("div");
+    this.currencyChoiceBlock = document.createElement("div");
+    this.chart = false;
     this.render();
   }
 
@@ -74,108 +76,101 @@ class Finance {
     };
   }
 
-  async getFinanceData() {
+  async createSelect(selectName, selectedItem) {
     const data = await Finance.getRateForDayRequest();
+    const select = document.createElement("select");
+    select.name = selectName;
 
-    await this.createPairEurUsd();
-    await this.createPairEurRub();
-    await this.createPairBlrUsd();
-
-    this.parentNode.appendChild(this.currencyList);
-
-    const currencyChoiceBlock = document.createElement("div");
-    currencyChoiceBlock.classList.add("currencyChoiceBlock");
-    currencyChoiceBlock.textContent = "Select currency pair ";
-    const selectLeft = document.createElement("select");
-    selectLeft.name = "selectLeft";
-    const selectRight = document.createElement("select");
-    selectRight.name = "selectRight";
-    const fragmentLeft = document.createDocumentFragment();
-    const fragmentRight = document.createDocumentFragment();
+    const fragment = document.createDocumentFragment();
 
     data.forEach((currency) => {
       const option = document.createElement("option");
       option.value = `${currency.Cur_ID}`;
-      if (currency.Cur_Abbreviation === "EUR") option.selected = true;
+      if (currency.Cur_Abbreviation === selectedItem) option.selected = true;
       option.textContent = `${currency.Cur_Abbreviation}`;
-      fragmentLeft.appendChild(option);
+      fragment.appendChild(option);
     });
 
-    data.forEach((currency) => {
-      const option = document.createElement("option");
-      option.value = `${currency.Cur_ID}`;
-      if (currency.Cur_Abbreviation === "USD") option.selected = true;
-      option.textContent = `${currency.Cur_Abbreviation}`;
-      fragmentRight.appendChild(option);
-    });
+    select.appendChild(fragment);
+    this.currencyChoiceBlock.appendChild(select);
 
-    selectLeft.appendChild(fragmentLeft);
-    selectRight.appendChild(fragmentRight);
-    currencyChoiceBlock.appendChild(selectLeft);
-    currencyChoiceBlock.appendChild(selectRight);
-    this.parentNode.appendChild(currencyChoiceBlock);
+    return select;
+  }
 
+  renderCurrencyChoiceBlock() {
+    this.currencyChoiceBlock.classList.add("currencyChoiceBlock");
+    this.currencyChoiceBlock.textContent = "Select currency pair ";
+    this.parentNode.appendChild(this.currencyChoiceBlock);
+  }
+
+  axesLinearChart(updatedDate, currencyDynamic, rateCurrencyPair) {
     const chartBlock = document.createElement("div");
     chartBlock.classList.add("chartBlock");
     chartBlock.innerHTML = `<canvas id="line-chart"></canvas>`;
+
     this.parentNode.appendChild(chartBlock);
     const ctx = document.getElementById("line-chart").getContext("2d");
-    let chart;
-
-    function axesLinearChart(updatedDate, currencyDynamic, rateCurrencyPair) {
-      if (chart) {
-        chart.destroy();
-      }
-
-      chart = new Chart(ctx, {
-        type: "line",
-        data: {
-          datasets: [
-            {
-              label: `${
-                updatedDate[updatedDate.length - 1]
-              } Rate: ${rateCurrencyPair}`,
-              data: currencyDynamic,
-              fill: false,
-              borderColor: "red",
-              backgroundColor: "red",
-              radius: 1,
-              borderWidth: 1,
-            },
-          ],
-          labels: updatedDate,
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-        },
-      });
+    if (this.chart) {
+      this.chart.destroy();
     }
 
+    this.chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        datasets: [
+          {
+            label: `${
+              updatedDate[updatedDate.length - 1]
+            } Rate: ${rateCurrencyPair}`,
+            data: currencyDynamic,
+            fill: false,
+            borderColor: "red",
+            backgroundColor: "red",
+            radius: 1,
+            borderWidth: 1,
+          },
+        ],
+        labels: updatedDate,
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      },
+    });
+  }
+
+  static async getDataForChart(currencyId) {
+    const currentDate = new Date();
+    const dataDate = currentDate.toString().split(" ");
+    const day = dataDate[0];
+    const month = dataDate[1];
+    const date = dataDate[2];
+    const year = dataDate[3];
+
+    const responseForYear = await fetch(
+      `https://www.nbrb.by/API/ExRates/Rates/Dynamics/${currencyId}?startDate=Tue%2C+31+Dec+2019+21%3A00%3A00+GMT&endDate=${day}%2C+${date}+${month}+${year}+21%3A00%3A00+GMT`
+    );
+
+    return responseForYear;
+  }
+
+  async getFinanceData() {
     const dates = [];
-    const updatedDates = [];
+    const shortDates = [];
     let currencyDynamicsLeft = [];
     let currencyDynamicsRight = [];
 
-    async function getYearCurrencyData(currencyId, select) {
-      const currentDate = new Date();
-      const dataDate = currentDate.toString().split(" ");
-      const day = dataDate[0];
-      const month = dataDate[1];
-      const date = dataDate[2];
-      const year = dataDate[3];
-      // console.log(day, month, date, year)
-      // console.log(currentDate.toString().split(' '))
+    const getYearCurrencyData = async (currencyId, select) => {
+      const responseForYear = await Finance.getDataForChart(currencyId);
+      const yearData = await responseForYear.json();
 
-      const responseOnYear = await fetch(
-        `https://www.nbrb.by/API/ExRates/Rates/Dynamics/${currencyId}?startDate=Tue%2C+31+Dec+2019+21%3A00%3A00+GMT&endDate=${day}%2C+${date}+${month}+${year}+21%3A00%3A00+GMT`
-      );
       dates.length = 0;
-      updatedDates.length = 0;
-      const yearData = await responseOnYear.json();
+      shortDates.length = 0;
+
       yearData.forEach((val) => dates.push(val.Date));
 
-      dates.forEach((dateItem) => updatedDates.push(dateItem.slice(0, 10)));
+      dates.forEach((dateItem) => shortDates.push(dateItem.slice(0, 10)));
+
       if (select === "selectLeft") {
         currencyDynamicsLeft = [];
         yearData.forEach((val) =>
@@ -190,32 +185,34 @@ class Finance {
       }
 
       const chartLine = [];
+
       currencyDynamicsLeft.forEach((item, i) =>
         chartLine.push((item / currencyDynamicsRight[i]).toFixed(4))
       );
-      axesLinearChart(updatedDates, chartLine, chartLine[chartLine.length - 1]);
-      // console.log(chartLine);
-      // console.log(yearData);
-      // console.log(currencyDynamicsLeft);
-      // console.log(currencyDynamicsRight);
-      // console.log(updatedDates);
-    }
+      this.axesLinearChart(
+        shortDates,
+        chartLine,
+        chartLine[chartLine.length - 1]
+      );
+    };
+
     getYearCurrencyData(292, "selectLeft");
     setTimeout(() => {
       getYearCurrencyData(145, "selectRight");
-    }, 500);
+    }, 0);
 
     let flag = false;
     function addClickedCurrency(e) {
       if (flag === false) {
         flag = true;
       } else {
-        // console.log(e.target.value);
-        // console.log(e.target.name);
         getYearCurrencyData(e.target.value, e.target.name);
         flag = false;
       }
     }
+
+    const selectLeft = await this.createSelect("selectLeft", "EUR");
+    const selectRight = await this.createSelect("selectRight", "USD");
 
     selectLeft.addEventListener("click", addClickedCurrency);
     selectRight.addEventListener("click", addClickedCurrency);
@@ -225,6 +222,11 @@ class Finance {
     const caption = document.createElement("h3");
     caption.textContent = "Finance";
     this.parentNode.appendChild(caption);
+    this.createPairEurUsd();
+    this.createPairEurRub();
+    this.createPairBlrUsd();
+    this.parentNode.appendChild(this.currencyList);
+    this.renderCurrencyChoiceBlock();
     this.getFinanceData();
   }
 }
