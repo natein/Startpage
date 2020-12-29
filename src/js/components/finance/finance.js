@@ -1,9 +1,8 @@
-// import './finance.scss';
 import "./finance.css";
-// import Chart from "chart.js";
+import Chart from "chart.js";
+
 class Finance {
   constructor(parentNode) {
-    // parentNode - это обычный div, в который вставляешь свои элементы
     this.parentNode = parentNode;
     this.currencyList = document.createElement("div");
     this.currencyChoiceBlock = document.createElement("div");
@@ -57,7 +56,7 @@ class Finance {
 
     blrUsd.classList.add("blrUsd");
 
-    blrUsd.textContent = `EUR/BLR: ${(
+    blrUsd.textContent = `USD/BLR: ${(
       usd.Cur_OfficialRate / usd.Cur_Scale
     ).toFixed(4)}`;
 
