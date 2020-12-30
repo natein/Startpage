@@ -1,4 +1,4 @@
-import './footer.scss';
+import './footer.css';
 import * as Constants from '../../data/constants';
 
 class Footer {

@@ -1,4 +1,4 @@
-import './header.scss';
+import './header.css';
 import * as Constants from '../../data/constants';
 
 class Header {

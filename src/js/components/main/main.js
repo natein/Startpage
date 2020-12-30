@@ -1,4 +1,4 @@
-import './main.scss';
+import './main.css';
 import Finance from '../finance/finance';
 
 class Main {
