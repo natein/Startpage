@@ -1,10 +1,10 @@
 import "./finance.css";
 import Chart from "chart.js";
 
+const nbrbURL = "https://www.nbrb.by/api/exrates/rates?periodicity=0";
+
 const getRateForDayRequest = async () => {
-  const response = await fetch(
-    "https://www.nbrb.by/api/exrates/rates?periodicity=0"
-  );
+  const response = await fetch(nbrbURL);
   const data = await response.json();
   return data;
 };
