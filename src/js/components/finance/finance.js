@@ -1,6 +1,42 @@
 import "./finance.css";
 import Chart from "chart.js";
 
+const getRateForDayRequest = async () => {
+  const response = await fetch(
+    "https://www.nbrb.by/api/exrates/rates?periodicity=0"
+  );
+  const data = await response.json();
+  return data;
+};
+
+const getCurrencyPairData = async () => {
+  const data = await getRateForDayRequest();
+  const eur = data.find((currency) => currency.Cur_Abbreviation === "EUR");
+  const usd = data.find((currency) => currency.Cur_Abbreviation === "USD");
+  const rub = data.find((currency) => currency.Cur_Abbreviation === "RUB");
+  return {
+    eur,
+    usd,
+    rub,
+  };
+};
+
+const getDataForChart = async (currencyId) => {
+  const currentDate = new Date();
+  const dataDate = currentDate.toString().split(" ");
+  const day = dataDate[0];
+  const month = dataDate[1];
+  const date = dataDate[2];
+  const year = dataDate[3];
+
+  const responseForYear = await fetch(
+    `https://www.nbrb.by/API/ExRates/Rates/Dynamics/${currencyId}
+    ?startDate=Tue%2C+31+Dec+2019+21%3A00%3A00+GMT&endDate=${day}
+    %2C+${date}+${month}+${year}+21%3A00%3A00+GMT`
+  );
+
+  return responseForYear;
+};
 class Finance {
   constructor(parentNode) {
     this.parentNode = parentNode;
@@ -10,16 +46,8 @@ class Finance {
     this.render();
   }
 
-  static async getRateForDayRequest() {
-    const response = await fetch(
-      "https://www.nbrb.by/api/exrates/rates?periodicity=0"
-    );
-    const data = await response.json();
-    return data;
-  }
-
   async createPairEurUsd() {
-    const { eur, usd } = await Finance.getCurrencyPairData();
+    const { eur, usd } = await getCurrencyPairData();
 
     const eurUsd = document.createElement("p");
 
@@ -36,7 +64,7 @@ class Finance {
   }
 
   async createPairEurRub() {
-    const { eur, rub } = await Finance.getCurrencyPairData();
+    const { eur, rub } = await getCurrencyPairData();
     const eurRub = document.createElement("p");
 
     eurRub.classList.add("eurRub");
@@ -51,7 +79,7 @@ class Finance {
   }
 
   async createPairBlrUsd() {
-    const { usd } = await Finance.getCurrencyPairData();
+    const { usd } = await getCurrencyPairData();
     const blrUsd = document.createElement("p");
 
     blrUsd.classList.add("blrUsd");
@@ -63,20 +91,8 @@ class Finance {
     this.currencyList.appendChild(blrUsd);
   }
 
-  static async getCurrencyPairData() {
-    const data = await Finance.getRateForDayRequest();
-    const eur = data.find((currency) => currency.Cur_Abbreviation === "EUR");
-    const usd = data.find((currency) => currency.Cur_Abbreviation === "USD");
-    const rub = data.find((currency) => currency.Cur_Abbreviation === "RUB");
-    return {
-      eur,
-      usd,
-      rub,
-    };
-  }
-
   async createSelect(selectName, selectedItem) {
-    const data = await Finance.getRateForDayRequest();
+    const data = await getRateForDayRequest();
     const select = document.createElement("select");
     select.name = selectName;
 
@@ -138,21 +154,6 @@ class Finance {
     });
   }
 
-  static async getDataForChart(currencyId) {
-    const currentDate = new Date();
-    const dataDate = currentDate.toString().split(" ");
-    const day = dataDate[0];
-    const month = dataDate[1];
-    const date = dataDate[2];
-    const year = dataDate[3];
-
-    const responseForYear = await fetch(
-      `https://www.nbrb.by/API/ExRates/Rates/Dynamics/${currencyId}?startDate=Tue%2C+31+Dec+2019+21%3A00%3A00+GMT&endDate=${day}%2C+${date}+${month}+${year}+21%3A00%3A00+GMT`
-    );
-
-    return responseForYear;
-  }
-
   async getFinanceData() {
     const dates = [];
     const shortDates = [];
@@ -160,7 +161,7 @@ class Finance {
     let currencyDynamicsRight = [];
 
     const getYearCurrencyData = async (currencyId, select) => {
-      const responseForYear = await Finance.getDataForChart(currencyId);
+      const responseForYear = await getDataForChart(currencyId);
       const yearData = await responseForYear.json();
 
       dates.length = 0;
