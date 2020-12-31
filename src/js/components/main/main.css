@@ -3,10 +3,19 @@ main {
   height: calc(100vh - 120px);
   background-color: var(--accent-color-light);
   padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .block {
   width: 400px;
   background-color: var(--app-background-color);
+  margin: 5px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 /*# sourceMappingURL=main.css.map */

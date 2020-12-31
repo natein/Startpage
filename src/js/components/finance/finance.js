@@ -119,15 +119,16 @@ class Finance {
   }
 
   axesLinearChart(updatedDate, currencyDynamic, rateCurrencyPair) {
+    if (this.chart) {
+      const previousChart = document.querySelector('.chartBlock');
+      previousChart.parentElement.removeChild(previousChart);
+    }
     const chartBlock = document.createElement("div");
     chartBlock.classList.add("chartBlock");
     chartBlock.innerHTML = `<canvas id="line-chart"></canvas>`;
 
     this.parentNode.appendChild(chartBlock);
     const ctx = document.getElementById("line-chart").getContext("2d");
-    if (this.chart) {
-      this.chart.destroy();
-    }
 
     this.chart = new Chart(ctx, {
       type: "line",

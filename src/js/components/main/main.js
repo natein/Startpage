@@ -1,5 +1,6 @@
 import './main.css';
 import Finance from '../finance/finance';
+import Rss from '../rss-news/rss';
 
 class Main {
   constructor(parentNode) {
@@ -14,6 +15,11 @@ class Main {
     financeContainer.classList.add('block');
     main.appendChild(financeContainer);
     this.fin = new Finance(financeContainer);
+
+    const rssNewsContainer = document.createElement('div');
+    rssNewsContainer.classList.add('block');
+    main.appendChild(rssNewsContainer);
+    this.rss = new Rss(rssNewsContainer);
   }
 }
 
