@@ -1,0 +1,51 @@
+.rss {
+  outline: 1px solid blue;
+  // height: 450px;
+  padding: 10px;
+}
+
+.bookmarks {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 6px 0;
+  border-bottom: 1px solid rgb(197, 195, 195);
+
+  .logo {
+    width: 60px;
+    margin-right: 10px;
+    cursor: pointer;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      transition: all 0.2s ease-in-out;
+      border-bottom: 1px solid #000;
+    }
+  }
+}
+
+.content {
+  height: 200px;
+  overflow: auto;
+  text-align: justify;
+}
+
+.topic {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 10px;
+  margin: 5px;
+
+  .topic-img {
+    width: 60px;
+  }
+
+  .topic-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.7rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
