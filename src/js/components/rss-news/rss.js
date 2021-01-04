@@ -42,7 +42,6 @@ const urlArray = [
 const getRss = async (url = "https://lenta.ru/rss/news") => {
   const request = await fetch(`${jsonApi}${url}`);
   const data = await request.json();
-  console.log(data);
   return data;
 };
 
