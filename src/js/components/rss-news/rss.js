@@ -137,7 +137,14 @@ class Rss {
     // caption.textContent = "News";
     // this.parentNode.appendChild(caption);
     this.parentNode.innerHTML = `
-    <h3>News</h3>
+    <div class="rss-header">
+      <h3>News</h3>
+      <div class="rss-menu">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
     <div class="bookmarks"> </div>
     <div class="title"> </div>
     <div class="content"> </div>
