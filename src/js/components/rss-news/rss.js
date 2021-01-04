@@ -11,6 +11,9 @@ const urlArray = [
       "https://lenta.ru/rss/news",
       "https://lenta.ru/rss/top7",
       "https://lenta.ru/rss/last24",
+      "https://lenta.ru/rss/articles",
+      "https://lenta.ru/rss/news/russia",
+      "https://lenta.ru/rss/photo",
     ],
   },
   {
@@ -20,6 +23,9 @@ const urlArray = [
       "https://www.gazeta.ru/export/rss/first.xml",
       "https://www.gazeta.ru/export/rss/lenta.xml",
       "https://www.gazeta.ru/export/rss/lastnews.xml",
+      "https://www.gazeta.ru/export/rss/politics.xml",
+      "https://www.gazeta.ru/export/rss/business.xml",
+      "https://www.gazeta.ru/export/rss/social.xml",
     ],
   },
   {
@@ -30,7 +36,7 @@ const urlArray = [
       "https://news.tut.by/rss/economics.rss",
       "https://news.tut.by/rss/society.rss",
     ],
-  },
+  }
 ];
 
 const getRss = async (url = "https://lenta.ru/rss/news") => {
@@ -70,14 +76,9 @@ class Rss {
   }
 
   setNumberPage(currentNumber, amountNumbers) {
-    // const navPageBlock = this.parentNode.querySelector(".nav-page");
-    // navPageBlock.innerHTML = `
-    // <span class="current-page">${currentNumber}</span>
-    // <span>&frasl;</span>
-    // <span class="amount-pages">${amountNumbers}</span>
-    // `;
     const currentPage = this.parentNode.querySelector(".current-page");
     const amountPages = this.parentNode.querySelector(".amount-pages");
+
     currentPage.textContent = currentNumber;
     amountPages.textContent = amountNumbers;
   }
@@ -91,9 +92,8 @@ class Rss {
     this.numberLink += shift;
 
     const amountLinks = service.links.length;
-    const resetNumberLink =
-      this.numberLink < 0 || this.numberLink >= amountLinks;
-    if (resetNumberLink) this.numberLink = 0;
+    if (this.numberLink < 0) this.numberLink = amountLinks - 1;
+    if (this.numberLink >= amountLinks) this.numberLink = 0;
 
     const url = service.links[this.numberLink];
     const rssNews = await getRss(url);
@@ -101,40 +101,35 @@ class Rss {
     const content = this.parentNode.querySelector(".content");
 
     this.clearContentBlock();
+
     rssNews.items.forEach((news) => {
+      const correctTitle =
+        news.description.includes("<img") === true ? "" : news.description;
+
       const topic = document.createElement("div");
       topic.classList.add("topic");
       topic.innerHTML = `
         <img class="topic-img" src="${news.enclosure.link}" alt="topic">
-        <a class="topic-link" href="${news.link}" target="_blank" title="${news.description}">${news.title}</a>
+        <a class="topic-link" title="${correctTitle}" href="${news.link}" target="_blank">${news.title}</a>
       `;
       content.appendChild(topic);
     });
 
     this.setNewsTitle(rssNews.feed.title);
     this.setNumberPage(this.numberLink + 1, amountLinks);
-
-    // console.log(this.numberLink);
-  }
-
-  prevPageListener() {
-    this.fillContentBlock(service, -1);
   }
 
   changePage(service) {
-    // if (!this.permissionAddListener) return;
     const prevPage = this.parentNode.querySelector(".prev-page");
     const nextPage = this.parentNode.querySelector(".next-page");
 
-    prevPage.addEventListener("click", () => {
+    prevPage.onclick = () => {
       this.fillContentBlock(service, -1);
-    });
+    };
 
-    nextPage.addEventListener("click", () => {
+    nextPage.onclick = () => {
       this.fillContentBlock(service, 1);
-    });
-
-    // this.permissionAddListener = false;
+    };
   }
 
   render() {

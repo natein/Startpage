@@ -14,7 +14,7 @@ class Main {
     const financeContainer = document.createElement("div");
     financeContainer.classList.add("block");
     main.appendChild(financeContainer);
-    this.fin = new Finance(financeContainer);
+    // this.fin = new Finance(financeContainer);
 
     const rssNewsContainer = document.createElement("div");
     rssNewsContainer.classList.add("block", "rss");

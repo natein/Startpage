@@ -27,6 +27,10 @@
   border-bottom: 1px solid #000;
 }
 
+.title {
+  font-size: 18px;
+}
+
 .content {
   height: 200px;
   overflow: auto;
@@ -52,7 +56,7 @@
 .topic .topic-link {
   text-decoration: none;
   color: #000;
-  font-size: 0.7rem;
+  font-size: 14px;
 }
 
 .topic .topic-link:hover {
