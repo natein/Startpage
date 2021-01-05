@@ -21,7 +21,7 @@
 
 .bookmarks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  grid-template-columns: repeat(5,1fr);
   grid-template-rows: 20px;
   align-items: center;
   padding: 10px 10px 8px 10px;
@@ -33,14 +33,19 @@
     cursor: pointer;
     padding-bottom: 1px;
     border-bottom: 1px solid transparent;
+
     &:hover {
       transition: all 0.2s ease-in-out;
       border-bottom: 1px solid #000;
     }
   }
 
-  .logo.Lsm-lv{
+  .logo.Lsm-lv {
     width: 15px;
+  }
+
+  .logo.Un-org {
+    width: 25px;
   }
 }
 

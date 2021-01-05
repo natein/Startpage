@@ -36,14 +36,18 @@ const urlArray = [
       "https://news.tut.by/rss/society.rss",
     ],
   },
-
   {
     service: "Lsm-lv",
     logo: "https://www.lsm.lv//assets/logo/lsm_hi.png",
     links: [
       "https://www.lsm.lv/rss/?lang=lv&catid=22",
+    ],
+  },
+  {
+    service: "Un-org",
+    logo: "https://news.un.org/en/sites/all/themes/bootstrap_un_news/images/un-emblem-for-rss.png",
+    links: [
       "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
-      "https://www.lsm.lv/rss/?lang=lv&catid=65",
     ],
   },
 ];

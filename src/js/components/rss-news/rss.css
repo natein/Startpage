@@ -29,8 +29,8 @@
 .bookmarks {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(60px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
   -ms-grid-rows: 20px;
       grid-template-rows: 20px;
   -webkit-box-align: center;
@@ -56,6 +56,10 @@
 
 .bookmarks .logo.Lsm-lv {
   width: 15px;
+}
+
+.bookmarks .logo.Un-org {
+  width: 25px;
 }
 
 .title {
