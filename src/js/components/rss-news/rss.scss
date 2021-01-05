@@ -20,13 +20,15 @@
 }
 
 .bookmarks {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  grid-template-rows: 20px;
+  align-items: center;
   padding: 10px 10px 8px 10px;
   border-bottom: 1px solid rgb(197, 195, 195);
 
   .logo {
-    width: 60px;
+    width: 80px;
     margin-right: 15px;
     cursor: pointer;
     padding-bottom: 1px;
@@ -35,6 +37,10 @@
       transition: all 0.2s ease-in-out;
       border-bottom: 1px solid #000;
     }
+  }
+
+  .logo.Lsm-lv{
+    width: 15px;
   }
 }
 

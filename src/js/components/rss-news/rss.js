@@ -1,11 +1,10 @@
 import "./rss.css";
 
 const jsonApi = "https://api.rss2json.com/v1/api.json?rss_url=";
-// const url = 'https://www.euroline.by/politics/rss.xml';
 
 const urlArray = [
   {
-    service: "Lenta.ru",
+    service: "Lenta-ru",
     logo: "https://lenta.ru/images/small_logo.png",
     links: [
       "https://lenta.ru/rss/news",
@@ -17,7 +16,7 @@ const urlArray = [
     ],
   },
   {
-    service: "Газета.Ru",
+    service: "Газета-Ru",
     logo: "https://img.gazeta.ru/files3/677/4728677/gazeta_logo.jpg",
     links: [
       "https://www.gazeta.ru/export/rss/first.xml",
@@ -29,14 +28,24 @@ const urlArray = [
     ],
   },
   {
-    service: "TUT.BY",
+    service: "TUT-BY",
     logo: "https://img.tyt.by/i/rss/news/logo.gif",
     links: [
       "https://news.tut.by/rss/index.rss",
       "https://news.tut.by/rss/economics.rss",
       "https://news.tut.by/rss/society.rss",
     ],
-  }
+  },
+
+  {
+    service: "Lsm-lv",
+    logo: "https://www.lsm.lv//assets/logo/lsm_hi.png",
+    links: [
+      "https://www.lsm.lv/rss/?lang=lv&catid=22",
+      "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+      "https://www.lsm.lv/rss/?lang=lv&catid=65",
+    ],
+  },
 ];
 
 const getRss = async (url = "https://lenta.ru/rss/news") => {
@@ -58,7 +67,7 @@ class Rss {
 
     urlArray.forEach((service) => {
       const bookmark = document.createElement("img");
-      bookmark.classList.add("logo");
+      bookmark.classList.add("logo", `${service.service}`);
       bookmark.src = service.logo;
       bookmarksContainer.appendChild(bookmark);
       bookmark.addEventListener("click", () => {
@@ -132,9 +141,6 @@ class Rss {
   }
 
   render() {
-    // const caption = document.createElement("h3");
-    // caption.textContent = "News";
-    // this.parentNode.appendChild(caption);
     this.parentNode.innerHTML = `
     <div class="rss-header">
       <h3>News</h3>
@@ -164,44 +170,3 @@ class Rss {
 }
 
 export default Rss;
-
-// const feedURL = 'https://news.google.com/news/rss?hl=ru&gl=SE&ceid=SE%3Asv';
-// url = 'https://www.euroline.by/politics/rss.xml'
-// const feedURL = "https://lenta.ru/rss/news";
-
-// async function getRSS() {
-//   const request = await fetch(
-//     "https://api.rss2json.com/v1/api.json?rss_url=" + feedURL
-//   );
-//   const data = await request.json();
-//   console.log(data);
-//   const itemsContainer = document.querySelector(".rss");
-
-//   for (let i = 0, t = data.items.length; i < t; ++i) {
-//     const item = data.items[i];
-//     const itemContainer = document.createElement("DIV");
-
-//     const itemTitleElement = document.createElement("H2");
-//     const itemLinkElement = document.createElement("a");
-//     const itemDescriptionElement = document.createElement("p");
-
-//     itemLinkElement.setAttribute("href", item.link);
-//     itemLinkElement.innerText = item.title;
-//     itemTitleElement.appendChild(itemLinkElement);
-
-//     // note : make sure the content is XSS safe before using innerHTML
-//     itemDescriptionElement.innerHTML = item.description;
-
-//     itemContainer.appendChild(itemTitleElement);
-//     itemContainer.appendChild(itemDescriptionElement);
-
-//     itemsContainer.appendChild(itemContainer);
-//   }
-
-//   const titleElement = document.createElement("H1");
-//   titleElement.innerText = data.feed.title;
-
-// content.appendChild(titleElement);
-// content.appendChild(itemsContainer);
-// }
-// getRSS();
