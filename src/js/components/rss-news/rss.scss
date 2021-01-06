@@ -40,7 +40,7 @@
     }
   }
 
-  .logo.Other{
+  .logo.other-sources{
     width: 45px;
   }
 }
@@ -111,4 +111,29 @@
   cursor: pointer;
   transform: scale(1.4);
   opacity: 1;
+}
+
+.hiddenBlock,
+.error{
+  position: absolute;
+  bottom: 140px;
+  width: 1020px;
+  height: 40px;
+  margin: 0 auto;
+  padding-top: 8px;
+  text-align: center;
+  background-color: #FF0000;
+  color: #fff;
+  font-size: 20px;
+  animation: error 0.6s ease-in-out reverse;
+}
+
+.hiddenBlock.hide{
+  transform: translateY(0px);
+  animation: error 0.6s ease-in-out;
+}
+
+@keyframes error{
+  0%{transform: translateY(0px)}
+  100%{transform: translateY(200px)}
 }

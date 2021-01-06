@@ -1,7 +1,5 @@
 import "./rss.css";
 
-const jsonApi = "https://api.rss2json.com/v1/api.json?rss_url=";
-
 const urlArray = [
   {
     service: "Lenta-ru",
@@ -37,7 +35,7 @@ const urlArray = [
     ],
   },
   {
-    service: "Other",
+    service: "other-sources",
     logo:
       "https://micras.org/wiki/images/thumb/6/6b/Template-info.svg.png/320px-Template-info.svg.png",
     links: [
@@ -51,10 +49,37 @@ const urlArray = [
   },
 ];
 
+const showErrorApi = (text) => {
+  const body = document.querySelector("body");
+  const block = document.createElement("div");
+  block.textContent = text;
+  block.classList.add("error");
+  body.appendChild(block);
+  setTimeout(() => {
+    const hiddenBlock = document.createElement("div");
+    hiddenBlock.textContent = text;
+    hiddenBlock.classList.add("hiddenBlock", "hide");
+    body.appendChild(hiddenBlock);
+    block.parentElement.removeChild(block);
+    setTimeout(() => {
+      hiddenBlock.parentElement.removeChild(hiddenBlock);
+    }, 500);
+  }, 3000);
+};
+
+const jsonApi = "https://api.rss2json.com/v1/api.json?rss_url=";
+const apiKey = "&api_key=j0hwglpcodohzh4p4j8pdhejx1kdhkgtxmxgba6n";
+
 const getRss = async (url = "https://lenta.ru/rss/news") => {
-    const request = await fetch(`${jsonApi}${url}`);
-    const data = await request.json();
-  data.status === "ok" ? data : alert('You are converting new feeds in a very short period, please try later')
+  const request = await fetch(`${jsonApi}${url}${apiKey}`);
+  const data = await request.json();
+  const status = data.status === "error";
+
+  if (status) {
+    showErrorApi("You are converting new feeds in a very short period");
+    throw new Error("Api doesn't provides with information");
+  }
+
   return data;
 };
 
