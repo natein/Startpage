@@ -54,12 +54,8 @@
   border-bottom: 1px solid #000;
 }
 
-.bookmarks .logo.Lsm-lv {
-  width: 15px;
-}
-
-.bookmarks .logo.Un-org {
-  width: 25px;
+.bookmarks .logo.Other {
+  width: 45px;
 }
 
 .title {
@@ -105,6 +101,7 @@
 
 .topic .topic-img {
   width: 60px;
+  max-height: 40px;
 }
 
 .topic .topic-link {

@@ -37,24 +37,24 @@ const urlArray = [
     ],
   },
   {
-    service: "Lsm-lv",
-    logo: "https://www.lsm.lv//assets/logo/lsm_hi.png",
+    service: "Other",
+    logo:
+      "https://micras.org/wiki/images/thumb/6/6b/Template-info.svg.png/320px-Template-info.svg.png",
     links: [
-      "https://www.lsm.lv/rss/?lang=lv&catid=22",
-    ],
-  },
-  {
-    service: "Un-org",
-    logo: "https://news.un.org/en/sites/all/themes/bootstrap_un_news/images/un-emblem-for-rss.png",
-    links: [
+      "https://www.yahoo.com/news/rss",
       "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+      "https://www.lsm.lv/rss/?lang=lv&catid=22",
+      "https://finance.yahoo.com/news/rssindex",
+      "http://feeds.bbci.co.uk/news/world/rss.xml",
+      "http://rss.cnn.com/rss/edition.rss",
     ],
   },
 ];
 
 const getRss = async (url = "https://lenta.ru/rss/news") => {
-  const request = await fetch(`${jsonApi}${url}`);
-  const data = await request.json();
+    const request = await fetch(`${jsonApi}${url}`);
+    const data = await request.json();
+  data.status === "ok" ? data : alert('You are converting new feeds in a very short period, please try later')
   return data;
 };
 
@@ -121,8 +121,13 @@ class Rss {
       const topic = document.createElement("div");
       topic.classList.add("topic");
       topic.innerHTML = `
-        <img class="topic-img" src="${news.enclosure.link}" alt="topic">
-        <a class="topic-link" title="${correctTitle}" href="${news.link}" target="_blank">${news.title}</a>
+        <img class="topic-img" src="${
+          news.enclosure.link ||
+          "https://www.clker.com/cliparts/s/N/X/c/y/n/info-arrow.svg"
+        }" alt="topic">
+        <a class="topic-link" title="${correctTitle}" href="${
+        news.link
+      }" target="_blank">${news.title}</a>
       `;
       content.appendChild(topic);
     });

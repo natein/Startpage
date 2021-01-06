@@ -40,12 +40,8 @@
     }
   }
 
-  .logo.Lsm-lv {
-    width: 15px;
-  }
-
-  .logo.Un-org {
-    width: 25px;
+  .logo.Other{
+    width: 45px;
   }
 }
 
@@ -86,6 +82,7 @@
 
   .topic-img {
     width: 60px;
+    max-height: 40px;
   }
 
   .topic-link {
