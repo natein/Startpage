@@ -24,21 +24,20 @@ const hide = () => {
   }, 150);
 };
 
+const callHide = (e) => {
+  if (e.target.dataset.close) hide();
+};
+
 class Menu {
   constructor(clickedElement) {
-    this.parentNode = document.querySelector('body');
+    this.parentNode = document.querySelector("body");
     this.clickedElement = clickedElement;
     this.render();
   }
 
   addListeners() {
     this.clickedElement.addEventListener("click", open);
-    this.parentNode.addEventListener("click", this.callHide);
-  }
-
-  callHide(e) {
-    const close = e.target.dataset.close;
-    if (close) hide();
+    this.parentNode.addEventListener("click", callHide);
   }
 
   render() {
