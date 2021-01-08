@@ -1,5 +1,6 @@
-import './main.css';
-import Finance from '../finance/finance';
+import "./main.css";
+import Finance from "../finance/finance";
+import Rss from "../rss-news/rss";
 
 class Main {
   constructor(parentNode) {
@@ -8,12 +9,17 @@ class Main {
   }
 
   render() {
-    const main = document.createElement('main');
+    const main = document.createElement("main");
     this.parentNode.appendChild(main);
-    const financeContainer = document.createElement('div');
-    financeContainer.classList.add('block');
+    const financeContainer = document.createElement("div");
+    financeContainer.classList.add("block", "finance");
     main.appendChild(financeContainer);
     this.fin = new Finance(financeContainer);
+
+    const rssNewsContainer = document.createElement("div");
+    rssNewsContainer.classList.add("block", "rss");
+    main.appendChild(rssNewsContainer);
+    this.rss = new Rss(rssNewsContainer);
   }
 }
 

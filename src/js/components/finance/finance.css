@@ -1,5 +1,9 @@
 h3 {
-  font-size: 30px;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px 22px;
+  height: 45px;
+  background-color: #EEEEEE;
 }
 
 .currencyList {
