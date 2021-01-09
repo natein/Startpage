@@ -1,10 +1,10 @@
 :root {
-  --accent-color-light: #eee;
-  --accent-color-contrast: teal;
+  --accent-color-light: #F5D678;
+  --accent-color-contrast: #120C0E;
   --error-color: #f00;
   --text-color: #000;
   --app-background-color: #fff;
-  --header-footer-text-color: #fff;
+  --header-footer-text-color: #FDF6A1;  
 }
 
 * {
