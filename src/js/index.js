@@ -16,3 +16,12 @@ class App {
 window.onload = () => {
   window.myapp = new App();
 };
+
+window.onunload = () => {
+  myapp.header.pages.savePages();
+};
+
+window.onpopstate = () => {
+  const curPage = decodeURI(location.hash.slice(1));
+  myapp.header.pages.setActivePage(curPage);
+};
