@@ -29,7 +29,8 @@ const callHide = (e) => {
 };
 
 class Menu {
-  constructor(clickedElement) {
+  constructor(clickedElement, caption) {
+    this.caption = caption;
     this.parentNode = document.querySelector("body");
     this.clickedElement = clickedElement;
     this.render();
@@ -47,7 +48,7 @@ class Menu {
     overlay.innerHTML = `
     <div class="baseMenu">
       <div class="header-block">
-        <h3 class="header-caption">Menu Caption</h3>
+        <h3 class="header-caption">${this.caption}</h3>
         <div class="cross" data-close="true"></div>
       </div> 
       <div class="menu-content"></div>
