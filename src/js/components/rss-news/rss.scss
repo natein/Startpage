@@ -20,9 +20,12 @@
 }
 
 .bookmarks {
-  display: grid;
-  grid-template-columns: repeat(5,1fr);
-  grid-template-rows: 20px;
+  // display: grid;
+  // grid-template-columns: repeat(5,1fr);
+  // grid-template-rows: 20px;
+  // align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px 10px 8px 10px;
   border-bottom: 1px solid rgb(197, 195, 195);
@@ -40,9 +43,13 @@
     }
   }
 
-  .logo.other-sources{
+  .logo.Un-org{
     width: 45px;
   }
+
+  // .logo.other-sources{
+  //   width: 45px;
+  // }
 }
 
 .title {

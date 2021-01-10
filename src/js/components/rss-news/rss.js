@@ -1,6 +1,140 @@
 import "./rss.css";
+import RssMenu from "../rss-menu/rss-menu";
+// const urlArray = [
+//   {
+//     service: "Lenta-ru",
+//     logo: "https://lenta.ru/images/small_logo.png",
+//     links: [
+//       "https://lenta.ru/rss/news",
+//       "https://lenta.ru/rss/top7",
+//       "https://lenta.ru/rss/last24",
+//       "https://lenta.ru/rss/articles",
+//       "https://lenta.ru/rss/news/russia",
+//       "https://lenta.ru/rss/photo",
+//     ],
+//   },
+//   {
+//     service: "Газета-Ru",
+//     logo: "https://img.gazeta.ru/files3/677/4728677/gazeta_logo.jpg",
+//     links: [
+//       "https://www.gazeta.ru/export/rss/first.xml",
+//       "https://www.gazeta.ru/export/rss/lenta.xml",
+//       "https://www.gazeta.ru/export/rss/lastnews.xml",
+//       "https://www.gazeta.ru/export/rss/politics.xml",
+//       "https://www.gazeta.ru/export/rss/business.xml",
+//       "https://www.gazeta.ru/export/rss/social.xml",
+//     ],
+//   },
+//   {
+//     service: "TUT-BY",
+//     logo: "https://img.tyt.by/i/rss/news/logo.gif",
+//     links: [
+//       "https://news.tut.by/rss/index.rss",
+//       "https://news.tut.by/rss/economics.rss",
+//       "https://news.tut.by/rss/society.rss",
+//     ],
+//   },
+//   {
+//     service: "other-sources",
+//     logo:
+//       "https://micras.org/wiki/images/thumb/6/6b/Template-info.svg.png/320px-Template-info.svg.png",
+//     links: [
+//       "https://www.yahoo.com/news/rss",
+//       "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+//       "https://www.lsm.lv/rss/?lang=lv&catid=22",
+//       "https://finance.yahoo.com/news/rssindex",
+//       "http://feeds.bbci.co.uk/news/world/rss.xml",
+//       "http://rss.cnn.com/rss/edition.rss",
+//     ],
+//   },
+// ];
 
-const urlArray = [
+// const urlArray = [
+//   {
+//     service: "Lenta-ru",
+//     logo: "https://lenta.ru/images/small_logo.png",
+//     links: [
+//       "https://lenta.ru/rss/news",
+//       "https://lenta.ru/rss/top7",
+//       "https://lenta.ru/rss/last24",
+//       "https://lenta.ru/rss/articles",
+//       "https://lenta.ru/rss/news/russia",
+//       "https://lenta.ru/rss/photo",
+//     ],
+//   },
+//   // {
+//   //   service: "Газета-Ru",
+//   //   logo: "https://img.gazeta.ru/files3/677/4728677/gazeta_logo.jpg",
+//   //   links: [
+//   //     "https://www.gazeta.ru/export/rss/first.xml",
+//   //     "https://www.gazeta.ru/export/rss/lenta.xml",
+//   //     "https://www.gazeta.ru/export/rss/lastnews.xml",
+//   //     "https://www.gazeta.ru/export/rss/politics.xml",
+//   //     "https://www.gazeta.ru/export/rss/business.xml",
+//   //     "https://www.gazeta.ru/export/rss/social.xml",
+//   //   ],
+//   // },
+//   // {
+//   //   service: "TUT-BY",
+//   //   logo: "https://img.tyt.by/i/rss/news/logo.gif",
+//   //   links: [
+//   //     "https://news.tut.by/rss/index.rss",
+//   //     "https://news.tut.by/rss/economics.rss",
+//   //     "https://news.tut.by/rss/society.rss",
+//   //   ],
+//   // },
+//   // {
+//   //   service: "Yahoo",
+//   //   logo: "http://l.yimg.com/rz/d/yahoo_news_en-US_s_f_p_168x21_news.png",
+//   //   links: [
+//   //     "https://www.yahoo.com/news/rss",
+//   //     "https://finance.yahoo.com/news/rssindex",
+//   //   ],
+//   // },
+//   // {
+//   //   service: "cnn",
+//   //   logo: "http://i2.cdn.turner.com/cnn/2015/images/09/24/cnn.digital.png",
+//   //   links: [
+//   //     "http://rss.cnn.com/rss/edition.rss",
+//   //     "http://rss.cnn.com/rss/edition_world.rss",
+//   //   ],
+//   // },
+//   // {
+//   //   service: "Un-org",
+//   //   logo:
+//   //     "https://news.un.org/en/sites/all/themes/bootstrap_un_news/images/un-emblem-for-rss.png",
+//   //   links: [
+//   //     "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+//   //     "https://news.un.org/feed/subscribe/en/news/topic/health/feed/rss.xml",
+//   //   ],
+//   // },
+//   // {
+//   //   service: "bbc",
+//   //   logo: "http://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif",
+//   //   links: [
+//   //     "http://feeds.bbci.co.uk/news/world/rss.xml",
+//   //     "http://feeds.bbci.co.uk/news/politics/rss.xml",
+//   //   ],
+//   // },
+
+//   // {
+//   //   service: "other-sources",
+//   //   logo:
+//   //     "https://micras.org/wiki/images/thumb/6/6b/Template-info.svg.png/320px-Template-info.svg.png",
+//   //   links: [
+//   //     "https://www.yahoo.com/news/rss",
+//   //     "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+//   //     "https://www.lsm.lv/rss/?lang=lv&catid=22",
+//   //     "https://finance.yahoo.com/news/rssindex",
+//   //     "http://feeds.bbci.co.uk/news/world/rss.xml",
+//   //     "http://rss.cnn.com/rss/edition.rss",
+//   //   ],
+//   // },
+// ];
+
+let urlArray = [];
+
+export const fullUrlArray = [
   {
     service: "Lenta-ru",
     logo: "https://lenta.ru/images/small_logo.png",
@@ -35,26 +169,57 @@ const urlArray = [
     ],
   },
   {
-    service: "other-sources",
-    logo:
-      "https://micras.org/wiki/images/thumb/6/6b/Template-info.svg.png/320px-Template-info.svg.png",
+    service: "Yahoo",
+    logo: "http://l.yimg.com/rz/d/yahoo_news_en-US_s_f_p_168x21_news.png",
     links: [
       "https://www.yahoo.com/news/rss",
-      "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
-      "https://www.lsm.lv/rss/?lang=lv&catid=22",
       "https://finance.yahoo.com/news/rssindex",
-      "http://feeds.bbci.co.uk/news/world/rss.xml",
+    ],
+  },
+  {
+    service: "cnn",
+    logo: "http://i2.cdn.turner.com/cnn/2015/images/09/24/cnn.digital.png",
+    links: [
       "http://rss.cnn.com/rss/edition.rss",
+      "http://rss.cnn.com/rss/edition_world.rss",
+    ],
+  },
+  {
+    service: "Un-org",
+    logo:
+      "https://news.un.org/en/sites/all/themes/bootstrap_un_news/images/un-emblem-for-rss.png",
+    links: [
+      "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+      "https://news.un.org/feed/subscribe/en/news/topic/health/feed/rss.xml",
+    ],
+  },
+  {
+    service: "bbc",
+    logo: "http://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif",
+    links: [
+      "http://feeds.bbci.co.uk/news/world/rss.xml",
+      "http://feeds.bbci.co.uk/news/politics/rss.xml",
     ],
   },
 ];
+
+const localUrlArray = JSON.parse(localStorage.getItem("urlArray"));
+
+if (localUrlArray) {
+  urlArray = localUrlArray;
+} else {
+  urlArray.push(fullUrlArray[0]);
+  localStorage.setItem('urlArray', JSON.stringify(urlArray));
+}
 
 const showErrorApi = (text) => {
   const body = document.querySelector("body");
   const block = document.createElement("div");
   block.textContent = text;
   block.classList.add("error");
+  
   body.appendChild(block);
+
   setTimeout(() => {
     const hiddenBlock = document.createElement("div");
     hiddenBlock.textContent = text;
@@ -200,6 +365,8 @@ class Rss {
     this.fillNewsBookmarks();
     this.fillContentBlock(urlArray[0], 0);
     this.changePage(urlArray[0]);
+    this.btnMenu = this.parentNode.querySelector(".rss-menu");
+    this.rssMenu = new RssMenu(this.btnMenu, "Bookmark manager", fullUrlArray);
   }
 }
 
