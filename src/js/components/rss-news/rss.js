@@ -1,4 +1,5 @@
 import "./rss.css";
+import RssMenu from "../rss-menu/rss-menu";
 
 export const fullUrlArray = [
   {
@@ -248,8 +249,8 @@ class Rss {
     this.fillNewsBookmarks.bind(this)();
     this.fillContentBlock(urlArray[0], 0);
     this.changePage(urlArray[0]);
-    // this.btnMenu = this.parentNode.querySelector(".rss-menu");
-    // this.rssMenu = new RssMenu(this.btnMenu, "Bookmark manager", fullUrlArray);
+    this.btnMenu = this.parentNode.querySelector(".rss-menu");
+    this.rssMenu = new RssMenu(this.btnMenu, "Bookmark manager");
   }
 }
 

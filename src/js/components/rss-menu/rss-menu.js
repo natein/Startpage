@@ -15,7 +15,7 @@ const findActiveBookmark = (service) => {
 };
 
 const fillMenuContent = () => {
-  const menuContent = document.querySelector(".menu-content");
+  const menuContent = document.querySelector(".menu-content.Book");
   const fragment = document.createDocumentFragment();
 
   fullUrlArray.forEach((service) => {

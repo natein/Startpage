@@ -47,11 +47,11 @@ class Menu {
     overlay.dataset.close = true;
     overlay.innerHTML = `
     <div class="baseMenu ${this.privetClass}">
-      <div class="header-block">
-        <h3 class="header-caption">${this.caption}</h3>
+      <div class="header-block ${this.privetClass}">
+        <h3 class="header-caption ${this.privetClass}">${this.caption}</h3>
         <div class="cross" data-close="true"></div>
       </div> 
-      <div class="menu-content"></div>
+      <div class="menu-content ${this.privetClass}"></div>
      </div>
     `;
     this.parentNode.appendChild(overlay);
