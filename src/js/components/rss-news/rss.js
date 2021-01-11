@@ -1,138 +1,4 @@
 import "./rss.css";
-import RssMenu from "../rss-menu/rss-menu";
-// const urlArray = [
-//   {
-//     service: "Lenta-ru",
-//     logo: "https://lenta.ru/images/small_logo.png",
-//     links: [
-//       "https://lenta.ru/rss/news",
-//       "https://lenta.ru/rss/top7",
-//       "https://lenta.ru/rss/last24",
-//       "https://lenta.ru/rss/articles",
-//       "https://lenta.ru/rss/news/russia",
-//       "https://lenta.ru/rss/photo",
-//     ],
-//   },
-//   {
-//     service: "Газета-Ru",
-//     logo: "https://img.gazeta.ru/files3/677/4728677/gazeta_logo.jpg",
-//     links: [
-//       "https://www.gazeta.ru/export/rss/first.xml",
-//       "https://www.gazeta.ru/export/rss/lenta.xml",
-//       "https://www.gazeta.ru/export/rss/lastnews.xml",
-//       "https://www.gazeta.ru/export/rss/politics.xml",
-//       "https://www.gazeta.ru/export/rss/business.xml",
-//       "https://www.gazeta.ru/export/rss/social.xml",
-//     ],
-//   },
-//   {
-//     service: "TUT-BY",
-//     logo: "https://img.tyt.by/i/rss/news/logo.gif",
-//     links: [
-//       "https://news.tut.by/rss/index.rss",
-//       "https://news.tut.by/rss/economics.rss",
-//       "https://news.tut.by/rss/society.rss",
-//     ],
-//   },
-//   {
-//     service: "other-sources",
-//     logo:
-//       "https://micras.org/wiki/images/thumb/6/6b/Template-info.svg.png/320px-Template-info.svg.png",
-//     links: [
-//       "https://www.yahoo.com/news/rss",
-//       "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
-//       "https://www.lsm.lv/rss/?lang=lv&catid=22",
-//       "https://finance.yahoo.com/news/rssindex",
-//       "http://feeds.bbci.co.uk/news/world/rss.xml",
-//       "http://rss.cnn.com/rss/edition.rss",
-//     ],
-//   },
-// ];
-
-// const urlArray = [
-//   {
-//     service: "Lenta-ru",
-//     logo: "https://lenta.ru/images/small_logo.png",
-//     links: [
-//       "https://lenta.ru/rss/news",
-//       "https://lenta.ru/rss/top7",
-//       "https://lenta.ru/rss/last24",
-//       "https://lenta.ru/rss/articles",
-//       "https://lenta.ru/rss/news/russia",
-//       "https://lenta.ru/rss/photo",
-//     ],
-//   },
-//   // {
-//   //   service: "Газета-Ru",
-//   //   logo: "https://img.gazeta.ru/files3/677/4728677/gazeta_logo.jpg",
-//   //   links: [
-//   //     "https://www.gazeta.ru/export/rss/first.xml",
-//   //     "https://www.gazeta.ru/export/rss/lenta.xml",
-//   //     "https://www.gazeta.ru/export/rss/lastnews.xml",
-//   //     "https://www.gazeta.ru/export/rss/politics.xml",
-//   //     "https://www.gazeta.ru/export/rss/business.xml",
-//   //     "https://www.gazeta.ru/export/rss/social.xml",
-//   //   ],
-//   // },
-//   // {
-//   //   service: "TUT-BY",
-//   //   logo: "https://img.tyt.by/i/rss/news/logo.gif",
-//   //   links: [
-//   //     "https://news.tut.by/rss/index.rss",
-//   //     "https://news.tut.by/rss/economics.rss",
-//   //     "https://news.tut.by/rss/society.rss",
-//   //   ],
-//   // },
-//   // {
-//   //   service: "Yahoo",
-//   //   logo: "http://l.yimg.com/rz/d/yahoo_news_en-US_s_f_p_168x21_news.png",
-//   //   links: [
-//   //     "https://www.yahoo.com/news/rss",
-//   //     "https://finance.yahoo.com/news/rssindex",
-//   //   ],
-//   // },
-//   // {
-//   //   service: "cnn",
-//   //   logo: "http://i2.cdn.turner.com/cnn/2015/images/09/24/cnn.digital.png",
-//   //   links: [
-//   //     "http://rss.cnn.com/rss/edition.rss",
-//   //     "http://rss.cnn.com/rss/edition_world.rss",
-//   //   ],
-//   // },
-//   // {
-//   //   service: "Un-org",
-//   //   logo:
-//   //     "https://news.un.org/en/sites/all/themes/bootstrap_un_news/images/un-emblem-for-rss.png",
-//   //   links: [
-//   //     "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
-//   //     "https://news.un.org/feed/subscribe/en/news/topic/health/feed/rss.xml",
-//   //   ],
-//   // },
-//   // {
-//   //   service: "bbc",
-//   //   logo: "http://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif",
-//   //   links: [
-//   //     "http://feeds.bbci.co.uk/news/world/rss.xml",
-//   //     "http://feeds.bbci.co.uk/news/politics/rss.xml",
-//   //   ],
-//   // },
-
-//   // {
-//   //   service: "other-sources",
-//   //   logo:
-//   //     "https://micras.org/wiki/images/thumb/6/6b/Template-info.svg.png/320px-Template-info.svg.png",
-//   //   links: [
-//   //     "https://www.yahoo.com/news/rss",
-//   //     "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
-//   //     "https://www.lsm.lv/rss/?lang=lv&catid=22",
-//   //     "https://finance.yahoo.com/news/rssindex",
-//   //     "http://feeds.bbci.co.uk/news/world/rss.xml",
-//   //     "http://rss.cnn.com/rss/edition.rss",
-//   //   ],
-//   // },
-// ];
-
-let urlArray = [];
 
 export const fullUrlArray = [
   {
@@ -203,21 +69,44 @@ export const fullUrlArray = [
   },
 ];
 
-const localUrlArray = JSON.parse(localStorage.getItem("urlArray"));
+let urlArray = [];
 
-if (localUrlArray) {
-  urlArray = localUrlArray;
-} else {
-  urlArray.push(fullUrlArray[0]);
-  localStorage.setItem('urlArray', JSON.stringify(urlArray));
-}
+const getUrlArray = () => {
+  const localUrlArray = JSON.parse(localStorage.getItem("urlArray"));
+
+  if (localUrlArray) {
+    urlArray = localUrlArray;
+  } else {
+    urlArray.push(fullUrlArray[0]);
+    localStorage.setItem("urlArray", JSON.stringify(urlArray));
+  }
+  return urlArray;
+};
+
+const clearBookmarks = () => {
+  const bookmarks = document.querySelectorAll(".logo-bookmark");
+  bookmarks.forEach((bookmark) => bookmark.parentElement.removeChild(bookmark));
+};
+
+const setNewsTitle = (text) => {
+  const title = document.querySelector(".title");
+  title.textContent = text;
+};
+
+const setNumberPage = (currentNumber, amountNumbers) => {
+  const currentPage = document.querySelector(".current-page");
+  const amountPages = document.querySelector(".amount-pages");
+
+  currentPage.textContent = currentNumber;
+  amountPages.textContent = amountNumbers;
+};
 
 const showErrorApi = (text) => {
   const body = document.querySelector("body");
   const block = document.createElement("div");
   block.textContent = text;
   block.classList.add("error");
-  
+
   body.appendChild(block);
 
   setTimeout(() => {
@@ -248,6 +137,11 @@ const getRss = async (url = "https://lenta.ru/rss/news") => {
   return data;
 };
 
+const clearContentBlock = () => {
+  const topics = document.querySelectorAll(".topic");
+  topics.forEach((topic) => topic.parentElement.removeChild(topic));
+};
+
 class Rss {
   constructor(parentNode) {
     this.parentNode = parentNode;
@@ -257,42 +151,31 @@ class Rss {
   }
 
   fillNewsBookmarks() {
-    const bookmarksContainer = this.parentNode.querySelector(".bookmarks");
+    clearBookmarks();
+    const localUrlArray = getUrlArray();
+    const bookmarksContainer = document.querySelector(".bookmarks");
 
-    urlArray.forEach((service) => {
+    localUrlArray.forEach((service) => {
       const bookmark = document.createElement("img");
-      bookmark.classList.add("logo", `${service.service}`);
+      bookmark.classList.add("logo-bookmark", `${service.service}`);
       bookmark.src = service.logo;
       bookmarksContainer.appendChild(bookmark);
       bookmark.addEventListener("click", () => {
-        this.numberLink = 0;
-        this.fillContentBlock(service);
-        this.changePage(service);
+        this.listenerBookmark(service);
       });
     });
   }
 
-  setNewsTitle(text) {
-    const title = this.parentNode.querySelector(".title");
-    title.textContent = text;
-  }
-
-  setNumberPage(currentNumber, amountNumbers) {
-    const currentPage = this.parentNode.querySelector(".current-page");
-    const amountPages = this.parentNode.querySelector(".amount-pages");
-
-    currentPage.textContent = currentNumber;
-    amountPages.textContent = amountNumbers;
-  }
-
-  clearContentBlock() {
-    const topics = this.parentNode.querySelectorAll(".topic");
-    topics.forEach((topic) => topic.parentElement.removeChild(topic));
+  listenerBookmark(service) {
+    this.numberLink = 0;
+    this.fillContentBlock(service);
+    this.changePage(service);
   }
 
   async fillContentBlock(service, shift = 0) {
     this.numberLink += shift;
 
+    if (!service) return;
     const amountLinks = service.links.length;
     if (this.numberLink < 0) this.numberLink = amountLinks - 1;
     if (this.numberLink >= amountLinks) this.numberLink = 0;
@@ -300,9 +183,9 @@ class Rss {
     const url = service.links[this.numberLink];
     const rssNews = await getRss(url);
 
-    const content = this.parentNode.querySelector(".content");
+    const content = document.querySelector(".content");
 
-    this.clearContentBlock();
+    clearContentBlock();
 
     rssNews.items.forEach((news) => {
       const correctTitle =
@@ -322,13 +205,13 @@ class Rss {
       content.appendChild(topic);
     });
 
-    this.setNewsTitle(rssNews.feed.title);
-    this.setNumberPage(this.numberLink + 1, amountLinks);
+    setNewsTitle(rssNews.feed.title);
+    setNumberPage(this.numberLink + 1, amountLinks);
   }
 
   changePage(service) {
-    const prevPage = this.parentNode.querySelector(".prev-page");
-    const nextPage = this.parentNode.querySelector(".next-page");
+    const prevPage = document.querySelector(".prev-page");
+    const nextPage = document.querySelector(".next-page");
 
     prevPage.onclick = () => {
       this.fillContentBlock(service, -1);
@@ -362,11 +245,11 @@ class Rss {
       <span class="next-page">&gt;</span>
     </div>
     `;
-    this.fillNewsBookmarks();
+    this.fillNewsBookmarks.bind(this)();
     this.fillContentBlock(urlArray[0], 0);
     this.changePage(urlArray[0]);
-    this.btnMenu = this.parentNode.querySelector(".rss-menu");
-    this.rssMenu = new RssMenu(this.btnMenu, "Bookmark manager", fullUrlArray);
+    // this.btnMenu = this.parentNode.querySelector(".rss-menu");
+    // this.rssMenu = new RssMenu(this.btnMenu, "Bookmark manager", fullUrlArray);
   }
 }
 

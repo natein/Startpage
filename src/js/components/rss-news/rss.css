@@ -39,7 +39,7 @@
   border-bottom: 1px solid #c5c3c3;
 }
 
-.bookmarks .logo {
+.bookmarks .logo-bookmark {
   width: 80px;
   margin-right: 15px;
   cursor: pointer;
@@ -47,13 +47,13 @@
   border-bottom: 1px solid transparent;
 }
 
-.bookmarks .logo:hover {
+.bookmarks .logo-bookmark:hover {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   border-bottom: 1px solid #000;
 }
 
-.bookmarks .logo.Un-org {
+.bookmarks .logo-bookmark.Un-org {
   width: 45px;
 }
 
