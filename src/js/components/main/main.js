@@ -1,7 +1,7 @@
 import "./main.css";
 import Finance from "../finance/finance";
 import Rss from "../rss-news/rss";
-import Popular from "../popular-links/populare";
+import Popular from "../popular-links/popular";
 
 class Main {
   constructor(parentNode) {

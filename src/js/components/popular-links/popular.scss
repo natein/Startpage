@@ -1,0 +1,48 @@
+.popular-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eeeeee;
+}
+
+.dot-menu {
+  display: grid;
+  height: 24px;
+  margin-right: 15px;
+  cursor: pointer;
+
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #000000;
+  }
+}
+
+.popular-content {
+  padding: 10px;
+  display: grid;
+  grid-gap: 10px;
+}
+
+.websites {
+  margin: 5px;
+//   outline: 1px solid blue;
+
+
+
+  .website-link {
+     display: flex;
+     align-items: center;
+    text-decoration: none;
+    color: inherit;
+   //  outline: 1px solid blue;
+  }
+
+  .website-img {
+   margin-right: 15px;
+   align-self: end;
+  width: 25px;
+//   outline: 1px solid blue;
+}
+}
