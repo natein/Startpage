@@ -15,8 +15,8 @@ class Header {
     img.src = "./img/sp.jpg";
     this.pages = new Pages();
     this.btnMenu = create('button', 'menu-btn', `<img src="./icons/menu-gold.svg" alt="">`);
-    this.btnMenu.addEventListener('click', this.showMenu.bind(this));
     this.header = create('header', 'header', [img, this.pages.getMenu(), this.btnMenu], this.parentNode);
+    this.showMenu();
   }
   
   showMenu() {

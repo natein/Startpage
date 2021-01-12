@@ -40,6 +40,10 @@
   background-color: #ffffff;
 }
 
+.header-block .header-caption {
+  background-color: #ffffff;
+}
+
 .header-caption {
   font-size: 22px;
 }

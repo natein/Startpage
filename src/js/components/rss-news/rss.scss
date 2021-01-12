@@ -20,14 +20,13 @@
 }
 
 .bookmarks {
-  display: grid;
-  grid-template-columns: repeat(5,1fr);
-  grid-template-rows: 20px;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px 10px 8px 10px;
   border-bottom: 1px solid rgb(197, 195, 195);
 
-  .logo {
+  .logo-bookmark {
     width: 80px;
     margin-right: 15px;
     cursor: pointer;
@@ -40,7 +39,7 @@
     }
   }
 
-  .logo.other-sources{
+  .logo-bookmark.Un-org{
     width: 45px;
   }
 }
@@ -60,7 +59,6 @@
 .content::-webkit-scrollbar {
   width: 10px;
   background-color: #eeeeee;
-  // background-color:#AAAAAA;
   border-radius: 5px;
 }
 
