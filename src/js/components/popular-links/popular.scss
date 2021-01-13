@@ -27,34 +27,22 @@
 
 .websites {
   margin: 5px;
-  //   outline: 1px solid blue;
+  // outline: 1px solid blue;
 
   .website-link {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: inherit;
+    &:hover{
+      text-decoration: underline;
+    }
     //  outline: 1px solid blue;
   }
 
   .website-img {
     margin-right: 15px;
-    align-self: end;
-    width: 25px;
-    //   outline: 1px solid blue;
+    width: 20px;
+      // outline: 1px solid blue;
   }
 }
-
-// .website {
-//   display: flex;
-//   align-items: center;
-//   padding: 6px;
-//   margin: 15px;
-
-//   &:hover {
-//     transition: all 0.2s ease-in-out;
-//     background-color: rgba(78, 167, 166, 0.6);
-//     border-radius: 9em;
-//     box-shadow: inset 1px 1px 10px #f3faf7;
-//   }
-// }

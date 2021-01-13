@@ -33,7 +33,16 @@ export const fullPopularLinks = [
     title: "YouTube",
     url: "https://www.youtube.com/",
     favicon: `${faviconUrl}https://www.youtube.com/`,
-    // favicon: `./img/www_youtube_com.ico`,
+  },
+  {
+    title: "Yandex",
+    url: "https://yandex.ru/",
+    favicon: `${faviconUrl}https://yandex.ru/`,
+  },
+  {
+    title: "facebook",
+    url: "https://www.facebook.com/",
+    favicon: `${faviconUrl}https://www.facebook.com/`,
   },
   {
     title: "Одноклассники",

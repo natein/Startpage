@@ -2,53 +2,6 @@ import PopMenu from "../popular-menu/popular-menu";
 import "./popular.css";
 import { fullPopularLinks } from "../../data/constants";
 
-const getFullLinks=()=> {
-  let fullLinks = [];
-
-  const localPopularLinks = JSON.parse(localStorage.getItem('fullPopularLinks'));
-
-  if (localPopularLinks) {
-    fullLinks = localPopularLinks;
-  } else {
-    console.log("Ok");
-    fullLinks = fullPopularLinks;
-    localStorage.setItem('fullPopularLinks', JSON.stringify(fullPopularLinks));
-  }
-  return fullLinks;
-}
-localStorage.setItem('fullPopularLinks', JSON.stringify(fullPopularLinks));
-
-// const faviconUrl = "https://www.google.com/s2/favicons?domain=";
-
-// export const fullPopularLinks = [
-//   {
-//     title: "Wikipedia",
-//     url: "https://ru.wikipedia.org/",
-//     favicon: `${faviconUrl}https://ru.wikipedia.org/`,
-//   },
-//   {
-//     title: "YouTube",
-//     url: "https://www.youtube.com/",
-//     favicon: `${faviconUrl}https://www.youtube.com/`,
-//     // favicon: `./img/www_youtube_com.ico`,
-//   },
-//   {
-//     title: "Одноклассники",
-//     url: "https://ok.ru/",
-//     favicon: `${faviconUrl}https://ok.ru/`,
-//   },
-//   {
-//     title: "ВКонтакте",
-//     url: "https://vk.com/",
-//     favicon: `${faviconUrl}https://vk.com/`,
-//   },
-//   {
-//     title: "Linkedin",
-//     url: "https://www.linkedin.com/",
-//     favicon: `${faviconUrl}https://www.linkedin.com/`,
-//   },
-// ];
-
 class Popular {
   constructor(obj) {
     this.parentNode = obj.parentNode;
@@ -66,7 +19,6 @@ class Popular {
     if (localPopularLinks) {
       popularLinks = localPopularLinks;
     } else {
-      console.log("Ok");
       popularLinks = fullPopularLinks.slice(0, 4);
       localStorage.setItem(arrayDataName, JSON.stringify(popularLinks));
     }
@@ -83,9 +35,7 @@ class Popular {
     arrayDataName = this.arrayDataName
   ) {
     this.clearLinks(myClass);
-    const localPopularLinks = this.getPopularLinks(
-      arrayDataName,
-    );
+    const localPopularLinks = this.getPopularLinks(arrayDataName || this.arrayDataName);
     const content = document.querySelector(`.${myClass}.popular-content`);
     localPopularLinks.forEach((web) => {
       const website = document.createElement("div");

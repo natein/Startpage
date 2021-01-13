@@ -48,11 +48,12 @@
   color: inherit;
 }
 
+.websites .website-link:hover {
+  text-decoration: underline;
+}
+
 .websites .website-img {
   margin-right: 15px;
-  -ms-flex-item-align: end;
-      -ms-grid-row-align: end;
-      align-self: end;
-  width: 25px;
+  width: 20px;
 }
 /*# sourceMappingURL=popular.css.map */

@@ -1,7 +1,36 @@
 import "./popular-menu.css";
-// import { fullPopularLinks } from "../../data/constants";
+import { fullPopularLinks } from "../../data/constants";
 import Menu from "../base-menu/baseMenu";
 import Popular from "../popular-links/popular";
+
+const getFullLinks = () => {
+  let fullLinks = [];
+  const localPopularLinks = JSON.parse(
+    localStorage.getItem("fullPopularLinks")
+  );
+
+  if (localPopularLinks) {
+    fullLinks = localPopularLinks;
+  } else {
+    fullLinks = fullPopularLinks;
+    localStorage.setItem("fullPopularLinks", JSON.stringify(fullPopularLinks));
+  }
+  return fullLinks;
+};
+
+const getPopularLinks = () => {
+  let popularLinks = [];
+
+  const localPopularLinks = JSON.parse(localStorage.getItem("popularLinks"));
+
+  if (localPopularLinks) {
+    popularLinks = localPopularLinks;
+  } else {
+    popularLinks = fullPopularLinks.slice(0, 4);
+    localStorage.setItem("popularLinks", JSON.stringify(popularLinks));
+  }
+  return popularLinks;
+};
 
 class PopMenu extends Menu {
   constructor(clickedElement, caption, privateClass) {
@@ -11,7 +40,7 @@ class PopMenu extends Menu {
   }
 
   findActiveWebsite(title) {
-    const localPopularLinks = JSON.parse(localStorage.getItem("popularLinks"));
+    const localPopularLinks = getPopularLinks();
     const activeLinks = localPopularLinks.some(
       (website) => website.title === title
     );
@@ -23,39 +52,44 @@ class PopMenu extends Menu {
   }
 
   changeWebsiteArray(activeService, serviceClickedCheckbox) {
-    const localUrlArray = JSON.parse(localStorage.getItem("popularLinks"));
-    const fullLocalLinks = JSON.parse(localStorage.getItem("fullPopularLinks"));
+    const localPopularLinks = getPopularLinks();
+    const fullLocalLinks = getFullLinks();
 
     if (activeService) {
-      const index = localUrlArray.findIndex(
+      const index = localPopularLinks.findIndex(
         (service) => service.title === serviceClickedCheckbox
       );
-      localUrlArray.splice(index, 1);
+      localPopularLinks.splice(index, 1);
     } else {
       const necessaryService = fullLocalLinks.find(
         (service) => service.title === serviceClickedCheckbox
       );
-      localUrlArray.push(necessaryService);
+      localPopularLinks.push(necessaryService);
     }
 
-    localStorage.setItem("popularLinks", JSON.stringify(localUrlArray));
+    localStorage.setItem("popularLinks", JSON.stringify(localPopularLinks));
   }
 
   clearMenuContent() {
     const websites = document.querySelectorAll(`.website`);
     websites.forEach((link) => link.parentElement.removeChild(link));
+
+    const nameWebsite = document.querySelector(".name-input");
+    const urlWebsite = document.querySelector(".url-input");
+
+    if (nameWebsite) nameWebsite.value = "";
+    if (urlWebsite) urlWebsite.value = "";
   }
 
   fillMenuContent() {
     this.clearMenuContent();
+
     const menuContent = document.querySelector(".menu-content.Popu");
     const fragment = document.createDocumentFragment();
-
-    const fullLocalLinks = JSON.parse(localStorage.getItem("fullPopularLinks"));
+    const fullLocalLinks = getFullLinks();
 
     fullLocalLinks.forEach((website) => {
       const check = this.findActiveWebsite(website.title);
-
       const web = document.createElement("div");
       web.classList.add("website");
 
@@ -75,17 +109,19 @@ class PopMenu extends Menu {
     const menuContent = document.querySelector(".menu-content.Popu");
 
     const form = document.createElement("div");
-    form.classList.add(".form");
+    form.classList.add("form");
     form.innerHTML = `
     <div class="name">
-      <label class="name-label" for="name">Fill name</label>
-      <input type="text" class="name-input" id="name">
+      <label class="name-label" for="name">Add your private links</label>
+      <input type="text" class="name-input" id="name" placeholder="Enter source name">
+      <input type="url" class="url-input" id="url" placeholder="Enter url">
     </div>
     <div class="url">
-      <label class="url-label" for="url">Fill url</label>
-      <input type="text" class="url-input" id="url">
     </div>
-    <button class="submit">Submit</button>
+    <div class="btn-block">
+      <button class="delete ${this.privateClass}">Delete private links</button>
+      <button class="submit ${this.privateClass}">Submit</button>
+    </div>
     `;
 
     menuContent.appendChild(form);
@@ -94,39 +130,54 @@ class PopMenu extends Menu {
   createObjForSet() {
     const nameWebsite = document.querySelector(".name-input");
     const urlWebsite = document.querySelector(".url-input");
-
-    let title = nameWebsite.value;
-    let url = urlWebsite.value;
-
+    const title = nameWebsite.value;
+    const url = urlWebsite.value;
     const faviconUrl = "https://www.google.com/s2/favicons?domain=";
 
-    const obj = {
-      title: title,
-      url: url,
-      favicon: `${faviconUrl}${url}`,
-    };
-    // console.log(title);
-    // console.log(url);
-    // console.log(obj);
-    // title = "";
-    // url = "";
+    let obj;
+
+    if (title && url) {
+      obj = {
+        title: title,
+        url: url,
+        favicon: `${faviconUrl}${url}`,
+      };
+    }
     return obj;
   }
 
   setObjData() {
     const data = this.createObjForSet();
-    const fullLocalLinks = JSON.parse(localStorage.getItem("fullPopularLinks"));
-    fullLocalLinks.push(data);
-    localStorage.setItem("fullPopularLinks", JSON.stringify(fullLocalLinks));
+    if (data) {
+      const fullLocalLinks = JSON.parse(
+        localStorage.getItem("fullPopularLinks")
+      );
+      fullLocalLinks.push(data);
+      localStorage.setItem("fullPopularLinks", JSON.stringify(fullLocalLinks));
+    }
   }
 
   addListenerToBtn() {
-    const btnSub = document.querySelector(".submit");
+    const btnSub = document.querySelector(`.submit.${this.privateClass}`);
     btnSub.addEventListener("click", () => {
       this.createObjForSet.bind(this)();
       this.setObjData.bind(this)();
       this.fillMenuContent.bind(this)();
       this.addListenerToLabel.bind(this)();
+    });
+  }
+
+  cleanLocalLinks() {
+    localStorage.removeItem("fullPopularLinks");
+    localStorage.removeItem("popularLinks");
+    Popular.prototype.fillContentBlock(this.privateClass, "popularLinks");
+  }
+
+  addListenerToDelBtn() {
+    const btnDel = document.querySelector(`.delete.${this.privateClass}`);
+    btnDel.addEventListener("click", () => {
+      this.cleanLocalLinks();
+      this.fillMenuContent.bind(this)();
     });
   }
 
@@ -153,6 +204,7 @@ class PopMenu extends Menu {
     this.createForm();
     this.addListenerToLabel();
     this.addListenerToBtn();
+    this.addListenerToDelBtn();
   }
 }
 
