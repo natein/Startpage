@@ -1,83 +1,97 @@
-import PopMenu from '../popular-menu/popular-menu';
-import './popular.css'
+import PopMenu from "../popular-menu/popular-menu";
+import "./popular.css";
+import { fullPopularLinks } from "../../data/constants";
 
-const faviconUrl = "https://www.google.com/s2/favicons?domain=";
+const getFullLinks=()=> {
+  let fullLinks = [];
 
-export const fullPopularLinks = [
-  {
-    title: "Wikipedia",
-    url: "https://ru.wikipedia.org/",
-    favicon: `${faviconUrl}https://ru.wikipedia.org/`,
-  },
-  {
-    title: "YouTube",
-    url: "https://www.youtube.com/",
-    favicon: `${faviconUrl}https://www.youtube.com/`,
-    // favicon: `./img/www_youtube_com.ico`,
-  },
-  {
-    title: "Одноклассники",
-    url: "https://ok.ru/",
-    favicon: `${faviconUrl}https://ok.ru/`,
-  },
-  {
-    title: "ВКонтакте",
-    url: "https://vk.com/",
-    favicon: `${faviconUrl}https://vk.com/`,
-  },
-  {
-    title: "Linkedin",
-    url: "https://www.linkedin.com/",
-    favicon: `${faviconUrl}https://www.linkedin.com/`,
-  },
-];
-
-let popularLinks = [];
-
-const getPopularLinks = () => {
-  const localPopularLinks = JSON.parse(localStorage.getItem("popularLinks"));
+  const localPopularLinks = JSON.parse(localStorage.getItem('fullPopularLinks'));
 
   if (localPopularLinks) {
-    popularLinks = localPopularLinks;
+    fullLinks = localPopularLinks;
   } else {
-    popularLinks=fullPopularLinks.slice(0, 4);
-    localStorage.setItem("popularLinks", JSON.stringify(popularLinks));
+    console.log("Ok");
+    fullLinks = fullPopularLinks;
+    localStorage.setItem('fullPopularLinks', JSON.stringify(fullPopularLinks));
   }
-  console.log(popularLinks);
-  return popularLinks;
-};
-getPopularLinks();
+  return fullLinks;
+}
+localStorage.setItem('fullPopularLinks', JSON.stringify(fullPopularLinks));
 
+// const faviconUrl = "https://www.google.com/s2/favicons?domain=";
 
+// export const fullPopularLinks = [
+//   {
+//     title: "Wikipedia",
+//     url: "https://ru.wikipedia.org/",
+//     favicon: `${faviconUrl}https://ru.wikipedia.org/`,
+//   },
+//   {
+//     title: "YouTube",
+//     url: "https://www.youtube.com/",
+//     favicon: `${faviconUrl}https://www.youtube.com/`,
+//     // favicon: `./img/www_youtube_com.ico`,
+//   },
+//   {
+//     title: "Одноклассники",
+//     url: "https://ok.ru/",
+//     favicon: `${faviconUrl}https://ok.ru/`,
+//   },
+//   {
+//     title: "ВКонтакте",
+//     url: "https://vk.com/",
+//     favicon: `${faviconUrl}https://vk.com/`,
+//   },
+//   {
+//     title: "Linkedin",
+//     url: "https://www.linkedin.com/",
+//     favicon: `${faviconUrl}https://www.linkedin.com/`,
+//   },
+// ];
 
 class Popular {
-  constructor(parentNode, privateClass) {
-    this.parentNode = parentNode;
-    this.privateClass = privateClass;
+  constructor(obj) {
+    this.parentNode = obj.parentNode;
+    this.privateClass = obj.privateClass;
+    this.caption = obj.caption;
+    this.arrayDataName = obj.arrayDataName;
     this.render();
   }
 
-  clearLinks() {
-    const links = document.querySelectorAll(`.websites`);
+  getPopularLinks(arrayDataName) {
+    let popularLinks = [];
+
+    const localPopularLinks = JSON.parse(localStorage.getItem(arrayDataName));
+
+    if (localPopularLinks) {
+      popularLinks = localPopularLinks;
+    } else {
+      console.log("Ok");
+      popularLinks = fullPopularLinks.slice(0, 4);
+      localStorage.setItem(arrayDataName, JSON.stringify(popularLinks));
+    }
+    return popularLinks;
+  }
+
+  clearLinks(myClass) {
+    const links = document.querySelectorAll(`.websites.${myClass}`);
     links.forEach((link) => link.parentElement.removeChild(link));
-  };
+  }
 
-  fillContentBlock() {
-    this.clearLinks()
-    const localPopularLinks = getPopularLinks();
-    console.log(localPopularLinks)
-
-    const content = document.querySelector(`.popular-content`);
-    console.log(content)
-
-
+  fillContentBlock(
+    myClass = this.privateClass,
+    arrayDataName = this.arrayDataName
+  ) {
+    this.clearLinks(myClass);
+    const localPopularLinks = this.getPopularLinks(
+      arrayDataName,
+    );
+    const content = document.querySelector(`.${myClass}.popular-content`);
     localPopularLinks.forEach((web) => {
-      console.log(web)
       const website = document.createElement("div");
-      website.classList.add("websites");
+      website.classList.add("websites", `${myClass}`);
 
-      website.innerHTML = `
-        
+      website.innerHTML = `        
         <a class="website-link" title="${web.title}" href="${web.url}" target="_blank">
           <img class="website-img" src="${web.favicon}" alt="website">  
           <span>${web.title}</span>
@@ -85,15 +99,12 @@ class Popular {
       `;
       content.appendChild(website);
     });
-
-    // setNewsTitle(rssNews.feed.title);
-    // setNumberPage(this.numberLink + 1, amountLinks);
   }
 
   render() {
     this.parentNode.innerHTML = `
     <div class="${this.privateClass} popular-header">
-      <h3>Popular links</h3>
+      <h3>${this.caption}</h3>
       <div class="dot-menu">
         <span class="dot"></span>
         <span class="dot"></span>
@@ -102,10 +113,13 @@ class Popular {
     </div>
     <div class="${this.privateClass} popular-content"> </div>
     `;
-    this.fillContentBlock.bind(this)();
-    // this.fillContentBlock();
+    this.fillContentBlock();
     this.btnMenu = this.parentNode.querySelector(".dot-menu");
-    this.popMenu = new PopMenu(this.btnMenu, "Popular links manager");
+    this.popMenu = new PopMenu(
+      this.btnMenu,
+      `${this.caption} manager`,
+      this.privateClass
+    );
   }
 }
 

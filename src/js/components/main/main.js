@@ -26,8 +26,12 @@ class Main {
     const popularContainer = document.createElement("div");
     popularContainer.classList.add("block", "popular");
     main.appendChild(popularContainer);
-    this.popularContainer = new Popular(popularContainer, 'popular');
-
+    this.popularContainer = new Popular({
+      parentNode: popularContainer,
+      privateClass: "popular",
+      caption: "Popular links",
+      arrayDataName: "popularLinks",
+    });
   }
 }
 
