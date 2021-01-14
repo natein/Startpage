@@ -1,5 +1,5 @@
 import "./popular-menu.css";
-import { fullPopularLinks } from "../../data/constants";
+import { fullPopularLinks, faviconUrl } from "../../data/constants";
 import Menu from "../base-menu/baseMenu";
 import Popular from "../popular-links/popular";
 
@@ -71,11 +71,11 @@ class PopMenu extends Menu {
   }
 
   clearMenuContent() {
-    const websites = document.querySelectorAll(`.website`);
+    const websites = document.querySelectorAll(`.website.popular`);
     websites.forEach((link) => link.parentElement.removeChild(link));
 
-    const nameWebsite = document.querySelector(".name-input");
-    const urlWebsite = document.querySelector(".url-input");
+    const nameWebsite = document.querySelector(".name-input.popular");
+    const urlWebsite = document.querySelector(".url-input.popular");
 
     if (nameWebsite) nameWebsite.value = "";
     if (urlWebsite) urlWebsite.value = "";
@@ -91,10 +91,10 @@ class PopMenu extends Menu {
     fullLocalLinks.forEach((website) => {
       const check = this.findActiveWebsite(website.title);
       const web = document.createElement("div");
-      web.classList.add("website");
+      web.classList.add("website", "popular");
 
       web.innerHTML = `
-      <input class="input ${this.privateClass}" type="checkbox" data-website="${website.title}" id="${website.title}" name="${website.title}" ${check}>
+      <input class="input-popular" type="checkbox" data-popular="${website.title}" id="${website.title}" name="${website.title}" ${check}>
       <label class="label" for="${website.title}">
         <img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">
         <span>${website.title}</span>
@@ -107,20 +107,20 @@ class PopMenu extends Menu {
 
   createForm() {
     const menuContent = document.querySelector(".menu-content.Popu");
-
+    console.log(this.privateClass)
     const form = document.createElement("div");
     form.classList.add("form");
     form.innerHTML = `
     <div class="name">
-      <label class="name-label" for="name">Add your private links</label>
-      <input type="text" class="name-input" id="name" placeholder="Enter source name">
-      <input type="url" class="url-input" id="url" placeholder="Enter url">
+      <label class="name-label" for="name-popular">Add your private links</label>
+      <input type="text" class="name-input popular" id="name-popular" placeholder="Enter source name">
+      <input type="url" class="url-input popular" id="url" placeholder="Enter url">
     </div>
     <div class="url">
     </div>
     <div class="btn-block">
-      <button class="delete ${this.privateClass}">Delete private links</button>
-      <button class="submit ${this.privateClass}">Submit</button>
+      <button class="delete popular">Delete private links</button>
+      <button class="submit popular">Submit</button>
     </div>
     `;
 
@@ -128,18 +128,17 @@ class PopMenu extends Menu {
   }
 
   createObjForSet() {
-    const nameWebsite = document.querySelector(".name-input");
-    const urlWebsite = document.querySelector(".url-input");
+    const nameWebsite = document.querySelector(".name-input.popular");
+    const urlWebsite = document.querySelector(".url-input.popular");
     const title = nameWebsite.value;
     const url = urlWebsite.value;
-    const faviconUrl = "https://www.google.com/s2/favicons?domain=";
 
     let obj;
 
     if (title && url) {
       obj = {
-        title: title,
-        url: url,
+        title,
+        url,
         favicon: `${faviconUrl}${url}`,
       };
     }
@@ -157,8 +156,24 @@ class PopMenu extends Menu {
     }
   }
 
+  cleanLocalLinks() {
+    localStorage.removeItem("fullPopularLinks");
+    localStorage.removeItem("popularLinks");
+    Popular.prototype.fillContentBlock(this.privateClass, "popularLinks");
+  }
+
+  changeLinks(e) {
+    const websiteClickedCheckbox = e.target.dataset.popular;
+    const activeWebsite = this.findActiveWebsite(websiteClickedCheckbox);
+    console.log(activeWebsite, websiteClickedCheckbox)
+    this.changeWebsiteArray(activeWebsite, websiteClickedCheckbox);
+
+    Popular.prototype.fillContentBlock(this.privateClass, "popularLinks");
+  }
+
   addListenerToBtn() {
-    const btnSub = document.querySelector(`.submit.${this.privateClass}`);
+    const btnSub = document.querySelector(`.submit.popular`);
+    console.log(btnSub)
     btnSub.addEventListener("click", () => {
       this.createObjForSet.bind(this)();
       this.setObjData.bind(this)();
@@ -167,33 +182,20 @@ class PopMenu extends Menu {
     });
   }
 
-  cleanLocalLinks() {
-    localStorage.removeItem("fullPopularLinks");
-    localStorage.removeItem("popularLinks");
-    Popular.prototype.fillContentBlock(this.privateClass, "popularLinks");
-  }
-
   addListenerToDelBtn() {
-    const btnDel = document.querySelector(`.delete.${this.privateClass}`);
+    const btnDel = document.querySelector(`.delete.popular`);
     btnDel.addEventListener("click", () => {
       this.cleanLocalLinks();
       this.fillMenuContent.bind(this)();
+      this.addListenerToLabel.bind(this)();
     });
-  }
-
-  changeLinks(e) {
-    const websiteClickedCheckbox = e.target.dataset.website;
-    const activeWebsite = this.findActiveWebsite(websiteClickedCheckbox);
-
-    this.changeWebsiteArray(activeWebsite, websiteClickedCheckbox);
-
-    Popular.prototype.fillContentBlock(this.privateClass, "popularLinks");
   }
 
   addListenerToLabel() {
     const labels = this.parentNode.querySelectorAll(
-      `.input.${this.privateClass}`
+      `.input-popular`
     );
+    console.log(labels, this.privetClass)
     labels.forEach((label) =>
       label.addEventListener("click", this.changeLinks.bind(this))
     );

@@ -1,0 +1,74 @@
+.popular-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #eeeeee;
+}
+
+.dot-menu {
+  display: -ms-grid;
+  display: grid;
+  height: 24px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.dot-menu .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #000000;
+}
+
+.popular-content {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.websites {
+  margin: 10px;
+  border-radius: 10px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.websites:hover {
+  -webkit-box-shadow: 0px 0px 19px 5px rgba(50, 50, 50, 0.73);
+          box-shadow: 0px 0px 19px 5px rgba(50, 50, 50, 0.73);
+}
+
+.websites .website-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px;
+}
+
+.websites .website-title {
+  font-size: 0.8rem;
+}
+/*# sourceMappingURL=popular.css.map */
