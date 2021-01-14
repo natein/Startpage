@@ -107,7 +107,6 @@ class PopMenu extends Menu {
 
   createForm() {
     const menuContent = document.querySelector(".menu-content.Popu");
-    console.log(this.privateClass)
     const form = document.createElement("div");
     form.classList.add("form");
     form.innerHTML = `
@@ -165,7 +164,7 @@ class PopMenu extends Menu {
   changeLinks(e) {
     const websiteClickedCheckbox = e.target.dataset.popular;
     const activeWebsite = this.findActiveWebsite(websiteClickedCheckbox);
-    console.log(activeWebsite, websiteClickedCheckbox)
+    console.log(activeWebsite, websiteClickedCheckbox);
     this.changeWebsiteArray(activeWebsite, websiteClickedCheckbox);
 
     Popular.prototype.fillContentBlock(this.privateClass, "popularLinks");
@@ -173,7 +172,6 @@ class PopMenu extends Menu {
 
   addListenerToBtn() {
     const btnSub = document.querySelector(`.submit.popular`);
-    console.log(btnSub)
     btnSub.addEventListener("click", () => {
       this.createObjForSet.bind(this)();
       this.setObjData.bind(this)();
@@ -192,10 +190,7 @@ class PopMenu extends Menu {
   }
 
   addListenerToLabel() {
-    const labels = this.parentNode.querySelectorAll(
-      `.input-popular`
-    );
-    console.log(labels, this.privetClass)
+    const labels = this.parentNode.querySelectorAll(`.input-popular`);
     labels.forEach((label) =>
       label.addEventListener("click", this.changeLinks.bind(this))
     );

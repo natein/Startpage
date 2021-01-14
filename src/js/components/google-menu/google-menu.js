@@ -1,36 +1,38 @@
-import "./shops-menu.css";
-import { fullShopsLinks, faviconUrl } from "../../data/constants";
+// import "./google-menu.css";
+import { fullGoogleLinks, faviconUrl } from "../../data/constants";
 import Menu from "../base-menu/baseMenu";
-import Shops from "../shops/shops";
+import Google from "../google/google";
 
 const getFullLinks = () => {
   let fullLinks = [];
-  const localShopsLinks = JSON.parse(localStorage.getItem("fullShopsLinks"));
+  const localGoogleLinks = JSON.parse(
+    localStorage.getItem("fullGoogleLinks")
+  );
 
-  if (localShopsLinks) {
-    fullLinks = localShopsLinks;
+  if (localGoogleLinks) {
+    fullLinks = localGoogleLinks;
   } else {
-    fullLinks = fullShopsLinks;
-    localStorage.setItem("fullShopsLinks", JSON.stringify(fullShopsLinks));
+    fullLinks = fullGoogleLinks;
+    localStorage.setItem("fullGoogleLinks", JSON.stringify(fullGoogleLinks));
   }
   return fullLinks;
 };
 
-const getShopsLinks = () => {
-  let shopsLinks = [];
+const getGoogleLinks = () => {
+  let googleLinks = [];
 
-  const localShopsLinks = JSON.parse(localStorage.getItem("shopsLinks"));
+  const localGoogleLinks = JSON.parse(localStorage.getItem("googleLinks"));
 
-  if (localShopsLinks) {
-    shopsLinks = localShopsLinks;
+  if (localGoogleLinks) {
+    googleLinks = localGoogleLinks;
   } else {
-    shopsLinks = fullShopsLinks.slice(0, 6);
-    localStorage.setItem("shopsLinks", JSON.stringify(shopsLinks));
+    googleLinks = fullGoogleLinks.slice(0, 6);
+    localStorage.setItem("googleLinks", JSON.stringify(googleLinks));
   }
-  return shopsLinks;
+  return googleLinks;
 };
 
-class ShopsMenu extends Menu {
+class GoogleMenu extends Menu {
   constructor(clickedElement, caption, privateClass) {
     super(clickedElement, caption);
     this.renderContent();
@@ -38,8 +40,8 @@ class ShopsMenu extends Menu {
   }
 
   findActiveWebsite(title) {
-    const localShopsLinks = getShopsLinks();
-    const activeLinks = localShopsLinks.some(
+    const localGoogleLinks = getGoogleLinks();
+    const activeLinks = localGoogleLinks.some(
       (website) => website.title === title
     );
 
@@ -50,30 +52,30 @@ class ShopsMenu extends Menu {
   }
 
   changeWebsiteArray(activeService, serviceClickedCheckbox) {
-    const localShopsLinks = getShopsLinks();
+    const localGoogleLinks = getGoogleLinks();
     const fullLocalLinks = getFullLinks();
 
     if (activeService) {
-      const index = localShopsLinks.findIndex(
+      const index = localGoogleLinks.findIndex(
         (service) => service.title === serviceClickedCheckbox
       );
-      localShopsLinks.splice(index, 1);
+      localGoogleLinks.splice(index, 1);
     } else {
       const necessaryService = fullLocalLinks.find(
         (service) => service.title === serviceClickedCheckbox
       );
-      localShopsLinks.push(necessaryService);
+      localGoogleLinks.push(necessaryService);
     }
 
-    localStorage.setItem("shopsLinks", JSON.stringify(localShopsLinks));
+    localStorage.setItem("googleLinks", JSON.stringify(localGoogleLinks));
   }
 
   clearMenuContent() {
-    const websites = document.querySelectorAll(`.website.shops`);
+    const websites = document.querySelectorAll(`.website.google`);
     websites.forEach((link) => link.parentElement.removeChild(link));
 
-    const nameWebsite = document.querySelector(".name-input.shops");
-    const urlWebsite = document.querySelector(".url-input.shops");
+    const nameWebsite = document.querySelector(".name-input.google");
+    const urlWebsite = document.querySelector(".url-input.google");
 
     if (nameWebsite) nameWebsite.value = "";
     if (urlWebsite) urlWebsite.value = "";
@@ -82,17 +84,17 @@ class ShopsMenu extends Menu {
   fillMenuContent() {
     this.clearMenuContent();
 
-    const menuContent = document.querySelector(".menu-content.Shop");
+    const menuContent = document.querySelector(".menu-content.Goog");
     const fragment = document.createDocumentFragment();
     const fullLocalLinks = getFullLinks();
 
     fullLocalLinks.forEach((website) => {
       const check = this.findActiveWebsite(website.title);
       const web = document.createElement("div");
-      web.classList.add("website", "shops");
+      web.classList.add("website", "google");
 
       web.innerHTML = `
-      <input class="input-shops" type="checkbox" data-website="${website.title}" id="${website.title}" name="${website.title}" ${check}>
+      <input class="input-google" type="checkbox" data-google="${website.title}" id="${website.title}" name="${website.title}" ${check}>
       <label class="label" for="${website.title}">
         <img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">
         <span>${website.title}</span>
@@ -104,21 +106,20 @@ class ShopsMenu extends Menu {
   }
 
   createForm() {
-    const menuContent = document.querySelector(".menu-content.Shop");
-
+    const menuContent = document.querySelector(".menu-content.Goog");
     const form = document.createElement("div");
     form.classList.add("form");
     form.innerHTML = `
     <div class="name">
-      <label class="name-label" for="name-shops">Add your private links</label>
-      <input type="text" class="name-input shops" id="name-shops" placeholder="Enter source name">
-      <input type="url" class="url-input shops" id="url" placeholder="Enter url">
+      <label class="name-label" for="name-google">Add your private links</label>
+      <input type="text" class="name-input google" id="name-google" placeholder="Enter source name">
+      <input type="url" class="url-input google" id="url" placeholder="Enter url">
     </div>
     <div class="url">
     </div>
     <div class="btn-block">
-      <button class="delete shops">Delete private links</button>
-      <button class="submit shops">Submit</button>
+      <button class="delete google">Delete private links</button>
+      <button class="submit google">Submit</button>
     </div>
     `;
 
@@ -126,11 +127,10 @@ class ShopsMenu extends Menu {
   }
 
   createObjForSet() {
-    const nameWebsite = document.querySelector(".name-input.shops");
-    const urlWebsite = document.querySelector(".url-input.shops");
+    const nameWebsite = document.querySelector(".name-input.google");
+    const urlWebsite = document.querySelector(".url-input.google");
     const title = nameWebsite.value;
     const url = urlWebsite.value;
-    // const faviconUrl = "https://www.google.com/s2/favicons?domain=";
 
     let obj;
 
@@ -147,29 +147,31 @@ class ShopsMenu extends Menu {
   setObjData() {
     const data = this.createObjForSet();
     if (data) {
-      const fullLocalLinks = JSON.parse(localStorage.getItem("fullShopsLinks"));
+      const fullLocalLinks = JSON.parse(
+        localStorage.getItem("fullGoogleLinks")
+      );
       fullLocalLinks.push(data);
-      localStorage.setItem("fullShopsLinks", JSON.stringify(fullLocalLinks));
+      localStorage.setItem("fullGoogleLinks", JSON.stringify(fullLocalLinks));
     }
   }
 
   cleanLocalLinks() {
-    localStorage.removeItem("fullShopsLinks");
-    localStorage.removeItem("shopsLinks");
-    Shops.prototype.fillContentBlock(this.privateClass, "shopsLinks");
+    localStorage.removeItem("fullGoogleLinks");
+    localStorage.removeItem("googleLinks");
+    Google.prototype.fillContentBlock(this.privateClass, "googleLinks");
   }
 
   changeLinks(e) {
-    const websiteClickedCheckbox = e.target.dataset.website;
+    const websiteClickedCheckbox = e.target.dataset.google;
     const activeWebsite = this.findActiveWebsite(websiteClickedCheckbox);
-
+    console.log(activeWebsite, websiteClickedCheckbox);
     this.changeWebsiteArray(activeWebsite, websiteClickedCheckbox);
-    console.log("Ok");
-    Shops.prototype.fillContentBlock(this.privateClass, "shopsLinks");
+
+    Google.prototype.fillContentBlock(this.privateClass, "googleLinks");
   }
 
   addListenerToBtn() {
-    const btnSub = document.querySelector(`.submit.shops`);
+    const btnSub = document.querySelector(`.submit.google`);
     btnSub.addEventListener("click", () => {
       this.createObjForSet.bind(this)();
       this.setObjData.bind(this)();
@@ -179,7 +181,7 @@ class ShopsMenu extends Menu {
   }
 
   addListenerToDelBtn() {
-    const btnDel = document.querySelector(`.delete.shops`);
+    const btnDel = document.querySelector(`.delete.google`);
     btnDel.addEventListener("click", () => {
       this.cleanLocalLinks();
       this.fillMenuContent.bind(this)();
@@ -188,7 +190,7 @@ class ShopsMenu extends Menu {
   }
 
   addListenerToLabel() {
-    const labels = this.parentNode.querySelectorAll(`.input-shops`);
+    const labels = this.parentNode.querySelectorAll(`.input-google`);
     labels.forEach((label) =>
       label.addEventListener("click", this.changeLinks.bind(this))
     );
@@ -203,4 +205,4 @@ class ShopsMenu extends Menu {
   }
 }
 
-export default ShopsMenu;
+export default GoogleMenu;
