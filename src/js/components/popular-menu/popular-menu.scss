@@ -1,5 +1,6 @@
 .menu-content {
   height: 74vh;
+  padding: 10px;
   overflow: auto;
 }
 
@@ -29,13 +30,16 @@
     border-radius: 9em;
     box-shadow: inset 1px 1px 10px #f3faf7;
   }
+
+  .website-logo {
+    width: 24px;
+  }
 }
 
 .form {
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 5px;
   padding: 10px;
-  // outline: 1px solid blue;
 }
 
 .name,
@@ -60,13 +64,24 @@
 .btn-block {
   display: flex;
   justify-content: space-between;
+  padding: 10px;
 
   .delete,
   .submit {
-    padding: 5px 10px;
+    margin: 0 15px;
+    padding: 10px 15px;
     border-radius: 5px;
     border: none;
+    outline: none;
     color: #f6f6f6;
+    font-size: 0.8rem;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.2s ease-in-out;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   }
 
   .delete {

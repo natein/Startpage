@@ -1,5 +1,6 @@
 .menu-content {
   height: 74vh;
+  padding: 10px;
   overflow: auto;
 }
 
@@ -39,10 +40,14 @@
           box-shadow: inset 1px 1px 10px #f3faf7;
 }
 
+.website .website-logo {
+  width: 24px;
+}
+
 .form {
   display: -ms-grid;
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 5px;
   padding: 10px;
 }
 
@@ -75,14 +80,28 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 10px;
 }
 
 .btn-block .delete,
 .btn-block .submit {
-  padding: 5px 10px;
+  margin: 0 15px;
+  padding: 10px 15px;
   border-radius: 5px;
   border: none;
+  outline: none;
   color: #f6f6f6;
+  font-size: 0.8rem;
+}
+
+.btn-block .delete:hover,
+.btn-block .submit:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .btn-block .delete {

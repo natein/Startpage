@@ -21,7 +21,7 @@ export const INITIAL_PAGE = [{
 export const COURSE_LINK = 'https://rs.school/js/';
 export const COURSE_NAME = 'JavaScript/Front-end 2020Q3';
 
-const faviconUrl = "https://www.google.com/s2/favicons?domain=";
+const faviconUrl = "https://www.google.com/s2/favicons?sz=48&domain_url=";
 
 export const fullPopularLinks = [
   {

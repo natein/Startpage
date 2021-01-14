@@ -19,7 +19,7 @@ class Popular {
     if (localPopularLinks) {
       popularLinks = localPopularLinks;
     } else {
-      popularLinks = fullPopularLinks.slice(0, 4);
+      popularLinks = fullPopularLinks.slice(0, 6);
       localStorage.setItem(arrayDataName, JSON.stringify(popularLinks));
     }
     return popularLinks;
@@ -44,7 +44,7 @@ class Popular {
       website.innerHTML = `        
         <a class="website-link" title="${web.title}" href="${web.url}" target="_blank">
           <img class="website-img" src="${web.favicon}" alt="website">  
-          <span>${web.title}</span>
+          <span class="website-title">${web.title}</span>
         </a>
       `;
       content.appendChild(website);

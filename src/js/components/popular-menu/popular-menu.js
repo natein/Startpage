@@ -26,7 +26,7 @@ const getPopularLinks = () => {
   if (localPopularLinks) {
     popularLinks = localPopularLinks;
   } else {
-    popularLinks = fullPopularLinks.slice(0, 4);
+    popularLinks = fullPopularLinks.slice(0, 6);
     localStorage.setItem("popularLinks", JSON.stringify(popularLinks));
   }
   return popularLinks;
