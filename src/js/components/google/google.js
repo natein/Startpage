@@ -20,7 +20,7 @@ class Google {
     if (localGoogleLinks) {
       googleLinks = localGoogleLinks;
     } else {
-      googleLinks = fullGoogleLinks.slice(0, 6);
+      googleLinks = fullGoogleLinks.slice(0, 7);
       localStorage.setItem(arrayDataName, JSON.stringify(googleLinks));
     }
     return googleLinks;
