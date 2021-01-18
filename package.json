@@ -50,6 +50,7 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "core-js": "^3.4.7",
+    "openweather-apis": "^4.4.1",
     "regenerator-runtime": "^0.13.3"
   }
 }
