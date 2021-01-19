@@ -1,0 +1,39 @@
+.todo-content{
+   padding: 10px;
+}
+
+.add-item{
+   display: flex;
+   justify-content: space-between;
+   padding: 5px;
+}
+
+#input-task {
+  width: 85%;
+  border-radius: 25px;
+  padding-left: 10px;
+
+  &:focus{
+   border-radius: 25px;
+   outline: none;
+  }
+}
+
+.add-task {
+  margin-left: -45px;
+  background-color: dodgerblue;
+  color: white;
+  border: 0px;
+  border-radius: 25px;
+  padding: 10px 10px 5px 10px;
+  border: none;
+  outline: none;
+  
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+
+}

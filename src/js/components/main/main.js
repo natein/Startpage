@@ -1,11 +1,12 @@
-import "./main.css";
-import Finance from "../finance/finance";
-import Rss from "../rss-news/rss";
-import Popular from "../popular-links/popular";
-import Shops from "../shops/shops";
-import Travel from "../travel/travel";
-import Google from "../google/google";
-import Weather from "../weather/weather";
+import './main.css';
+import Finance from '../finance/finance';
+import Rss from '../rss-news/rss';
+import Popular from '../popular-links/popular';
+import Shops from '../shops/shops';
+import Travel from '../travel/travel';
+import Google from '../google/google';
+import Weather from '../weather/weather';
+import ToDo from '../todo/todo';
 
 class Main {
   constructor(parentNode) {
@@ -14,7 +15,7 @@ class Main {
   }
 
   render() {
-    const main = document.createElement("main");
+    const main = document.createElement('main');
     this.parentNode.appendChild(main);
 
     // const financeContainer = document.createElement("div");
@@ -57,20 +58,25 @@ class Main {
     //   arrayDataName: "travelLinks",
     // });
 
-    // const googleContainer = document.createElement("div");
-    // googleContainer.classList.add("block", "google");
-    // main.appendChild(googleContainer);
-    // this.googleContainer = new Google({
-    //   parentNode: googleContainer,
-    //   privateClass: "google",
-    //   caption: "Google",
-    //   arrayDataName: "googleLinks",
-    // });
+    const googleContainer = document.createElement('div');
+    googleContainer.classList.add('block', 'google');
+    main.appendChild(googleContainer);
+    this.googleContainer = new Google({
+      parentNode: googleContainer,
+      privateClass: 'google',
+      caption: 'Google',
+      arrayDataName: 'googleLinks',
+    });
 
-    const weatherContainer = document.createElement("div");
-    weatherContainer.classList.add("block", "weather");
-    main.appendChild(weatherContainer);
-    this.weatherContainer = new Weather(weatherContainer);
+    // const weatherContainer = document.createElement("div");
+    // weatherContainer.classList.add("block", "weather");
+    // main.appendChild(weatherContainer);
+    // this.weatherContainer = new Weather(weatherContainer);
+
+    const toDoContainer = document.createElement('div');
+    toDoContainer.classList.add('block', 'todo');
+    main.appendChild(toDoContainer);
+    this.toDoContainer = new ToDo(toDoContainer);
   }
 }
 

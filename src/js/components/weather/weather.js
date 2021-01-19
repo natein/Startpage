@@ -1,4 +1,3 @@
-// import PopMenu from "../popular-menu/popular-menu";
 import './weather.css';
 import './owfont-regular.css';
 

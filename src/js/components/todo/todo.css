@@ -1,0 +1,44 @@
+.todo-content {
+  padding: 10px;
+}
+
+.add-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+}
+
+#input-task {
+  width: 85%;
+  border-radius: 25px;
+  padding-left: 10px;
+}
+
+#input-task:focus {
+  border-radius: 25px;
+  outline: none;
+}
+
+.add-task {
+  margin-left: -45px;
+  background-color: dodgerblue;
+  color: white;
+  border: 0px;
+  border-radius: 25px;
+  padding: 10px 10px 5px 10px;
+  border: none;
+  outline: none;
+}
+
+.add-task:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+/*# sourceMappingURL=todo.css.map */
