@@ -72,7 +72,7 @@ class Weather {
     const { city } = this.getDomElements();
     const pressedEnter = e.which === 13 || e.keyCode === 13;
     const cityEntered =
-      e.target.innerText !== '' && e.target.innerText !== 'Минск';
+      e.target.innerText !== '' && e.target.innerText !== 'Minsk';
     this.fillWeatherBlock.bind(this);
     if (e.type === 'keypress') {
       if (pressedEnter) {
@@ -85,7 +85,7 @@ class Weather {
       }
     } else {
       if (e.target.innerText === '') {
-        city.textContent = localStorage.getItem('city') || 'Минск';
+        city.textContent = localStorage.getItem('city') || 'Minsk';
       } else {
         localStorage.setItem('city', e.target.innerText);
         this.fillWeatherBlock();
@@ -97,7 +97,7 @@ class Weather {
     this.parentNode.innerHTML = `
     <h3>Weather</h3>
     <div class='weather-content'>
-      <div class="city" contenteditable="true">Минск</div>
+      <div class="city" contenteditable="true">Minsk</div>
       <i class="weather-icon owf"></i>
       <div class="temperature"></div>
       <div class="humidity"></div>
