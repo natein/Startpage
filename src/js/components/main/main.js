@@ -61,12 +61,12 @@ class Main {
     const googleContainer = document.createElement('div');
     googleContainer.classList.add('block', 'google');
     main.appendChild(googleContainer);
-    this.googleContainer = new Google({
-      parentNode: googleContainer,
-      privateClass: 'google',
-      caption: 'Google',
-      arrayDataName: 'googleLinks',
-    });
+    // this.googleContainer = new Google({
+    //   parentNode: googleContainer,
+    //   privateClass: 'google',
+    //   caption: 'Google',
+    //   arrayDataName: 'googleLinks',
+    // });
 
     // const weatherContainer = document.createElement("div");
     // weatherContainer.classList.add("block", "weather");
