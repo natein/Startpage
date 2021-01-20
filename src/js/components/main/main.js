@@ -1,4 +1,5 @@
 import "./main.css";
+import create from '../../utils/create';
 import Finance from "../finance/finance";
 import Rss from "../rss-news/rss";
 import Popular from "../popular-links/popular";
@@ -13,22 +14,22 @@ class Main {
   }
 
   render() {
-    const main = document.createElement("main");
-    this.parentNode.appendChild(main);
+    const main = create("main", "", null, this.parentNode);
+    const container = create("div", "container", null, main);
 
     const financeContainer = document.createElement("div");
-    financeContainer.classList.add("block", "finance");
-    main.appendChild(financeContainer);
+    financeContainer.classList.add("block", "finance", "masonry");
+    container.appendChild(financeContainer);
     this.fin = new Finance(financeContainer);
 
     const rssNewsContainer = document.createElement("div");
-    rssNewsContainer.classList.add("block", "rss");
-    main.appendChild(rssNewsContainer);
+    rssNewsContainer.classList.add("block", "rss", "masonry");
+    container.appendChild(rssNewsContainer);
     this.rss = new Rss(rssNewsContainer);
 
     const popularContainer = document.createElement("div");
-    popularContainer.classList.add("block", "popular");
-    main.appendChild(popularContainer);
+    popularContainer.classList.add("block", "popular", "masonry");
+    container.appendChild(popularContainer);
     this.popularContainer = new Popular({
       parentNode: popularContainer,
       privateClass: "popular",
@@ -37,8 +38,8 @@ class Main {
     });
 
     const shopsContainer = document.createElement("div");
-    shopsContainer.classList.add("block", "shops");
-    main.appendChild(shopsContainer);
+    shopsContainer.classList.add("block", "shops", "masonry");
+    container.appendChild(shopsContainer);
     this.shopsContainer = new Shops({
       parentNode: shopsContainer,
       privateClass: "shops",
@@ -47,8 +48,8 @@ class Main {
     });
 
     const travelContainer = document.createElement("div");
-    travelContainer.classList.add("block", "travel");
-    main.appendChild(travelContainer);
+    travelContainer.classList.add("block", "travel", "masonry");
+    container.appendChild(travelContainer);
     this.travelContainer = new Travel({
       parentNode: travelContainer,
       privateClass: "travel",
@@ -57,8 +58,8 @@ class Main {
     });
 
     const googleContainer = document.createElement("div");
-    googleContainer.classList.add("block", "google");
-    main.appendChild(googleContainer);
+    googleContainer.classList.add("block", "google", "masonry");
+    container.appendChild(googleContainer);
     this.googleContainer = new Google({
       parentNode: googleContainer,
       privateClass: "google",
