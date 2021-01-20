@@ -1,0 +1,106 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: background 0.15s ease-in;
+  transition: background 0.15s ease-in;
+}
+
+.baseMenu {
+  width: 400px;
+  height: 980px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  -webkit-transform: translate(400px);
+          transform: translate(400px);
+  -webkit-transition: -webkit-transform 0.15s ease-in;
+  transition: -webkit-transform 0.15s ease-in;
+  transition: transform 0.15s ease-in;
+  transition: transform 0.15s ease-in, -webkit-transform 0.15s ease-in;
+  background-color: #eeeeee;
+}
+
+.btn {
+  position: absolute;
+  top: 100px;
+}
+
+.header-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.header-block .header-caption {
+  background-color: #ffffff;
+}
+
+.header-caption {
+  font-size: 22px;
+}
+
+.cross {
+  width: 25px;
+  height: 25px;
+  background: url(../../../assets/img/Group.png);
+}
+
+.cross:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: -webkit-transform 0.1s ease-in;
+  transition: -webkit-transform 0.1s ease-in;
+  transition: transform 0.1s ease-in;
+  transition: transform 0.1s ease-in, -webkit-transform 0.1s ease-in;
+}
+
+.menu-content {
+  overflow-y: auto;
+}
+
+.overlay,
+.baseMenu {
+  opacity: 0;
+  z-index: -1;
+}
+
+.overlay.open,
+.baseMenu.open {
+  opacity: 1;
+  z-index: 10;
+}
+
+.overlay.hide,
+.baseMenu.hide {
+  opacity: 1;
+  z-index: 10;
+}
+
+.overlay.open {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.overlay.hide {
+  background: rgba(0, 0, 0, 0);
+}
+
+.baseMenu.open {
+  -webkit-transform: translate(0);
+          transform: translate(0);
+}
+
+.baseMenu.hide {
+  -webkit-transform: translate(400px);
+          transform: translate(400px);
+}
+/*# sourceMappingURL=baseMenu.css.map */

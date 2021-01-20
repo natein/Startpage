@@ -1,0 +1,59 @@
+main {
+  flex: 1 0 auto;
+  padding: 20px;
+}
+
+.container {
+  float: left;
+  column-width: auto;
+  column-count: 4;
+  column-gap: 20px;
+}
+
+.block {
+  width: 400px;
+  background-color: var(--app-background-color);
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.masonry {
+  margin: 0;  
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 20px;
+  break-inside: avoid;
+}
+
+.bl1 {
+  height: 400px;  
+}
+.bl2 {
+  height: 500px;  
+}
+.bl3 {
+  height: 600px;  
+}
+.bl4 {
+  height: 350px;  
+}
+.bl5 {
+  height: 300px;  
+}
+.bl6 {
+  height: 250px;  
+}
+.bl7 {
+  height: 600px;  
+}
+.bl8 {
+  height: 450px;  
+}
+.bl9 {
+  height: 350px;  
+}
+
+
+
+/*# sourceMappingURL=main.css.map */

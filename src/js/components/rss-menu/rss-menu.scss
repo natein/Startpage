@@ -1,0 +1,29 @@
+.bookmark {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  margin: 15px;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(78, 167, 166, 0.6);
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
+  }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.bookmark-logo {
+  width: 80px;
+  margin-left: 15px;
+}
+
+.bookmark-logo.Un-org {
+  width: 35px;
+}

@@ -1,0 +1,26 @@
+:root {
+  --accent-color-light: #F5D678;
+  --accent-color-contrast: #120C0E;
+  --error-color: #f00;
+  --text-color: #000;
+  --app-background-color: #fff;
+  --header-footer-text-color: #FDF6A1;  
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Roboto, Arial, Verdana, sans-serif;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--accent-color-light);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}

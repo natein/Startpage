@@ -1,0 +1,34 @@
+h3 {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px 22px;
+  height: 45px;
+  background-color: #EEEEEE;
+}
+
+.currencyList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.currencyList p {
+  font-size: 0.7rem;
+  margin: 5px;
+}
+
+.currencyChoiceBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#line-chart {
+  height: 300px;
+}
+/*# sourceMappingURL=finance.css.map */
