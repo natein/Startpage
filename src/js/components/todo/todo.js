@@ -20,11 +20,28 @@ const getTasks = () => {
   // console.log(allTasks);
   return allTasks;
 };
-// console.log(getTasks())
+
+// let inputText = '';
+
+// const getInputText = () => {
+//   let allTasks = {};
+
+//   const localTasks = JSON.parse(localStorage.getItem('todo'));
+
+//   if (localTasks) {
+//     allTasks = localTasks;
+//   } else {
+//     allTasks = { ...tasks };
+//     localStorage.setItem('todo', JSON.stringify(allTasks));
+//   }
+//   // console.log(allTasks);
+//   return allTasks;
+// };
 
 class ToDo {
   constructor(parentNode) {
     this.parentNode = parentNode;
+    this.flag = true;
     this.render();
   }
 
@@ -40,12 +57,13 @@ class ToDo {
       startedTask.dataset.task = `task${index}`;
       startedTask.innerHTML = `
           <input type="checkbox" data-id="${index}" class="checkbox-task checkbox${index}">
-          <input type="text" data-id="${index}${index}" class="input-task input${index}" value="${task}">
+          <input type="text" data-id="${index}" class="input-task input${index} input-text" value="${task}">
           <button type="button" data-id="${index}" class="delete-task"><i data-id="${index}" class="fa fa-trash-o" aria-hidden="true"></i></button>
       `;
       startBlock.appendChild(startedTask);
       this.addDelBtnListener();
       this.addCheckListener();
+      this.addInputListeners();
     });
   }
 
@@ -63,27 +81,40 @@ class ToDo {
       completed.dataset.task = `task${index}${index}`;
       completed.innerHTML = `
           <input type="checkbox" checked data-id="${index}${index}" class="checkbox-task checkbox${index}${index}">
-          <input type="text" data-id="${index}${index}" class="input-task input${index}${index}" value="${task}">
+          <input type="text" data-id="${index}${index}" class="input-task input${index}${index} input-text" value="${task}">
           <button type="button" data-id="${index}${index}" class="delete-task"><i data-id="${index}${index}" class="fa fa-trash-o" aria-hidden="true"></i></button>
       `;
       completeBlock.appendChild(completed);
       this.addDelBtnListener();
       this.addCheckListener();
+      this.addInputListeners();
     });
   }
 
   addNewTask() {
     const localTasks = getTasks();
     const input = this.parentNode.querySelector('.new-task');
-    localTasks.started.unshift(input.value);
-    input.value = '';
+
+    if (input.value) localTasks.started.unshift(input.value);
     localStorage.setItem('todo', JSON.stringify(localTasks));
+
+    input.value = '';
     this.fillActiveTaskBlock();
   }
 
   addAddBtnListener() {
     const addBtn = this.parentNode.querySelector('.add-task');
     addBtn.addEventListener('click', this.addNewTask.bind(this));
+  }
+
+  addMainInputListener() {
+    const input = this.parentNode.querySelector('.new-task');
+    input.addEventListener('keypress', (e) => {
+      if (e.keyCode === 13) {
+        this.addNewTask.bind(this)()
+        input.blur();
+      };
+    });
   }
 
   delete(id) {
@@ -124,7 +155,7 @@ class ToDo {
     checkboxes.forEach((checkbox) => {
       checkbox.onclick = (e) => {
         const id = e.target.dataset.id;
-        console.log(id);
+        // console.log(id);
         this.checkTask.bind(this)(id);
       };
     });
@@ -179,13 +210,56 @@ class ToDo {
     if (!checkbox.checked) this.replaceCompletedTask(id);
   }
 
-  // setTitle(e) {
-  //   const id = e.target.dataset.id
-  //   const input = this.parentNode.querySelector(`.checkbox${id}`);
-  //   const pressedEnter = e.which === 13 || e.keyCode === 13;
-  //   if (e.type === 'keypress') {
-  //   }
+  memorizeInputText(e) {
+    if (!this.flag) return;
+    this.flag = false;
+    const id = e.target.dataset.id;
+    const input = this.parentNode.querySelector(`.input${id}`);
+    localStorage.setItem('inputText', JSON.stringify(input.value));
+  }
+
+  setInputText(memorizedText, currentText) {
+    const { started, completed } = getTasks();
+    const indStartedTask = started.findIndex((text) => text === memorizedText);
+    const indCompletedTask = completed.findIndex(
+      (text) => text === memorizedText
+    );
+
+    if (indStartedTask !== -1) started[indStartedTask] = currentText;
+    if (indCompletedTask !== -1) completed[indCompletedTask] = currentText;
+
+    localStorage.setItem('todo', JSON.stringify({ started, completed }));
+
+    this.fillActiveTaskBlock();
+    this.fillCompletedTaskBlock();
+  }
+
+  getInputText(e) {
+    const memorizedText = JSON.parse(localStorage.getItem('inputText'));
+    const id = e.target.dataset.id;
+
+    const input = this.parentNode.querySelector(`.input${id}`);
+    const currentText = input.value;
+
+    this.setInputText(memorizedText, currentText);
+    this.flag = true;
+  }
+
+  // enterText(e, input) {
+  //   if (e.keyCode === 13) input.onblur(e);
   // }
+
+  addInputListeners() {
+    const textInputs = this.parentNode.querySelectorAll('.input-text');
+    textInputs.forEach((input) => {
+      input.onclick = (e) => this.memorizeInputText.bind(this)(e);
+      input.onblur = (e) => this.getInputText.bind(this)(e);
+      input.onkeypress = (e) => {
+        if (e.keyCode === 13) input.onblur(e);
+      };
+      // input.onkeypress = (e) => this.enterText.bind(this)(e, input);
+    });
+  }
 
   render() {
     this.parentNode.innerHTML = `
@@ -204,6 +278,8 @@ class ToDo {
     this.fillActiveTaskBlock();
     this.fillCompletedTaskBlock();
     this.addAddBtnListener();
+    this.addMainInputListener();
+    this.addInputListeners();
   }
 }
 
