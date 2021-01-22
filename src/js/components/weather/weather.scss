@@ -8,5 +8,9 @@
    text-shadow: 0px 0px 10px rgb(228, 177, 140);
 }
 
-.weather-icon{
+.city:focus,
+.city:hover{
+   border-radius: 25px;
+   outline: none;
+   box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 }

@@ -1,9 +1,8 @@
 import './todo.css';
-// import style from 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
 
 const tasks = {
-  started: ['My first task', 'My second task'],
-  completed: ['first task', 'second task'],
+  started: ['First task', 'Second task'],
+  completed: ['Solved task'],
 };
 
 const getTasks = () => {
@@ -17,26 +16,8 @@ const getTasks = () => {
     allTasks = { ...tasks };
     localStorage.setItem('todo', JSON.stringify(allTasks));
   }
-  // console.log(allTasks);
   return allTasks;
 };
-
-// let inputText = '';
-
-// const getInputText = () => {
-//   let allTasks = {};
-
-//   const localTasks = JSON.parse(localStorage.getItem('todo'));
-
-//   if (localTasks) {
-//     allTasks = localTasks;
-//   } else {
-//     allTasks = { ...tasks };
-//     localStorage.setItem('todo', JSON.stringify(allTasks));
-//   }
-//   // console.log(allTasks);
-//   return allTasks;
-// };
 
 class ToDo {
   constructor(parentNode) {
@@ -81,7 +62,7 @@ class ToDo {
       completed.dataset.task = `task${index}${index}`;
       completed.innerHTML = `
           <input type="checkbox" checked data-id="${index}${index}" class="checkbox-task checkbox${index}${index}">
-          <input type="text" data-id="${index}${index}" class="input-task input${index}${index} input-text" value="${task}">
+          <input type="text" data-id="${index}${index}" class="input-task input${index}${index} input-text resolved" value="${task}">
           <button type="button" data-id="${index}${index}" class="delete-task"><i data-id="${index}${index}" class="fa fa-trash-o" aria-hidden="true"></i></button>
       `;
       completeBlock.appendChild(completed);
@@ -111,9 +92,9 @@ class ToDo {
     const input = this.parentNode.querySelector('.new-task');
     input.addEventListener('keypress', (e) => {
       if (e.keyCode === 13) {
-        this.addNewTask.bind(this)()
+        this.addNewTask.bind(this)();
         input.blur();
-      };
+      }
     });
   }
 
@@ -144,7 +125,7 @@ class ToDo {
     const delBtn = this.parentNode.querySelectorAll('.delete-task');
     delBtn.forEach((btn) => {
       btn.onclick = (e) => {
-        const id = e.target.dataset.id;
+        const { id } = e.target.dataset;
         this.delete.bind(this)(id);
       };
     });
@@ -154,8 +135,7 @@ class ToDo {
     const checkboxes = this.parentNode.querySelectorAll('.checkbox-task');
     checkboxes.forEach((checkbox) => {
       checkbox.onclick = (e) => {
-        const id = e.target.dataset.id;
-        // console.log(id);
+        const { id } = e.target.dataset;
         this.checkTask.bind(this)(id);
       };
     });
@@ -173,7 +153,7 @@ class ToDo {
       'todo',
       JSON.stringify({
         started: startedTasks,
-        completed: completed,
+        completed,
       })
     );
 
@@ -194,7 +174,7 @@ class ToDo {
     localStorage.setItem(
       'todo',
       JSON.stringify({
-        started: started,
+        started,
         completed: completedTasks,
       })
     );
@@ -213,7 +193,7 @@ class ToDo {
   memorizeInputText(e) {
     if (!this.flag) return;
     this.flag = false;
-    const id = e.target.dataset.id;
+    const { id } = e.target.dataset;
     const input = this.parentNode.querySelector(`.input${id}`);
     localStorage.setItem('inputText', JSON.stringify(input.value));
   }
@@ -236,7 +216,7 @@ class ToDo {
 
   getInputText(e) {
     const memorizedText = JSON.parse(localStorage.getItem('inputText'));
-    const id = e.target.dataset.id;
+    const { id } = e.target.dataset;
 
     const input = this.parentNode.querySelector(`.input${id}`);
     const currentText = input.value;
@@ -244,10 +224,6 @@ class ToDo {
     this.setInputText(memorizedText, currentText);
     this.flag = true;
   }
-
-  // enterText(e, input) {
-  //   if (e.keyCode === 13) input.onblur(e);
-  // }
 
   addInputListeners() {
     const textInputs = this.parentNode.querySelectorAll('.input-text');
@@ -257,7 +233,6 @@ class ToDo {
       input.onkeypress = (e) => {
         if (e.keyCode === 13) input.onblur(e);
       };
-      // input.onkeypress = (e) => this.enterText.bind(this)(e, input);
     });
   }
 

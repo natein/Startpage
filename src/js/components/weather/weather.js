@@ -83,14 +83,12 @@ class Weather {
           this.fillWeatherBlock();
         }
       }
-    } else {
-      if (e.target.innerText === '') {
+    } else if (e.target.innerText === '') {
         city.textContent = localStorage.getItem('city') || 'Minsk';
       } else {
         localStorage.setItem('city', e.target.innerText);
         this.fillWeatherBlock();
       }
-    }
   }
 
   render() {

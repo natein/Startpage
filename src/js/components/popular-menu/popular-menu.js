@@ -164,7 +164,6 @@ class PopMenu extends Menu {
   changeLinks(e) {
     const websiteClickedCheckbox = e.target.dataset.popular;
     const activeWebsite = this.findActiveWebsite(websiteClickedCheckbox);
-    console.log(activeWebsite, websiteClickedCheckbox);
     this.changeWebsiteArray(activeWebsite, websiteClickedCheckbox);
 
     Popular.prototype.fillContentBlock(this.privateClass, "popularLinks");
