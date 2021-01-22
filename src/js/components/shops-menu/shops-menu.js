@@ -164,7 +164,6 @@ class ShopsMenu extends Menu {
     const activeWebsite = this.findActiveWebsite(websiteClickedCheckbox);
 
     this.changeWebsiteArray(activeWebsite, websiteClickedCheckbox);
-    console.log("Ok");
     Shops.prototype.fillContentBlock(this.privateClass, "shopsLinks");
   }
 

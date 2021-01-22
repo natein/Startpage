@@ -56,7 +56,7 @@ class Pages {
   }
 
   addPage(name, color = Constants.DEFAULT_COLOR) {
-    this.pages.push({ name: name, color: color });
+    this.pages.push({ name, color });
     this.curPage = this.pages.length - 1;
     const li = this.createLiElem(name);
     location.hash = encodeURI(name);
@@ -65,7 +65,7 @@ class Pages {
 
   deletePage(name) {
     if (this.pages.length > 1) {
-      let i = undefined;
+      let i;
       this.pages.forEach((elem, idx) => {
         if(elem.name === name) {
           i = idx;
