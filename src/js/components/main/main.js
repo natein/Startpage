@@ -1,4 +1,5 @@
-import './main.css';
+import "./main.css";
+import create from '../../utils/create';
 import Finance from '../finance/finance';
 import Rss from '../rss-news/rss';
 import Popular from '../popular-links/popular';
@@ -15,22 +16,22 @@ class Main {
   }
 
   render() {
-    const main = document.createElement('main');
-    this.parentNode.appendChild(main);
+    const main = create("main", "", null, this.parentNode);
+    const container = create("div", "container", null, main);
 
-    const financeContainer = document.createElement('div');
-    financeContainer.classList.add('block', 'finance');
-    main.appendChild(financeContainer);
+    const financeContainer = document.createElement("div");
+    financeContainer.classList.add("block", "finance", "masonry");
+    container.appendChild(financeContainer);
     this.fin = new Finance(financeContainer);
 
-    const rssNewsContainer = document.createElement('div');
-    rssNewsContainer.classList.add('block', 'rss');
-    main.appendChild(rssNewsContainer);
+    const rssNewsContainer = document.createElement("div");
+    rssNewsContainer.classList.add("block", "rss", "masonry");
+    container.appendChild(rssNewsContainer);
     this.rss = new Rss(rssNewsContainer);
 
-    const popularContainer = document.createElement('div');
-    popularContainer.classList.add('block', 'popular');
-    main.appendChild(popularContainer);
+    const popularContainer = document.createElement("div");
+    popularContainer.classList.add("block", "popular", "masonry");
+    container.appendChild(popularContainer);
     this.popularContainer = new Popular({
       parentNode: popularContainer,
       privateClass: 'popular',
@@ -38,9 +39,9 @@ class Main {
       arrayDataName: 'popularLinks',
     });
 
-    const shopsContainer = document.createElement('div');
-    shopsContainer.classList.add('block', 'shops');
-    main.appendChild(shopsContainer);
+    const shopsContainer = document.createElement("div");
+    shopsContainer.classList.add("block", "shops", "masonry");
+    container.appendChild(shopsContainer);
     this.shopsContainer = new Shops({
       parentNode: shopsContainer,
       privateClass: 'shops',
@@ -48,9 +49,9 @@ class Main {
       arrayDataName: 'shopsLinks',
     });
 
-    const travelContainer = document.createElement('div');
-    travelContainer.classList.add('block', 'travel');
-    main.appendChild(travelContainer);
+    const travelContainer = document.createElement("div");
+    travelContainer.classList.add("block", "travel", "masonry");
+    container.appendChild(travelContainer);
     this.travelContainer = new Travel({
       parentNode: travelContainer,
       privateClass: 'travel',
@@ -58,9 +59,9 @@ class Main {
       arrayDataName: 'travelLinks',
     });
 
-    const googleContainer = document.createElement('div');
-    googleContainer.classList.add('block', 'google');
-    main.appendChild(googleContainer);
+    const googleContainer = document.createElement("div");
+    googleContainer.classList.add("block", "google", "masonry");
+    container.appendChild(googleContainer);
     this.googleContainer = new Google({
       parentNode: googleContainer,
       privateClass: 'google',
@@ -69,13 +70,13 @@ class Main {
     });
 
     const weatherContainer = document.createElement('div');
-    weatherContainer.classList.add('block', 'weather');
-    main.appendChild(weatherContainer);
+    weatherContainer.classList.add('block', 'weather', "masonry");
+    container.appendChild(weatherContainer);
     this.weatherContainer = new Weather(weatherContainer);
 
     const toDoContainer = document.createElement('div');
-    toDoContainer.classList.add('block', 'todo');
-    main.appendChild(toDoContainer);
+    toDoContainer.classList.add('block', 'todo', "masonry");
+    container.appendChild(toDoContainer);
     this.toDoContainer = new ToDo(toDoContainer);
   }
 }
