@@ -1,11 +1,13 @@
 import "./main.css";
 import create from '../../utils/create';
-import Finance from "../finance/finance";
-import Rss from "../rss-news/rss";
-import Popular from "../popular-links/popular";
-import Shops from "../shops/shops";
-import Travel from "../travel/travel";
-import Google from "../google/google";
+import Finance from '../finance/finance';
+import Rss from '../rss-news/rss';
+import Popular from '../popular-links/popular';
+import Shops from '../shops/shops';
+import Travel from '../travel/travel';
+import Google from '../google/google';
+import Weather from '../weather/weather';
+import ToDo from '../todo/todo';
 
 class Main {
   constructor(parentNode) {
@@ -32,9 +34,9 @@ class Main {
     container.appendChild(popularContainer);
     this.popularContainer = new Popular({
       parentNode: popularContainer,
-      privateClass: "popular",
-      caption: "Popular links",
-      arrayDataName: "popularLinks",
+      privateClass: 'popular',
+      caption: 'Popular links',
+      arrayDataName: 'popularLinks',
     });
 
     const shopsContainer = document.createElement("div");
@@ -42,9 +44,9 @@ class Main {
     container.appendChild(shopsContainer);
     this.shopsContainer = new Shops({
       parentNode: shopsContainer,
-      privateClass: "shops",
-      caption: "Shops",
-      arrayDataName: "shopsLinks",
+      privateClass: 'shops',
+      caption: 'Shops',
+      arrayDataName: 'shopsLinks',
     });
 
     const travelContainer = document.createElement("div");
@@ -52,9 +54,9 @@ class Main {
     container.appendChild(travelContainer);
     this.travelContainer = new Travel({
       parentNode: travelContainer,
-      privateClass: "travel",
-      caption: "Travels",
-      arrayDataName: "travelLinks",
+      privateClass: 'travel',
+      caption: 'Travels',
+      arrayDataName: 'travelLinks',
     });
 
     const googleContainer = document.createElement("div");
@@ -62,10 +64,20 @@ class Main {
     container.appendChild(googleContainer);
     this.googleContainer = new Google({
       parentNode: googleContainer,
-      privateClass: "google",
-      caption: "Google",
-      arrayDataName: "googleLinks",
+      privateClass: 'google',
+      caption: 'Google',
+      arrayDataName: 'googleLinks',
     });
+
+    const weatherContainer = document.createElement('div');
+    weatherContainer.classList.add('block', 'weather', "masonry");
+    container.appendChild(weatherContainer);
+    this.weatherContainer = new Weather(weatherContainer);
+
+    const toDoContainer = document.createElement('div');
+    toDoContainer.classList.add('block', 'todo', "masonry");
+    container.appendChild(toDoContainer);
+    this.toDoContainer = new ToDo(toDoContainer);
   }
 }
 

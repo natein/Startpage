@@ -1,0 +1,89 @@
+.todo-content {
+  padding: 10px 15px;
+}
+
+.add-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+}
+
+.input-task {
+  width: 85%;
+  border-radius: 25px;
+  padding-left: 10px;
+}
+
+.input-task:hover, .input-task:focus {
+  border-radius: 25px;
+  outline: none;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+          box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.add-task {
+  margin-left: -45px;
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 10px 5px 10px;
+  border: none;
+  outline: none;
+}
+
+.add-task:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px;
+}
+
+.task .resolved {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task .input-task {
+  width: 75%;
+  margin: 5px;
+  font-size: 0.9rem;
+  border: none;
+}
+
+.delete-task {
+  background-color: tomato;
+  margin-right: 5px;
+  color: white;
+  border: 0px;
+  border-radius: 25px;
+  padding: 5px 6px 2px 6px;
+  border: none;
+  outline: none;
+}
+
+.delete-task:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+/*# sourceMappingURL=todo.css.map */

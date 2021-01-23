@@ -164,7 +164,6 @@ class GoogleMenu extends Menu {
   changeLinks(e) {
     const websiteClickedCheckbox = e.target.dataset.google;
     const activeWebsite = this.findActiveWebsite(websiteClickedCheckbox);
-    console.log(activeWebsite, websiteClickedCheckbox);
     this.changeWebsiteArray(activeWebsite, websiteClickedCheckbox);
 
     Google.prototype.fillContentBlock(this.privateClass, "googleLinks");
