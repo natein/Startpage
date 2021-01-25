@@ -1,0 +1,25 @@
+.menu-content.Main{
+   padding: 10px;
+
+   .menu-item{
+      display: flex;
+      justify-content: space-between;
+      margin: 10px;
+   }
+
+   .submit{
+      padding: 5px 10px;
+   }
+
+   // .active-item{
+   //    text-decoration: line-through;
+   // }
+
+   .submit.active-item{
+      background-color: gray;
+   }
+}
+
+.block.hidden-block{
+   display: none;
+}

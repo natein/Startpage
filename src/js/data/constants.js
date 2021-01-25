@@ -184,12 +184,36 @@ export const fullGoogleLinks = [
 ];
 
 export const classListBlocks = [
-  'finance',
-  'rss',
-  'popular',
-  'shops',
-  'travel',
-  'google',
-  'weather',
-  'todo',
+  {
+    class: 'finance',
+    active: false
+  },
+  {
+    class: 'rss',
+    active: true
+  },
+  {
+    class: 'popular',
+    active: true
+  },
+  {
+    class: 'shops',
+    active: true
+  },
+  {
+    class: 'travel',
+    active: true
+  },
+  {
+    class: 'google',
+    active: true
+  },
+  {
+    class: 'weather',
+    active: true
+  },
+  {
+    class: 'todo',
+    active: true
+  }
 ];

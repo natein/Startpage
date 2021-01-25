@@ -1,1 +1,26 @@
-/* Стили списка команд */
+.menu-content.Main {
+  padding: 10px;
+}
+
+.menu-content.Main .menu-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px;
+}
+
+.menu-content.Main .submit {
+  padding: 5px 10px;
+}
+
+.menu-content.Main .submit.active-item {
+  background-color: gray;
+}
+
+.block.hidden-block {
+  display: none;
+}
+/*# sourceMappingURL=command-menu.css.map */

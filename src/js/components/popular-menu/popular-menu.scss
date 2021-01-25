@@ -108,7 +108,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-
+}
   .delete {
     @include button(#dc3545);
   }
@@ -116,7 +116,7 @@
   .submit {
     @include button(#007bff);
   }
-}
+
 .danger-block {
   display: flex;
   justify-content: center;

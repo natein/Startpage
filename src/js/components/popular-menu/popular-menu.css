@@ -83,7 +83,7 @@
   padding: 10px;
 }
 
-.btn-block .delete {
+.delete {
   background-color: #dc3545;
   margin: 0 15px;
   padding: 10px 15px;
@@ -94,7 +94,7 @@
   font-size: 0.8rem;
 }
 
-.btn-block .delete:hover {
+.delete:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   -webkit-transition: all 0.1s ease-in-out;
@@ -103,12 +103,12 @@
   cursor: pointer;
 }
 
-.btn-block .delete:active {
+.delete:active {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }
 
-.btn-block .submit {
+.submit {
   background-color: #007bff;
   margin: 0 15px;
   padding: 10px 15px;
@@ -119,7 +119,7 @@
   font-size: 0.8rem;
 }
 
-.btn-block .submit:hover {
+.submit:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   -webkit-transition: all 0.1s ease-in-out;
@@ -128,7 +128,7 @@
   cursor: pointer;
 }
 
-.btn-block .submit:active {
+.submit:active {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }

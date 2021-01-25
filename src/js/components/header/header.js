@@ -20,7 +20,9 @@ class Header {
   }
   
   showMenu() {
-    this.sideMenu = new CommandMenu(this.btnMenu, 'Main Menu');
+    setTimeout(() => {
+      this.sideMenu = new CommandMenu(this.btnMenu, 'Main Menu');
+    }, 0);
   }  
 }
 

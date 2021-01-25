@@ -8,22 +8,6 @@ import Travel from '../travel/travel';
 import Google from '../google/google';
 import Weather from '../weather/weather';
 import ToDo from '../todo/todo';
-import { classListBlocks } from '../../data/constants';
-
-const getClassListBlocks = () => {
-  let blockList = [];
-
-  const localBlockList = JSON.parse(localStorage.getItem('classListBlocks'));
-
-  if (localBlockList) {
-    blockList = localBlockList;
-  } else {
-    localStorage.setItem('classListBlocks', JSON.stringify(classListBlocks));
-  }
-  console.log(blockList);
-  return blockList;
-};
-getClassListBlocks();
 
 class Main {
   constructor(parentNode) {
