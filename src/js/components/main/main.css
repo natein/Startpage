@@ -19,7 +19,7 @@ main {
 }
 
 .masonry {
-  margin: 0;  
+  margin: 0;
   display: grid;
   grid-template-rows: 1fr auto;
   margin-bottom: 20px;
@@ -27,33 +27,35 @@ main {
 }
 
 .bl1 {
-  height: 400px;  
+  height: 400px;
 }
 .bl2 {
-  height: 500px;  
+  height: 500px;
 }
 .bl3 {
-  height: 600px;  
+  height: 600px;
 }
 .bl4 {
-  height: 350px;  
+  height: 350px;
 }
 .bl5 {
-  height: 300px;  
+  height: 300px;
 }
 .bl6 {
-  height: 250px;  
+  height: 250px;
 }
 .bl7 {
-  height: 600px;  
+  height: 600px;
 }
 .bl8 {
-  height: 450px;  
+  height: 450px;
 }
 .bl9 {
-  height: 350px;  
+  height: 350px;
 }
 
-
+.block-hidden {
+  display: none;
+}
 
 /*# sourceMappingURL=main.css.map */

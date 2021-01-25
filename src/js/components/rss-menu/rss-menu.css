@@ -1,3 +1,7 @@
+.block-hidden {
+  display: none;
+}
+
 .bookmark {
   display: -webkit-box;
   display: -ms-flexbox;

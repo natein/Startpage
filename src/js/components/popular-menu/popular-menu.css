@@ -83,8 +83,8 @@
   padding: 10px;
 }
 
-.btn-block .delete,
-.btn-block .submit {
+.btn-block .delete {
+  background-color: #dc3545;
   margin: 0 15px;
   padding: 10px 15px;
   border-radius: 5px;
@@ -94,21 +94,76 @@
   font-size: 0.8rem;
 }
 
-.btn-block .delete:hover,
-.btn-block .submit:hover {
+.btn-block .delete:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.btn-block .delete {
-  background-color: #dc3545;
+.btn-block .delete:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
 
 .btn-block .submit {
   background-color: #007bff;
+  margin: 0 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: #f6f6f6;
+  font-size: 0.8rem;
+}
+
+.btn-block .submit:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-block .submit:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.danger-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.danger {
+  background-color: #dc3545;
+  margin: 0 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: #f6f6f6;
+  font-size: 0.8rem;
+}
+
+.danger:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.danger:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
 /*# sourceMappingURL=popular-menu.css.map */

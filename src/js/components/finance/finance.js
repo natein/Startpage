@@ -1,35 +1,35 @@
-import "./finance.css";
-import Chart from "chart.js";
+import './finance.css';
+import Chart from 'chart.js';
 
-const nbrbURL = "https://www.nbrb.by/api/exrates/rates?periodicity=0";
+const nbrbURL = 'https://www.nbrb.by/api/exrates/rates?periodicity=0';
 
 const extraCurrencyData = [
-  { Cur_Abbreviation: "AUD", Cur_ID: 170, Cur_Scale: 1 },
-  { Cur_Abbreviation: "BGN", Cur_ID: 191, Cur_Scale: 1 },
-  { Cur_Abbreviation: "UAH", Cur_ID: 290, Cur_Scale: 100 },
-  { Cur_Abbreviation: "DKK", Cur_ID: 291, Cur_Scale: 10 },
-  { Cur_Abbreviation: "USD", Cur_ID: 145, Cur_Scale: 1 },
-  { Cur_Abbreviation: "EUR", Cur_ID: 292, Cur_Scale: 1 },
-  { Cur_Abbreviation: "PLN", Cur_ID: 293, Cur_Scale: 10 },
-  { Cur_Abbreviation: "JPY", Cur_ID: 355, Cur_Scale: 100 },
-  { Cur_Abbreviation: "IRR", Cur_ID: 303, Cur_Scale: 100000 },
-  { Cur_Abbreviation: "ISK", Cur_ID: 294, Cur_Scale: 100 },
-  { Cur_Abbreviation: "CAD", Cur_ID: 23, Cur_Scale: 1 },
-  { Cur_Abbreviation: "CNY", Cur_ID: 304, Cur_Scale: 10 },
-  { Cur_Abbreviation: "KWD", Cur_ID: 72, Cur_Scale: 1 },
-  { Cur_Abbreviation: "MDL", Cur_ID: 296, Cur_Scale: 10 },
-  { Cur_Abbreviation: "NZD", Cur_ID: 286, Cur_Scale: 1 },
-  { Cur_Abbreviation: "NOK", Cur_ID: 297, Cur_Scale: 10 },
-  { Cur_Abbreviation: "RUB", Cur_ID: 298, Cur_Scale: 100 },
-  { Cur_Abbreviation: "XDR", Cur_ID: 299, Cur_Scale: 1 },
-  { Cur_Abbreviation: "SGD", Cur_ID: 119, Cur_Scale: 1 },
-  { Cur_Abbreviation: "KGS", Cur_ID: 300, Cur_Scale: 100 },
-  { Cur_Abbreviation: "KZT", Cur_ID: 301, Cur_Scale: 1000 },
-  { Cur_Abbreviation: "TRY", Cur_ID: 302, Cur_Scale: 10 },
-  { Cur_Abbreviation: "GBP", Cur_ID: 143, Cur_Scale: 1 },
-  { Cur_Abbreviation: "CZK", Cur_ID: 305, Cur_Scale: 100 },
-  { Cur_Abbreviation: "SEK", Cur_ID: 306, Cur_Scale: 10 },
-  { Cur_Abbreviation: "CHF", Cur_ID: 130, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'AUD', Cur_ID: 170, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'BGN', Cur_ID: 191, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'UAH', Cur_ID: 290, Cur_Scale: 100 },
+  { Cur_Abbreviation: 'DKK', Cur_ID: 291, Cur_Scale: 10 },
+  { Cur_Abbreviation: 'USD', Cur_ID: 145, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'EUR', Cur_ID: 292, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'PLN', Cur_ID: 293, Cur_Scale: 10 },
+  { Cur_Abbreviation: 'JPY', Cur_ID: 355, Cur_Scale: 100 },
+  { Cur_Abbreviation: 'IRR', Cur_ID: 303, Cur_Scale: 100000 },
+  { Cur_Abbreviation: 'ISK', Cur_ID: 294, Cur_Scale: 100 },
+  { Cur_Abbreviation: 'CAD', Cur_ID: 23, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'CNY', Cur_ID: 304, Cur_Scale: 10 },
+  { Cur_Abbreviation: 'KWD', Cur_ID: 72, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'MDL', Cur_ID: 296, Cur_Scale: 10 },
+  { Cur_Abbreviation: 'NZD', Cur_ID: 286, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'NOK', Cur_ID: 297, Cur_Scale: 10 },
+  { Cur_Abbreviation: 'RUB', Cur_ID: 298, Cur_Scale: 100 },
+  { Cur_Abbreviation: 'XDR', Cur_ID: 299, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'SGD', Cur_ID: 119, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'KGS', Cur_ID: 300, Cur_Scale: 100 },
+  { Cur_Abbreviation: 'KZT', Cur_ID: 301, Cur_Scale: 1000 },
+  { Cur_Abbreviation: 'TRY', Cur_ID: 302, Cur_Scale: 10 },
+  { Cur_Abbreviation: 'GBP', Cur_ID: 143, Cur_Scale: 1 },
+  { Cur_Abbreviation: 'CZK', Cur_ID: 305, Cur_Scale: 100 },
+  { Cur_Abbreviation: 'SEK', Cur_ID: 306, Cur_Scale: 10 },
+  { Cur_Abbreviation: 'CHF', Cur_ID: 130, Cur_Scale: 1 },
 ];
 
 const getRateForDayRequest = async () => {
@@ -48,9 +48,9 @@ const getRateForDayRequest = async () => {
 
 const getCurrencyPairData = async () => {
   const data = await getRateForDayRequest();
-  const eur = data.find((currency) => currency.Cur_Abbreviation === "EUR");
-  const usd = data.find((currency) => currency.Cur_Abbreviation === "USD");
-  const rub = data.find((currency) => currency.Cur_Abbreviation === "RUB");
+  const eur = data.find((currency) => currency.Cur_Abbreviation === 'EUR');
+  const usd = data.find((currency) => currency.Cur_Abbreviation === 'USD');
+  const rub = data.find((currency) => currency.Cur_Abbreviation === 'RUB');
   return {
     eur,
     usd,
@@ -60,7 +60,7 @@ const getCurrencyPairData = async () => {
 
 const getDataForChart = async (currencyId) => {
   const currentDate = new Date();
-  const dataDate = currentDate.toString().split(" ");
+  const dataDate = currentDate.toString().split(' ');
   const day = dataDate[0];
   const month = dataDate[1];
   const date = dataDate[2];
@@ -77,8 +77,8 @@ const getDataForChart = async (currencyId) => {
 class Finance {
   constructor(parentNode) {
     this.parentNode = parentNode;
-    this.currencyList = document.createElement("div");
-    this.currencyChoiceBlock = document.createElement("div");
+    this.currencyList = document.createElement('div');
+    this.currencyChoiceBlock = document.createElement('div');
     this.chart = false;
     this.render();
   }
@@ -86,10 +86,10 @@ class Finance {
   async createPairEurUsd() {
     const { eur, usd } = await getCurrencyPairData();
 
-    const eurUsd = document.createElement("p");
+    const eurUsd = document.createElement('p');
 
-    this.currencyList.classList.add("currencyList");
-    eurUsd.classList.add("eurUsd");
+    this.currencyList.classList.add('currencyList');
+    eurUsd.classList.add('eurUsd');
 
     eurUsd.textContent = `EUR/USD: ${(
       eur.Cur_OfficialRate /
@@ -102,9 +102,9 @@ class Finance {
 
   async createPairEurRub() {
     const { eur, rub } = await getCurrencyPairData();
-    const eurRub = document.createElement("p");
+    const eurRub = document.createElement('p');
 
-    eurRub.classList.add("eurRub");
+    eurRub.classList.add('eurRub');
 
     eurRub.textContent = `EUR/RUB: ${(
       eur.Cur_OfficialRate /
@@ -117,9 +117,9 @@ class Finance {
 
   async createPairBlrUsd() {
     const { usd } = await getCurrencyPairData();
-    const blrUsd = document.createElement("p");
+    const blrUsd = document.createElement('p');
 
-    blrUsd.classList.add("blrUsd");
+    blrUsd.classList.add('blrUsd');
 
     blrUsd.textContent = `USD/BLR: ${(
       usd.Cur_OfficialRate / usd.Cur_Scale
@@ -129,13 +129,13 @@ class Finance {
   }
 
   createSelect(selectName, selectedItem) {
-    const select = document.createElement("select");
+    const select = document.createElement('select');
     select.name = selectName;
 
     const fragment = document.createDocumentFragment();
 
     extraCurrencyData.forEach((currency) => {
-      const option = document.createElement("option");
+      const option = document.createElement('option');
       option.value = `${currency.Cur_ID}`;
       if (currency.Cur_Abbreviation === selectedItem) option.selected = true;
       option.textContent = `${currency.Cur_Abbreviation}`;
@@ -149,25 +149,25 @@ class Finance {
   }
 
   renderCurrencyChoiceBlock() {
-    this.currencyChoiceBlock.classList.add("currencyChoiceBlock");
-    this.currencyChoiceBlock.textContent = "Select currency pair ";
+    this.currencyChoiceBlock.classList.add('currencyChoiceBlock');
+    this.currencyChoiceBlock.textContent = 'Select currency pair ';
     this.parentNode.appendChild(this.currencyChoiceBlock);
   }
 
   axesLinearChart(updatedDate, currencyDynamic, rateCurrencyPair) {
     if (this.chart) {
-      const previousChart = document.querySelector(".chartBlock");
+      const previousChart = document.querySelector('.chartBlock');
       previousChart.parentElement.removeChild(previousChart);
     }
-    const chartBlock = document.createElement("div");
-    chartBlock.classList.add("chartBlock");
-    chartBlock.innerHTML = `<canvas id="line-chart"></canvas>`;
+    const chartBlock = document.createElement('div');
+    chartBlock.classList.add('chartBlock');
+    chartBlock.innerHTML = `<canvas id="line-chart" style="height: 300px"></canvas>`;
 
     this.parentNode.appendChild(chartBlock);
-    const ctx = document.getElementById("line-chart").getContext("2d");
+    const ctx = document.getElementById('line-chart').getContext('2d');
 
     this.chart = new Chart(ctx, {
-      type: "line",
+      type: 'line',
       data: {
         datasets: [
           {
@@ -176,8 +176,8 @@ class Finance {
             } Rate: ${rateCurrencyPair}`,
             data: currencyDynamic,
             fill: false,
-            borderColor: "red",
-            backgroundColor: "red",
+            borderColor: 'red',
+            backgroundColor: 'red',
             radius: 1,
             borderWidth: 1,
           },
@@ -211,7 +211,7 @@ class Finance {
 
       dates.forEach((dateItem) => shortDates.push(dateItem.slice(0, 10)));
 
-      if (select === "selectLeft") {
+      if (select === 'selectLeft') {
         currencyDynamicsLeft = [];
         yearData.forEach((val) =>
           currencyDynamicsLeft.push(
@@ -219,7 +219,7 @@ class Finance {
           )
         );
       }
-      if (select === "selectRight") {
+      if (select === 'selectRight') {
         currencyDynamicsRight = [];
         yearData.forEach((val) =>
           currencyDynamicsRight.push(
@@ -240,9 +240,9 @@ class Finance {
       );
     };
 
-    getYearCurrencyData(292, "selectLeft");
+    getYearCurrencyData(292, 'selectLeft');
     setTimeout(() => {
-      getYearCurrencyData(145, "selectRight");
+      getYearCurrencyData(145, 'selectRight');
     }, 0);
 
     let flag = false;
@@ -255,16 +255,16 @@ class Finance {
       }
     }
 
-    const selectLeft = await this.createSelect("selectLeft", "EUR");
-    const selectRight = await this.createSelect("selectRight", "USD");
+    const selectLeft = await this.createSelect('selectLeft', 'EUR');
+    const selectRight = await this.createSelect('selectRight', 'USD');
 
-    selectLeft.addEventListener("click", addClickedCurrency);
-    selectRight.addEventListener("click", addClickedCurrency);
+    selectLeft.addEventListener('click', addClickedCurrency);
+    selectRight.addEventListener('click', addClickedCurrency);
   }
 
   render() {
-    const caption = document.createElement("h3");
-    caption.textContent = "Finance";
+    const caption = document.createElement('h3');
+    caption.textContent = 'Finance';
     this.parentNode.appendChild(caption);
     this.createPairEurUsd();
     this.createPairEurRub();

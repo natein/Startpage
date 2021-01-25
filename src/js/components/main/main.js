@@ -1,4 +1,4 @@
-import "./main.css";
+import './main.css';
 import create from '../../utils/create';
 import Finance from '../finance/finance';
 import Rss from '../rss-news/rss';
@@ -8,6 +8,22 @@ import Travel from '../travel/travel';
 import Google from '../google/google';
 import Weather from '../weather/weather';
 import ToDo from '../todo/todo';
+import { classListBlocks } from '../../data/constants';
+
+const getClassListBlocks = () => {
+  let blockList = [];
+
+  const localBlockList = JSON.parse(localStorage.getItem('classListBlocks'));
+
+  if (localBlockList) {
+    blockList = localBlockList;
+  } else {
+    localStorage.setItem('classListBlocks', JSON.stringify(classListBlocks));
+  }
+  console.log(blockList);
+  return blockList;
+};
+getClassListBlocks();
 
 class Main {
   constructor(parentNode) {
@@ -16,21 +32,21 @@ class Main {
   }
 
   render() {
-    const main = create("main", "", null, this.parentNode);
-    const container = create("div", "container", null, main);
+    const main = create('main', '', null, this.parentNode);
+    const container = create('div', 'container', null, main);
 
-    const financeContainer = document.createElement("div");
-    financeContainer.classList.add("block", "finance", "masonry");
+    const financeContainer = document.createElement('div');
+    financeContainer.classList.add('block', 'finance', 'masonry');
     container.appendChild(financeContainer);
     this.fin = new Finance(financeContainer);
 
-    const rssNewsContainer = document.createElement("div");
-    rssNewsContainer.classList.add("block", "rss", "masonry");
+    const rssNewsContainer = document.createElement('div');
+    rssNewsContainer.classList.add('block', 'rss', 'masonry');
     container.appendChild(rssNewsContainer);
     this.rss = new Rss(rssNewsContainer);
 
-    const popularContainer = document.createElement("div");
-    popularContainer.classList.add("block", "popular", "masonry");
+    const popularContainer = document.createElement('div');
+    popularContainer.classList.add('block', 'popular', 'masonry');
     container.appendChild(popularContainer);
     this.popularContainer = new Popular({
       parentNode: popularContainer,
@@ -39,8 +55,8 @@ class Main {
       arrayDataName: 'popularLinks',
     });
 
-    const shopsContainer = document.createElement("div");
-    shopsContainer.classList.add("block", "shops", "masonry");
+    const shopsContainer = document.createElement('div');
+    shopsContainer.classList.add('block', 'shops', 'masonry');
     container.appendChild(shopsContainer);
     this.shopsContainer = new Shops({
       parentNode: shopsContainer,
@@ -49,8 +65,8 @@ class Main {
       arrayDataName: 'shopsLinks',
     });
 
-    const travelContainer = document.createElement("div");
-    travelContainer.classList.add("block", "travel", "masonry");
+    const travelContainer = document.createElement('div');
+    travelContainer.classList.add('block', 'travel', 'masonry');
     container.appendChild(travelContainer);
     this.travelContainer = new Travel({
       parentNode: travelContainer,
@@ -59,8 +75,8 @@ class Main {
       arrayDataName: 'travelLinks',
     });
 
-    const googleContainer = document.createElement("div");
-    googleContainer.classList.add("block", "google", "masonry");
+    const googleContainer = document.createElement('div');
+    googleContainer.classList.add('block', 'google', 'masonry');
     container.appendChild(googleContainer);
     this.googleContainer = new Google({
       parentNode: googleContainer,
@@ -70,12 +86,12 @@ class Main {
     });
 
     const weatherContainer = document.createElement('div');
-    weatherContainer.classList.add('block', 'weather', "masonry");
+    weatherContainer.classList.add('block', 'weather', 'masonry');
     container.appendChild(weatherContainer);
     this.weatherContainer = new Weather(weatherContainer);
 
     const toDoContainer = document.createElement('div');
-    toDoContainer.classList.add('block', 'todo', "masonry");
+    toDoContainer.classList.add('block', 'todo', 'masonry');
     container.appendChild(toDoContainer);
     this.toDoContainer = new ToDo(toDoContainer);
   }
