@@ -1,3 +1,4 @@
+import TodoMenu from './todo-menu';
 import './todo.css';
 
 const tasks = {
@@ -238,7 +239,14 @@ class ToDo {
 
   render() {
     this.parentNode.innerHTML = `
-    <h3>To Do</h3>
+    <div class="popular-header">
+      <h3>To Do</h3>
+      <div class="dot-menu">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
     <div class='todo-content'>
       <div class="add-item">
         <input type="text" class="input-task new-task" name="input-task" placeholder="New task">
@@ -255,6 +263,9 @@ class ToDo {
     this.addAddBtnListener();
     this.addMainInputListener();
     this.addInputListeners();
+
+    this.btnMenu = this.parentNode.querySelector('.dot-menu');
+    this.rssMenu = new TodoMenu(this.btnMenu, 'ToDo');
   }
 }
 

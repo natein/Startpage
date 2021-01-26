@@ -120,7 +120,7 @@ class GoogleMenu extends Menu {
       <button class="submit google">Submit</button>
     </div>
     <div class="danger-block">
-      <button class="danger google">! Delete block Google</button>
+      <button class="danger google">Delete block Google</button>
     </div>
     `;
 
@@ -196,12 +196,27 @@ class GoogleMenu extends Menu {
     );
   }
 
+  addDangerBtnListener() {
+    const dangerBtn = this.parentNode.querySelector('.danger.google');
+
+    dangerBtn.addEventListener('click', () => {
+      const mainMenuBtn = this.parentNode.querySelector('[data-btn="google"]');
+      const btnDel = document.querySelector('.delete.google');
+
+      mainMenuBtn.click();
+      btnDel.click();
+
+      this.hide.bind(this)();
+    });
+  }
+
   renderContent() {
     this.fillMenuContent();
     this.createForm();
     this.addListenerToLabel();
     this.addListenerToBtn();
     this.addListenerToDelBtn();
+    this.addDangerBtnListener();
   }
 }
 

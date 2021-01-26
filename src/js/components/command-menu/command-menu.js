@@ -24,10 +24,8 @@ const getClassListBlocks = () => {
   } else {
     localStorage.setItem('classListBlocks', JSON.stringify(classListBlocks));
   }
-  // console.log(blockList);
   return blockList;
 };
-// getClassListBlocks();
 
 class CommandMenu extends Menu {
   constructor(clickedElement, caption) {
@@ -37,36 +35,62 @@ class CommandMenu extends Menu {
   }
 
   fillContentBlock() {
-    const classListBlocks = JSON.parse(localStorage.getItem('classListBlocks'));
-    blockNames.forEach((name, index) => {
-      const html = `<p>${name}</p>
-                   <button class="btn-${classListBlocks[index].class} submit">add</button>
-                   `
-      const item = create('div', `menu-item item-${classListBlocks[index].class}`, html, this.contentBlock);
+    this.contentBlock.innerHTML = '';
 
-      const block = this.parentNode.querySelector(`.block.${classListBlocks[index].class}`);
-      if (!classListBlocks[index].active) block.classList.add('hidden-block');
-      if (classListBlocks[index].active) {
+    const localClassList = JSON.parse(localStorage.getItem('classListBlocks'));
+    localClassList.forEach((name, index) => {
+      const html = `<p>${blockNames[index]}</p>
+                   <button class="submit" data-btn="${name.class}">add</button>`;
+      const item = create(
+        'div',
+        `menu-item item-${name.class}`,
+        html,
+        this.contentBlock
+      );
+
+      const block = this.parentNode.querySelector(`.block.${name.class}`);
+
+      if (!name.active) block.classList.add('hidden-block');
+      if (name.active) {
+        block.classList.remove('hidden-block');
         item.lastElementChild.textContent = 'hide';
         item.lastElementChild.classList.add('active-item');
-      };
+      }
     });
   }
 
-  addItem() {
-    const classListBlocks = JSON.parse(localStorage.getItem('classListBlocks'));
-    classListBlocks.forEach((elem) => {
-      const block = this.parentNode.querySelector(`.block.${elem.class}`);
-      console.log(block);
+  changePosition(e) {
+    const classId = e.target.dataset.btn;
+
+    const localClassList = JSON.parse(localStorage.getItem('classListBlocks'));
+
+    const newClassList = localClassList.map((item) => {
+      if (item.class === classId && item.active)
+        return { ...item, active: false };
+      if (item.class === classId && !item.active)
+        return { ...item, active: true };
+      return item;
+    });
+
+    localStorage.setItem('classListBlocks', JSON.stringify(newClassList));
+
+    this.fillContentBlock();
+    this.addBtnListener();
+  }
+
+  addBtnListener() {
+    const buttons = this.parentNode.querySelectorAll('.menu-item .submit');
+    buttons.forEach((btn) => {
+      btn.onclick = this.changePosition.bind(this);
+      return btn;
     });
   }
 
   renderContent() {
     getClassListBlocks();
-    console.log(this.contentBlock);
     this.fillContentBlock();
+    this.addBtnListener();
   }
 }
 
 export default CommandMenu;
-

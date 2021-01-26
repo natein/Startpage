@@ -120,7 +120,7 @@ class TravelMenu extends Menu {
       <button class="submit travel">Submit</button>
     </div>
     <div class="danger-block">
-      <button class="danger travel">! Delete block Travels</button>
+      <button class="danger travel">Delete block Travels</button>
     </div>
     `;
 
@@ -196,12 +196,27 @@ class TravelMenu extends Menu {
     );
   }
 
+  addDangerBtnListener() {
+    const dangerBtn = this.parentNode.querySelector('.danger.travel');
+
+    dangerBtn.addEventListener('click', () => {
+      const mainMenuBtn = this.parentNode.querySelector('[data-btn="travel"]');
+      const btnDel = document.querySelector('.delete.travel');
+
+      mainMenuBtn.click();
+      btnDel.click();
+
+      this.hide.bind(this)();
+    });
+  }
+
   renderContent() {
     this.fillMenuContent();
     this.createForm();
     this.addListenerToLabel();
     this.addListenerToBtn();
     this.addListenerToDelBtn();
+    this.addDangerBtnListener();
   }
 }
 

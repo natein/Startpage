@@ -54,7 +54,7 @@ main {
   height: 350px;
 }
 
-.block-hidden {
+.block.hidden-block {
   display: none;
 }
 

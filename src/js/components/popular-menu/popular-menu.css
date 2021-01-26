@@ -42,6 +42,7 @@
 
 .website .website-logo {
   width: 24px;
+  margin-right: 15px;
 }
 
 .form {
@@ -84,7 +85,7 @@
 }
 
 .delete {
-  background-color: #dc3545;
+  background-color: gray;
   margin: 0 15px;
   padding: 10px 15px;
   border-radius: 5px;
@@ -140,6 +141,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-top: 50px;
 }
 
 .danger {

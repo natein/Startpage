@@ -121,7 +121,7 @@ class ShopsMenu extends Menu {
       <button class="submit shops">Submit</button>
     </div>
     <div class="danger-block">
-      <button class="danger shops">! Delete block Shops</button>
+      <button class="danger shops">Delete block Shops</button>
     </div>
     `;
 
@@ -196,12 +196,27 @@ class ShopsMenu extends Menu {
     );
   }
 
+  addDangerBtnListener() {
+    const dangerBtn = this.parentNode.querySelector('.danger.shops');
+
+    dangerBtn.addEventListener('click', () => {
+      const mainMenuBtn = this.parentNode.querySelector('[data-btn="shops"]');
+      const btnDel = document.querySelector('.delete.shops');
+
+      mainMenuBtn.click();
+      btnDel.click();
+
+      this.hide.bind(this)();
+    });
+  }
+
   renderContent() {
     this.fillMenuContent();
     this.createForm();
     this.addListenerToLabel();
     this.addListenerToBtn();
     this.addListenerToDelBtn();
+    this.addDangerBtnListener();
   }
 }
 

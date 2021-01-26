@@ -1,5 +1,6 @@
 import './finance.css';
 import Chart from 'chart.js';
+import FinanceMenu from './finance-menu';
 
 const nbrbURL = 'https://www.nbrb.by/api/exrates/rates?periodicity=0';
 
@@ -68,7 +69,7 @@ const getDataForChart = async (currencyId) => {
 
   const responseForYear = await fetch(
     `https://www.nbrb.by/API/ExRates/Rates/Dynamics/${currencyId}
-    ?startDate=Tue%2C+31+Dec+2019+21%3A00%3A00+GMT&endDate=${day}
+    ?startDate=Tue%2C+3+Mar+2020+21%3A00%3A00+GMT&endDate=${day}
     %2C+${date}+${month}+${year}+21%3A00%3A00+GMT`
   );
 
@@ -263,15 +264,28 @@ class Finance {
   }
 
   render() {
-    const caption = document.createElement('h3');
-    caption.textContent = 'Finance';
-    this.parentNode.appendChild(caption);
+    // const caption = document.createElement('h3');
+    // caption.textContent = 'Finance';
+    // this.parentNode.appendChild(caption);
+    this.parentNode.innerHTML = `
+    <div class="popular-header">
+      <h3>Finance</h3>
+      <div class="dot-menu">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    `;
     this.createPairEurUsd();
     this.createPairEurRub();
     this.createPairBlrUsd();
     this.parentNode.appendChild(this.currencyList);
     this.renderCurrencyChoiceBlock();
     this.getFinanceData();
+
+    this.btnMenu = this.parentNode.querySelector('.dot-menu');
+    this.rssMenu = new FinanceMenu(this.btnMenu, 'Finance');
   }
 }
 

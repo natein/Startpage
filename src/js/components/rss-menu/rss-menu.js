@@ -43,17 +43,8 @@ const addDangerBtn = () => {
   create(
     'div',
     'danger-block',
-    `<button class="danger rss">! Delete block News</button>`,
+    `<button class="danger rss">Delete block News</button>`,
     menuContent
-  );
-};
-
-const addDangerBtnListener = () => {
-  const rssBlock = document.querySelector('.block.rss');
-  const dangerBtn = document.querySelector('.danger.rss');
-
-  dangerBtn.addEventListener('click', () =>
-    rssBlock.classList.add('block-hidden')
   );
 };
 
@@ -95,10 +86,21 @@ class RssMenu extends Menu {
     labels.forEach((label) => label.addEventListener('click', changeBookmarks));
   }
 
+  addDangerBtnListener() {
+    const dangerBtn = document.querySelector('.danger.rss');
+
+    dangerBtn.addEventListener('click', () => {
+      const mainMenuBtn = this.parentNode.querySelector(`[data-btn="rss"]`);
+      mainMenuBtn.click();
+      this.hide.bind(this)();
+      localStorage.removeItem('urlArray');
+    });
+  }
+
   renderContent() {
     fillMenuContent();
     addDangerBtn();
-    addDangerBtnListener();
+    this.addDangerBtnListener();
     this.addListenerToLabel();
   }
 }

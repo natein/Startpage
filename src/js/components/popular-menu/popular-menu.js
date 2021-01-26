@@ -122,7 +122,7 @@ class PopMenu extends Menu {
       <button class="submit popular">Submit</button>
     </div>
     <div class="danger-block">
-      <button class="danger popular">! Delete block Popular links</button>
+      <button class="danger popular">Delete block Popular links</button>
     </div>
     `;
 
@@ -198,12 +198,27 @@ class PopMenu extends Menu {
     );
   }
 
+  addDangerBtnListener() {
+    const dangerBtn = this.parentNode.querySelector('.danger.popular');
+
+    dangerBtn.addEventListener('click', () => {
+      const mainMenuBtn = this.parentNode.querySelector('[data-btn="popular"]');
+      const btnDel = document.querySelector('.delete.popular');
+
+      mainMenuBtn.click();
+      btnDel.click();
+
+      this.hide.bind(this)();
+    });
+  }
+
   renderContent() {
     this.fillMenuContent();
     this.createForm();
     this.addListenerToLabel();
     this.addListenerToBtn();
     this.addListenerToDelBtn();
+    this.addDangerBtnListener();
   }
 }
 

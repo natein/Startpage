@@ -9,7 +9,24 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px 10px;
+  padding: 6px;
+}
+
+.menu-content.Main .menu-item p {
+  margin: 0 15px;
+}
+
+.menu-content.Main .menu-item:hover {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(78, 167, 166, 0.6);
+  border-radius: 9em;
+  -webkit-box-shadow: inset 1px 1px 10px #f3faf7;
+          box-shadow: inset 1px 1px 10px #f3faf7;
 }
 
 .menu-content.Main .submit {
@@ -17,10 +34,6 @@
 }
 
 .menu-content.Main .submit.active-item {
-  background-color: gray;
-}
-
-.block.hidden-block {
-  display: none;
+  background-color: #dc3545;
 }
 /*# sourceMappingURL=command-menu.css.map */
