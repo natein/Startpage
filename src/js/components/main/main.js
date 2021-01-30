@@ -8,6 +8,7 @@ import Travel from '../travel/travel';
 import Google from '../google/google';
 import Weather from '../weather/weather';
 import ToDo from '../todo/todo';
+import { Calculator } from '../calculator/js/calculator';
 
 class Main {
   constructor(parentNode) {
@@ -78,6 +79,11 @@ class Main {
     toDoContainer.classList.add('block', 'todo', 'masonry');
     container.appendChild(toDoContainer);
     this.toDoContainer = new ToDo(toDoContainer);
+
+    const calc = document.createElement('div');
+    calc.classList.add('block', 'calc', 'masonry');
+    container.appendChild(calc);
+    this.calc = new Calculator(calc);
   }
 }
 

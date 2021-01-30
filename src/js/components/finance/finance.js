@@ -150,9 +150,16 @@ class Finance {
   }
 
   renderCurrencyChoiceBlock() {
+    const wrapCurrencyChoiceBlock = document.createElement('div');
+    const titleCurrencyChoiceBlock = document.createElement('div');
+
+    titleCurrencyChoiceBlock.textContent = 'Select currency pair ';
+    wrapCurrencyChoiceBlock.classList.add('wrapCurrencyChoiceBlock');
     this.currencyChoiceBlock.classList.add('currencyChoiceBlock');
-    this.currencyChoiceBlock.textContent = 'Select currency pair ';
-    this.parentNode.appendChild(this.currencyChoiceBlock);
+
+    wrapCurrencyChoiceBlock.appendChild(titleCurrencyChoiceBlock);
+    wrapCurrencyChoiceBlock.appendChild(this.currencyChoiceBlock);
+    this.parentNode.appendChild(wrapCurrencyChoiceBlock);
   }
 
   axesLinearChart(updatedDate, currencyDynamic, rateCurrencyPair) {
@@ -264,9 +271,6 @@ class Finance {
   }
 
   render() {
-    // const caption = document.createElement('h3');
-    // caption.textContent = 'Finance';
-    // this.parentNode.appendChild(caption);
     this.parentNode.innerHTML = `
     <div class="popular-header">
       <h3>Finance</h3>

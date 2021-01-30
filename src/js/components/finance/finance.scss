@@ -16,9 +16,19 @@ h3 {
   margin: 5px;
 }
 
-.currencyChoiceBlock {
+.wrapCurrencyChoiceBlock {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
+  margin: 0 5px;
+}
+
+.currencyChoiceBlock {
+  select {
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
 }
 
 #line-chart {

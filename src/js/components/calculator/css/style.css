@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+}
+
+.block.calc {
+  background-color: transparent;
+}
+
+.calculator {
+  /* width: 400px; */
+  height: 550px;
+  padding: 30px;
+  border-radius: 20px;
+  background-image: url('../../../../assets/img/metal.jpg');
+}
+
+@media only screen and (max-width: 540px) {
+  .calculator {
+    width: 300px;
+    height: 550px;
+    padding: 20px;
+  }
+}
+
+.output {
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.output .result,
+.output .expression {
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 540px) {
+  .output .result,
+  .output .expression {
+    height: 50px;
+  }
+}
+
+.output .result p {
+  font-family: Crystal, sans-serif;
+  font-size: 35px;
+  line-height: 36px;
+  text-align: right;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media only screen and (max-width: 540px) {
+  .output .result p {
+    font-size: 22px;
+  }
+}
+
+.output .expression p {
+  font-family: monospace;
+  font-size: 24px;
+  line-height: 140%;
+  text-align: right;
+  color: #b1ffb1;
+}
+
+@media only screen and (max-width: 540px) {
+  .output .expression p {
+    font-size: 18px;
+  }
+}
+
+.calculator-grid {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.calculator-grid > button {
+  cursor: pointer;
+  width: 70px;
+  height: 44px;
+  border-radius: 10px;
+  font-size: 30px;
+  border: none;
+  outline: none;
+  background-color: #ccc;
+  margin-right: 6px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 540px) {
+  .calculator-grid > button {
+    width: 55px;
+    height: 45px;
+    border-radius: 7px;
+    font-size: 30px;
+  }
+}
+
+.calculator-grid > button:nth-child(4n + 1) {
+  margin-right: 0;
+}
+
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.note {
+  width: 500px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 540px) {
+  .note {
+    width: 300px;
+  }
+}
+
+.note h2 {
+  text-align: center;
+}
+
+@media only screen and (max-width: 540px) {
+  .note h2 {
+    font-size: 30px;
+  }
+}
