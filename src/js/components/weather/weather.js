@@ -1,5 +1,6 @@
 import './weather.css';
 import './owfont-regular.css';
+import WeatherMenu from './weather-menu';
 
 class Weather {
   constructor(parentNode) {
@@ -84,16 +85,23 @@ class Weather {
         }
       }
     } else if (e.target.innerText === '') {
-        city.textContent = localStorage.getItem('city') || 'Minsk';
-      } else {
-        localStorage.setItem('city', e.target.innerText);
-        this.fillWeatherBlock();
-      }
+      city.textContent = localStorage.getItem('city') || 'Minsk';
+    } else {
+      localStorage.setItem('city', e.target.innerText);
+      this.fillWeatherBlock();
+    }
   }
 
   render() {
     this.parentNode.innerHTML = `
-    <h3>Weather</h3>
+    <div class="popular-header">
+      <h3>Weather</h3>
+      <div class="dot-menu">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
     <div class='weather-content'>
       <div class="city" contenteditable="true">Minsk</div>
       <i class="weather-icon owf"></i>
@@ -105,6 +113,9 @@ class Weather {
     `;
     this.fillWeatherBlock();
     this.addListeners();
+
+    this.btnMenu = this.parentNode.querySelector('.dot-menu');
+    this.rssMenu = new WeatherMenu(this.btnMenu, 'Weather');
   }
 }
 
