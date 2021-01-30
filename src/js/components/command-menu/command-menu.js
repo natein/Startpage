@@ -2,6 +2,7 @@ import './command-menu.css';
 import Menu from '../base-menu/baseMenu';
 import { classListBlocks } from '../../data/constants';
 import create from '../../utils/create';
+import OptionsMenu from '../options-menu/options-menu';
 
 const blockNames = [
   'Finance',
@@ -31,12 +32,13 @@ const getClassListBlocks = () => {
 class CommandMenu extends Menu {
   constructor(clickedElement, caption) {
     super(clickedElement, caption);
-    this.contentBlock = document.querySelector('.menu-content.Main');
+    // this.contentBlock = document.querySelector('.menu-content.Main');
+    this.managerBlock = create('div', 'menu-manager');
     this.renderContent();
   }
 
-  fillContentBlock() {
-    this.contentBlock.innerHTML = '';
+  fillManagerBlock() {
+    this.managerBlock.innerHTML = '';
 
     const localClassList = JSON.parse(localStorage.getItem('classListBlocks'));
     localClassList.forEach((name, index) => {
@@ -46,7 +48,7 @@ class CommandMenu extends Menu {
         'div',
         `menu-item item-${name.class}`,
         html,
-        this.contentBlock
+        this.managerBlock
       );
 
       const block = this.parentNode.querySelector(`.block.${name.class}`);
@@ -75,7 +77,7 @@ class CommandMenu extends Menu {
 
     localStorage.setItem('classListBlocks', JSON.stringify(newClassList));
 
-    this.fillContentBlock();
+    this.fillManagerBlock();
     this.addBtnListener();
   }
 
@@ -88,9 +90,17 @@ class CommandMenu extends Menu {
   }
 
   renderContent() {
-    getClassListBlocks();
-    this.fillContentBlock();
-    this.addBtnListener();
+    const contentBlock = document.querySelector('.menu-content.Main');
+    // contentBlock.appendChild(this.managerBlock);
+
+    // getClassListBlocks();
+    // this.fillManagerBlock();
+    // this.addBtnListener();
+
+    const otherMenuItems = create('div', 'other-items', '', contentBlock);
+
+    const options = create('div', 'options', 'Options', otherMenuItems);
+    this.optionsMenu = new OptionsMenu(options, 'Options');
   }
 }
 
