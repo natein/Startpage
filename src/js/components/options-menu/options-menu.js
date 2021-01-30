@@ -48,18 +48,18 @@ const sounds = [
   },
 ];
 
-const getOptionList = () => {
-  let optionList = [];
+const getOptionFavicon = () => {
+  let optionFavicon;
 
-  const localOptionList = JSON.parse(localStorage.getItem('optionList'));
+  const localOptionFavicon = JSON.parse(localStorage.getItem('optionFavicon'));
 
-  if (localOptionList) {
-    optionList = localOptionList;
+  if (localOptionFavicon) {
+    optionFavicon = localOptionFavicon;
   } else {
-    optionList = optionItems;
-    localStorage.setItem('optionList', JSON.stringify(optionItems));
+    optionFavicon = optionItems[0];
+    localStorage.setItem('optionFavicon', JSON.stringify(optionItems[0]));
   }
-  return optionList;
+  return optionFavicon;
 };
 
 const getSoundList = () => {
@@ -118,7 +118,12 @@ class OptionsMenu extends Menu {
   }
 
   createSelectSound() {
-    const selectBlock = create('div', 'select-block', 'Choose sound', this.contentBlock);
+    const selectBlock = create(
+      'div',
+      'select-block',
+      'Choose sound',
+      this.contentBlock
+    );
     const select = create('select', 'select-sound', '', selectBlock);
 
     const localSoundList = getSoundList();
@@ -135,7 +140,7 @@ class OptionsMenu extends Menu {
   creteAudioElements() {
     sounds.forEach((item) => {
       const audio = document.createElement('audio');
-      audio.classList.add(`audio-${item.name}`)
+      audio.classList.add(`audio-${item.name}`);
       audio.src = item.src;
       audio.loop = true;
       this.contentBlock.appendChild(audio);
@@ -178,16 +183,37 @@ class OptionsMenu extends Menu {
     }
   }
 
-  toggleCheckbox() {
+  toggleCheckboxSound() {
     const toggle = this.contentBlock.querySelector('.checkbox-bg-sound');
     toggle.onclick = () => this.playSound.bind(this)();
+  }
+
+  toggleRequest() {
+    const currentRequest = getOptionFavicon();
+    if (currentRequest.checked) {
+      localStorage.setItem(
+        'optionFavicon',
+        JSON.stringify({ ...currentRequest, checked: false })
+      );
+    } else {
+      localStorage.setItem(
+        'optionFavicon',
+        JSON.stringify({ ...currentRequest, checked: true })
+      );
+    }
+  }
+
+  toggleCheckboxFavicon() {
+    const toggle = this.contentBlock.querySelector('.checkbox-favicon-item');
+    toggle.onclick = () => this.toggleRequest.bind(this)();
   }
 
   renderContent() {
     this.fillItemsBlock();
     this.createSelectSound();
     this.creteAudioElements();
-    this.toggleCheckbox();
+    this.toggleCheckboxSound();
+    this.toggleCheckboxFavicon();
   }
 }
 
