@@ -32,7 +32,6 @@ const getClassListBlocks = () => {
 class CommandMenu extends Menu {
   constructor(clickedElement, caption) {
     super(clickedElement, caption);
-    // this.contentBlock = document.querySelector('.menu-content.Main');
     this.managerBlock = create('div', 'menu-manager');
     this.renderContent();
   }
@@ -91,11 +90,11 @@ class CommandMenu extends Menu {
 
   renderContent() {
     const contentBlock = document.querySelector('.menu-content.Main');
-    // contentBlock.appendChild(this.managerBlock);
+    contentBlock.appendChild(this.managerBlock);
 
-    // getClassListBlocks();
-    // this.fillManagerBlock();
-    // this.addBtnListener();
+    getClassListBlocks();
+    this.fillManagerBlock();
+    this.addBtnListener();
 
     const otherMenuItems = create('div', 'other-items', '', contentBlock);
 

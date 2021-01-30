@@ -67,4 +67,16 @@ input:checked + .slider:before {
 .option {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+
+.select-block {
+  margin: 15px 25px;
+
+  .select-sound {
+    padding: 10px 30px 10px 10px;
+    margin-left: 15px;
+    outline: none;
+    border-radius: 5px;
+  }
 }

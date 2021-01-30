@@ -1,7 +1,6 @@
 import './options-menu.css';
 import Menu from '../base-menu/baseMenu';
 import create from '../../utils/create';
-// import Google from '../../../assets/audio';
 
 const optionItems = [
   {
@@ -43,7 +42,7 @@ const sounds = [
     selected: false,
   },
   {
-    name: 'thunder',
+    name: 'waves',
     src: 'audio/waves.mp3',
     selected: false,
   },
@@ -89,7 +88,7 @@ class OptionsMenu extends Menu {
     const itemsBlock = create('div', 'items-block', '', this.contentBlock);
 
     optionItems.forEach((item) => {
-      const option = create('div', `option-${item.myClass}`, ``, itemsBlock);
+      const option = create('div', `option ${item.myClass}`, ``, itemsBlock);
 
       create('div', `title-${item.myClass}`, `${item.title}`, option);
 
@@ -104,65 +103,90 @@ class OptionsMenu extends Menu {
     });
   }
 
-  createSelectSound() {
-    const select = create('select', 'select-sound', '', this.contentBlock);
-    select.name = 'selectSound';
+  addSelectListener(value) {
+    const localSoundList = JSON.parse(localStorage.getItem('soundList'));
+    const newList = localSoundList.map((sound) => {
+      if (sound.name === value) {
+        return { ...sound, selected: true };
+      } else {
+        return { ...sound, selected: false };
+      }
+    });
 
-    sounds.forEach((sound) => {
+    localStorage.setItem('soundList', JSON.stringify(newList));
+    this.playSound();
+  }
+
+  createSelectSound() {
+    const selectBlock = create('div', 'select-block', 'Choose sound', this.contentBlock);
+    const select = create('select', 'select-sound', '', selectBlock);
+
+    const localSoundList = getSoundList();
+
+    localSoundList.forEach((sound) => {
       const option = create('option', 'option-sound', `${sound.name}`, select);
       option.value = `${sound.name}`;
       if (sound.selected) option.selected = true;
-      // option.textContent = `${sound.name}`;
-      // select.appendChild(option);
     });
+
+    select.onclick = (e) => this.addSelectListener.bind(this)(e.target.value);
   }
 
   creteAudioElements() {
     sounds.forEach((item) => {
-      const audio = create(
-        'audio',
-        `audio-${item.name}`,
-        '',
-        this.contentBlock
-      );
+      const audio = document.createElement('audio');
+      audio.classList.add(`audio-${item.name}`)
       audio.src = item.src;
+      audio.loop = true;
+      this.contentBlock.appendChild(audio);
     });
+  }
+
+  stopCurrentSound(selectedSound) {
+    const currentSound = JSON.parse(localStorage.getItem('currentSound'));
+
+    if (!currentSound) return;
+    if (currentSound.name === selectedSound.name) return;
+
+    const audio = this.contentBlock.querySelector(
+      `.audio-${currentSound.name}`
+    );
+
+    audio.pause();
+    audio.currentTime = 0;
   }
 
   playSound() {
     const toggle = this.contentBlock.querySelector('.checkbox-bg-sound');
-    if (!toggle.checked) return;
 
     const localSoundList = getSoundList();
     const selectedSound = localSoundList.find(
       (sound) => sound.selected === true
     );
+    this.stopCurrentSound(selectedSound);
+
+    localStorage.setItem('currentSound', JSON.stringify(selectedSound));
+
     const audio = this.contentBlock.querySelector(
       `.audio-${selectedSound.name}`
     );
 
-    console.log('Ok');
-    audio.play();
+    if (toggle.checked) audio.play();
+    if (!toggle.checked) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
   }
 
   toggleCheckbox() {
     const toggle = this.contentBlock.querySelector('.checkbox-bg-sound');
-    toggle.onClick = () => {
-      if (toggle.checked) {
-        toggle.checked = false;
-        this.playSound.bind(this)();
-        console.log('toggle');
-      } else {
-        toggle.checked = true;
-      }
-    };
+    toggle.onclick = () => this.playSound.bind(this)();
   }
 
   renderContent() {
     this.fillItemsBlock();
     this.createSelectSound();
     this.creteAudioElements();
-    // this.playSound();
     this.toggleCheckbox();
   }
 }
