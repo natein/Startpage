@@ -12,6 +12,7 @@ const blockNames = [
   'Google',
   'Weather',
   'To Do',
+  'Calculator',
 ];
 
 const getClassListBlocks = () => {
