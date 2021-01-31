@@ -1,4 +1,11 @@
-.menu-content.Main {
+%hoverItem {
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(78, 167, 166, 0.6);
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 10px #f3faf7;
+}
+
+.menu-manager {
   padding: 10px;
 
   .menu-item {
@@ -13,10 +20,7 @@
     }
 
     &:hover {
-      transition: all 0.2s ease-in-out;
-      background-color: rgba(78, 167, 166, 0.6);
-      border-radius: 9em;
-      box-shadow: inset 1px 1px 10px #f3faf7;
+      @extend %hoverItem;
     }
   }
 
@@ -24,11 +28,21 @@
     padding: 5px 10px;
   }
 
-  // .active-item{
-  //    text-decoration: line-through;
-  // }
-
   .submit.active-item {
     background-color: #dc3545;
+  }
+}
+
+.other-items {
+  padding: 10px;
+
+  .options {
+    cursor: pointer;
+    margin: 0px 10px;
+    padding: 6px 20px;
+
+    &:hover {
+      @extend %hoverItem;
+    }
   }
 }

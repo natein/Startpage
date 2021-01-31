@@ -187,7 +187,7 @@ export const fullGoogleLinks = [
 export const classListBlocks = [
   {
     class: 'finance',
-    active: false,
+    active: true,
   },
   {
     class: 'rss',
@@ -216,5 +216,9 @@ export const classListBlocks = [
   {
     class: 'todo',
     active: true,
+  },
+  {
+    class: 'calc',
+    active: false,
   },
 ];

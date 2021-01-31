@@ -20,12 +20,19 @@ h3 {
   margin: 5px;
 }
 
-.currencyChoiceBlock {
+.wrapCurrencyChoiceBlock {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  margin: 0 5px;
+}
+
+.currencyChoiceBlock select:last-child {
+  margin-left: 10px;
 }
 
 #line-chart {

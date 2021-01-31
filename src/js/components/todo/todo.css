@@ -25,6 +25,11 @@
           box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
+.input-task.new-task {
+  width: 82%;
+  border: 2px solid #6b6b6b;
+}
+
 .add-task {
   margin-left: -45px;
   background-color: dodgerblue;
