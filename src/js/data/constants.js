@@ -1,5 +1,7 @@
 export const APP_NAME = 'Start Page';
 
+export const backend = 'https://startpage-be.herokuapp.com';
+
 export const DEVELOPERS = [
   {
     user: 'natein',
@@ -23,8 +25,7 @@ export const INITIAL_PAGE = [
 export const COURSE_LINK = 'https://rs.school/js/';
 export const COURSE_NAME = 'JavaScript/Front-end 2020Q3';
 
-export const faviconUrl =
-  'https://www.google.com/s2/favicons?sz=48&domain_url=';
+export const faviconUrl = 'https://www.google.com/s2/favicons?sz=48&domain_url=';
 
 export const fullPopularLinks = [
   {
