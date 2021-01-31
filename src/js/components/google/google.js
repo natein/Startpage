@@ -2,7 +2,29 @@
 import "./google.css";
 import { fullGoogleLinks } from "../../data/constants";
 import GoogleMenu from "../google-menu/google-menu";
+import { getOptionItems } from "../options-menu/options-menu";
 
+const getImage = (url) => {
+  const optionFavicon = getOptionItems()[0];
+  let img;
+  if (optionFavicon.checked) {
+    img = `<img class="website-img" src="${url}" alt = "website" >`
+  } else {
+    img = '';
+  }
+  return img;
+}
+
+const getTargetBlank = () => {
+  let targetBlank;
+  const optionTarget = getOptionItems()[1];
+  if (optionTarget.checked) {
+    targetBlank = '_blank'
+  } else {
+    targetBlank = ''
+  }
+  return targetBlank;
+}
 class Google {
   constructor(obj) {
     this.parentNode = obj.parentNode;
@@ -43,8 +65,8 @@ class Google {
       website.classList.add("websites", `${myClass}`);
 
       website.innerHTML = `        
-        <a class="website-link" title="${web.title}" href="${web.url}" target="_blank">
-          <img class="website-img" src="${web.favicon}" alt="website">  
+        <a class="website-link" title="${web.title}" href="${web.url}" target="${getTargetBlank()}">
+          ${getImage(web.favicon)}    
           <span class="website-title">${web.title}</span>
         </a>
       `;

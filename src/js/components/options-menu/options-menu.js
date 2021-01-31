@@ -4,9 +4,14 @@ import create from '../../utils/create';
 
 const optionItems = [
   {
-    title: 'Show favicons for websites',
+    title: 'Show images for websites',
     checked: true,
     myClass: 'favicon-item',
+  },
+  {
+    title: 'Open link in new tab',
+    checked: true,
+    myClass: 'target-blank',
   },
   {
     title: 'Turn on background sound',
@@ -48,7 +53,21 @@ const sounds = [
   },
 ];
 
-const getOptionFavicon = () => {
+export const getOptionItems = () => {
+  let tempOptionItems;
+
+  const localOptionItems = JSON.parse(localStorage.getItem('optionItems'));
+
+  if (localOptionItems) {
+    tempOptionItems = localOptionItems;
+  } else {
+    tempOptionItems = optionItems;
+    localStorage.setItem('optionItems', JSON.stringify(optionItems));
+  }
+  return tempOptionItems;
+};
+
+export const getOptionFavicon = () => {
   let optionFavicon;
 
   const localOptionFavicon = JSON.parse(localStorage.getItem('optionFavicon'));
@@ -86,8 +105,9 @@ class OptionsMenu extends Menu {
 
   fillItemsBlock() {
     const itemsBlock = create('div', 'items-block', '', this.contentBlock);
+    const localOptionItems = getOptionItems();
 
-    optionItems.forEach((item) => {
+    localOptionItems.forEach((item) => {
       const option = create('div', `option ${item.myClass}`, ``, itemsBlock);
 
       create('div', `title-${item.myClass}`, `${item.title}`, option);
@@ -121,7 +141,7 @@ class OptionsMenu extends Menu {
     const selectBlock = create(
       'div',
       'select-block',
-      'Choose sound',
+      '<span>Choose sound</span>',
       this.contentBlock
     );
     const select = create('select', 'select-sound', '', selectBlock);
@@ -188,24 +208,62 @@ class OptionsMenu extends Menu {
     toggle.onclick = () => this.playSound.bind(this)();
   }
 
-  toggleRequest() {
-    const currentRequest = getOptionFavicon();
-    if (currentRequest.checked) {
+  toggleFaviconRequest() {
+    const currentRequest = getOptionItems();
+
+    if (currentRequest[0].checked) {
       localStorage.setItem(
-        'optionFavicon',
-        JSON.stringify({ ...currentRequest, checked: false })
+        'optionItems',
+        JSON.stringify([
+          { ...currentRequest[0], checked: false },
+          currentRequest[1],
+          currentRequest[2],
+        ])
       );
     } else {
       localStorage.setItem(
-        'optionFavicon',
-        JSON.stringify({ ...currentRequest, checked: true })
+        'optionItems',
+        JSON.stringify([
+          { ...currentRequest[0], checked: true },
+          currentRequest[1],
+          currentRequest[2],
+        ])
       );
     }
   }
 
   toggleCheckboxFavicon() {
     const toggle = this.contentBlock.querySelector('.checkbox-favicon-item');
-    toggle.onclick = () => this.toggleRequest.bind(this)();
+    toggle.onclick = () => this.toggleFaviconRequest.bind(this)();
+  }
+
+  toggleTargetBlank() {
+    const currentRequest = getOptionItems();
+
+    if (currentRequest[1].checked) {
+      localStorage.setItem(
+        'optionItems',
+        JSON.stringify([
+          currentRequest[0],
+          { ...currentRequest[1], checked: false },
+          currentRequest[2],
+        ])
+      );
+    } else {
+      localStorage.setItem(
+        'optionItems',
+        JSON.stringify([
+          currentRequest[0],
+          { ...currentRequest[1], checked: true },
+          currentRequest[2],
+        ])
+      );
+    }
+  }
+
+  toggleCheckboxTargetBlank() {
+    const toggle = this.contentBlock.querySelector('.checkbox-target-blank');
+    toggle.onclick = () => this.toggleTargetBlank.bind(this)();
   }
 
   renderContent() {
@@ -214,6 +272,7 @@ class OptionsMenu extends Menu {
     this.creteAudioElements();
     this.toggleCheckboxSound();
     this.toggleCheckboxFavicon();
+    this.toggleCheckboxTargetBlank();
   }
 }
 

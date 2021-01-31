@@ -87,20 +87,19 @@
 }
 
 .topic {
-  display: -ms-grid;
-  display: grid;
+  margin: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-grid-columns: 1fr 5fr;
-      grid-template-columns: 1fr 5fr;
-  grid-gap: 10px;
-  margin: 5px 0;
 }
 
 .topic .topic-img {
   width: 60px;
   max-height: 40px;
+  margin-right: 10px;
 }
 
 .topic .topic-link {

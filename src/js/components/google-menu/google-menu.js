@@ -2,6 +2,18 @@
 import { fullGoogleLinks, faviconUrl } from '../../data/constants';
 import Menu from '../base-menu/baseMenu';
 import Google from '../google/google';
+import { getOptionItems } from '../options-menu/options-menu';
+
+const getImage = (website) => {
+  const optionFavicon = getOptionItems()[0];
+  let img;
+  if (optionFavicon.checked) {
+    img = `<img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">`;
+  } else {
+    img = '';
+  }
+  return img;
+};
 
 const getFullLinks = () => {
   let fullLinks = [];
@@ -94,7 +106,7 @@ class GoogleMenu extends Menu {
       web.innerHTML = `
       <input class="input-google" type="checkbox" data-google="${website.title}" id="${website.title}" name="${website.title}" ${check}>
       <label class="label" for="${website.title}">
-        <img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">
+        ${getImage(website)}
         <span>${website.title}</span>
       </label>
       `;

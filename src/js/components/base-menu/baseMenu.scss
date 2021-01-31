@@ -29,10 +29,11 @@ $width: 400px;
 .header-block {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 40px;
   background-color: #ffffff;
 
-  .header-caption{
+  .header-caption {
     background-color: #ffffff;
   }
 }
@@ -44,7 +45,9 @@ $width: 400px;
 .cross {
   width: 25px;
   height: 25px;
+  padding: 14px;
   background: url(../../../assets/img/Group.png);
+  background-repeat: no-repeat;
 
   &:hover {
     cursor: pointer;

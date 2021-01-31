@@ -2,6 +2,18 @@ import './travel-menu.css';
 import { fullTravelLinks, faviconUrl } from '../../data/constants';
 import Menu from '../base-menu/baseMenu';
 import Travel from '../travel/travel';
+import { getOptionItems } from '../options-menu/options-menu';
+
+const getImage = (website) => {
+  const optionFavicon = getOptionItems()[0];
+  let img;
+  if (optionFavicon.checked) {
+    img = `<img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">`;
+  } else {
+    img = '';
+  }
+  return img;
+};
 
 const getFullLinks = () => {
   let fullLinks = [];
@@ -94,7 +106,7 @@ class TravelMenu extends Menu {
       web.innerHTML = `
       <input class="input-travel" type="checkbox" data-travel="${website.title}" id="${website.title}" name="${website.title}" ${check}>
       <label class="label" for="${website.title}">
-        <img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">
+        ${getImage(website)}
         <span>${website.title}</span>
       </label>
       `;

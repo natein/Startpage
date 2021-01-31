@@ -1,4 +1,7 @@
-/* The switch - the box around the slider */
+.menu-content.Opti{
+  padding: 15px;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -6,12 +9,10 @@
   height: 34px;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   display: none;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -50,7 +51,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
@@ -66,16 +66,18 @@ input:checked + .slider:before {
 
 .option {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .select-block {
-  margin: 15px 25px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .select-sound {
     padding: 10px 30px 10px 10px;
-    margin-left: 15px;
     outline: none;
     border-radius: 5px;
   }

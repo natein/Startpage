@@ -2,6 +2,18 @@ import './popular-menu.css';
 import { fullPopularLinks, faviconUrl } from '../../data/constants';
 import Menu from '../base-menu/baseMenu';
 import Popular from '../popular-links/popular';
+import { getOptionItems } from '../options-menu/options-menu';
+
+const getImage = (website) => {
+  const optionFavicon = getOptionItems()[0];
+  let img;
+  if (optionFavicon.checked) {
+    img = `<img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">`;
+  } else {
+    img = '';
+  }
+  return img;
+};
 
 const getFullLinks = () => {
   let fullLinks = [];
@@ -96,7 +108,7 @@ class PopMenu extends Menu {
       web.innerHTML = `
       <input class="input-popular" type="checkbox" data-popular="${website.title}" id="${website.title}" name="${website.title}" ${check}>
       <label class="label" for="${website.title}">
-        <img class="website-logo ${website.title}" src="${website.favicon}" alt="logo">
+        ${getImage(website)}
         <span>${website.title}</span>
       </label>
       `;

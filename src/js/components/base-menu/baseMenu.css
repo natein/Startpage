@@ -36,6 +36,9 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 40px;
   background-color: #ffffff;
 }
@@ -51,7 +54,9 @@
 .cross {
   width: 25px;
   height: 25px;
+  padding: 14px;
   background: url(../../../assets/img/Group.png);
+  background-repeat: no-repeat;
 }
 
 .cross:hover {

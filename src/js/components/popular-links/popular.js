@@ -1,7 +1,29 @@
 import PopMenu from "../popular-menu/popular-menu";
 import "./popular.css";
 import { fullPopularLinks } from "../../data/constants";
+import { getOptionItems } from "../options-menu/options-menu";
 
+const getImage = (url) => {
+  const optionFavicon = getOptionItems()[0];
+  let img;
+  if (optionFavicon.checked) {
+    img = `<img class="website-img" src="${url}" alt = "website" >`
+  } else {
+    img = '';
+  }
+  return img;
+}
+
+const getTargetBlank = () => {
+  let targetBlank;
+  const optionTarget = getOptionItems()[1];
+  if (optionTarget.checked) {
+    targetBlank = '_blank'
+  } else {
+    targetBlank = ''
+  }
+  return targetBlank;
+}
 class Popular {
   constructor(obj) {
     this.parentNode = obj.parentNode;
@@ -34,6 +56,7 @@ class Popular {
     myClass = this.privateClass,
     arrayDataName = this.arrayDataName
   ) {
+
     this.clearLinks(myClass);
     const localPopularLinks = this.getPopularLinks(arrayDataName || this.arrayDataName);
     const content = document.querySelector(`.${myClass}.popular-content`);
@@ -42,8 +65,8 @@ class Popular {
       website.classList.add("websites", `${myClass}`);
 
       website.innerHTML = `        
-        <a class="website-link" title="${web.title}" href="${web.url}" target="_blank">
-          <img class="website-img" src="${web.favicon}" alt="website">  
+        <a class="website-link" title="${web.title}" href="${web.url}" target="${getTargetBlank()}">
+          ${getImage(web.favicon)}
           <span class="website-title">${web.title}</span>
         </a>
       `;

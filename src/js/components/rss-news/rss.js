@@ -1,5 +1,6 @@
 import './rss.css';
 import RssMenu from '../rss-menu/rss-menu';
+import { getOptionItems } from '../options-menu/options-menu';
 
 export const fullUrlArray = [
   {
@@ -143,6 +144,30 @@ const clearContentBlock = () => {
   topics.forEach((topic) => topic.parentElement.removeChild(topic));
 };
 
+const getImage = (url) => {
+  const optionFavicon = getOptionItems()[0];
+  let img;
+  if (optionFavicon.checked) {
+    img = `<img class="topic-img" src="${
+      url || 'https://www.clker.com/cliparts/s/N/X/c/y/n/info-arrow.svg'
+    }" alt="topic">`;
+  } else {
+    img = '';
+  }
+  return img;
+};
+
+const getTargetBlank = () => {
+  let targetBlank;
+  const optionTarget = getOptionItems()[1];
+  if (optionTarget.checked) {
+    targetBlank = '_blank';
+  } else {
+    targetBlank = '';
+  }
+  return targetBlank;
+};
+
 class Rss {
   constructor(parentNode) {
     this.parentNode = parentNode;
@@ -195,13 +220,10 @@ class Rss {
       const topic = document.createElement('div');
       topic.classList.add('topic');
       topic.innerHTML = `
-        <img class="topic-img" src="${
-          news.enclosure.link ||
-          'https://www.clker.com/cliparts/s/N/X/c/y/n/info-arrow.svg'
-        }" alt="topic">
+        ${getImage(news.enclosure.link)}
         <a class="topic-link" title="${correctTitle}" href="${
         news.link
-      }" target="_blank">${news.title}</a>
+      }" target="${getTargetBlank()}">${news.title}</a>
       `;
       content.appendChild(topic);
     });
