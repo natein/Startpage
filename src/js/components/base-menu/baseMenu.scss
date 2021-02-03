@@ -92,3 +92,17 @@ $width: 400px;
 .baseMenu.hide {
   transform: translate($width);
 }
+
+
+@media (max-width: 1700px) {
+  $width: 320px;
+
+  .baseMenu {
+    width: $width;
+    transform: translate($width);
+  }
+
+  .header-block {
+    padding: 30px;
+  }
+}
