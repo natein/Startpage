@@ -1,6 +1,7 @@
 export const APP_NAME = 'Start Page';
 
 export const backend = 'https://startpage-be.herokuapp.com';
+export const userItemLocalStorage = 'startpage-user';
 
 export const DEVELOPERS = [
   {
