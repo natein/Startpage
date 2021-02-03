@@ -6,11 +6,14 @@
 
 1. Clone this repository
 
-2. Install dependencies 
+2. Install dependencies
+
 npm -i
 
 3. Run application
+
 npm run dev
 
 4. Create build
+
 npm run build
