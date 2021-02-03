@@ -9,7 +9,7 @@
 
 .calculator {
   /* width: 400px; */
-  height: 550px;
+  min-height: 550px;
   padding: 30px;
   border-radius: 20px;
   background-image: url('../../../../assets/img/metal.jpg');
@@ -17,7 +17,7 @@
 
 @media only screen and (max-width: 540px) {
   .calculator {
-    width: 300px;
+    width: 320px;
     height: 550px;
     padding: 20px;
   }
@@ -125,7 +125,7 @@
 
 @media only screen and (max-width: 540px) {
   .note {
-    width: 300px;
+    width: 320px;
   }
 }
 
@@ -136,5 +136,35 @@
 @media only screen and (max-width: 540px) {
   .note h2 {
     font-size: 30px;
+  }
+}
+
+@media (max-width: 1699px) {
+  .calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+  .output {
+    grid-column: 1/5;
+  }
+
+  .calculator-grid > button {
+    margin-right: 0;
+    width: 50px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 359px) {
+  .calculator {
+    width: 300px;
+  }
+
+  .note {
+    width: 300px;
   }
 }

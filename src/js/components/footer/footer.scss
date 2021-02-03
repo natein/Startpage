@@ -4,7 +4,7 @@ footer {
   flex: 0 0 auto;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  min-height: 50px;
   padding: 0 40px;
   background-color: var(--accent-color-contrast);
   color: var(--header-footer-text-color);
@@ -34,4 +34,26 @@ footer span {
 .github-logo {
   height: 35px;
   margin-right: 10px;
+}
+
+@media (max-width: 767px) {
+  footer {
+    padding: 0 20px 10px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .rsschool-logo {
+      transform: scale(0.8);
+    }
+
+    .github-logo {
+      transform: scale(0.8);
+    }
+
+    a {
+      font-size: 0.8rem;
+      margin: 0 5px;
+      text-align: center;
+    }
+  }
 }

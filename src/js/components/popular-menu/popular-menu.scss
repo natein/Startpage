@@ -127,3 +127,20 @@
 .danger {
   @include button(#dc3545);
 }
+
+
+@media (max-width: 1700px) {
+  .btn-block {
+    display: grid;
+    justify-content: center;
+    grid-gap: 20px;
+  }
+
+  .submit{
+    grid-row: 1/2;
+  }
+
+  .danger-block {
+    margin-top: 10px;
+  }
+}

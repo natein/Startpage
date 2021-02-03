@@ -108,4 +108,15 @@
   -webkit-transform: translate(400px);
           transform: translate(400px);
 }
+
+@media (max-width: 1700px) {
+  .baseMenu {
+    width: 320px;
+    -webkit-transform: translate(320px);
+            transform: translate(320px);
+  }
+  .header-block {
+    padding: 30px;
+  }
+}
 /*# sourceMappingURL=baseMenu.css.map */

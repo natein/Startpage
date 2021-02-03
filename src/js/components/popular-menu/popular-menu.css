@@ -168,4 +168,23 @@
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }
+
+@media (max-width: 1700px) {
+  .btn-block {
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    grid-gap: 20px;
+  }
+  .submit {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+  }
+  .danger-block {
+    margin-top: 10px;
+  }
+}
 /*# sourceMappingURL=popular-menu.css.map */
