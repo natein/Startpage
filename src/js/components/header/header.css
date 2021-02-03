@@ -21,4 +21,12 @@ h1 {
   font-size: 30px;
   color: var(--header-footer-text-color);
 }
+
+.login-btn {
+  background: transparent;
+  color: var(--header-footer-text-color);
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
 /*# sourceMappingURL=header.css.map */
