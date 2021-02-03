@@ -1,10 +1,15 @@
 import * as Constants from '../data/constants';
 
-const { backend } = Constants;
+const { backend, userItemLocalStorage } = Constants;
 
 // Регистрация пользователя
 // Если задать уже имеющийся email или username, возвращает
 // statusCode: 400, reason: "User username is already registered"
+
+export function isLogged() {
+  const token = localStorage.getItem(userItemLocalStorage);
+  return !!(token);
+}
 
 export async function registerUser(username, email = '', password) {
   const rawResponse = await fetch(`${backend}/auth/register`, {
