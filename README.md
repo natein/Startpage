@@ -4,7 +4,7 @@ Final project RS School 2020Q3. It is an application for grouping useful widgets
 
 **Deploy:** https://natein-rsclone-startpage.netlify.app/
 
-## libraties
+## libraries
 
 - **chart.js**
 
