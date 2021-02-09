@@ -9,11 +9,6 @@ Final project RS School 2020Q3. It is an application for grouping useful widgets
 - **chart.js**
 
 advantages: easy to use, good documentation, a large amount of chart types
-<br>
-
-- **openweather-apis**
-
-advantages: easy to use, good documentation
 
 - **uuid**
 
