@@ -1,19 +1,21 @@
 # rsclone StartPage
 
-Приложение для группировки полезных виджетов — Popular bookmarks, RSS агрегатор, Finance, Weather, Calculator и Custom bookmarks, хранящиеся в удалённой базе данных.
+Final project RS School 2020Q3. It is an application for grouping useful widgets — Popular bookmarks, RSS агрегатор, Finance, Weather, Calculator и Custom bookmarks, stored in remoted database.
 
-## install
+Deploy: https://natein-rsclone-startpage.netlify.app/
 
-1. Clone this repository
+## libraties
 
-2. Install dependencies
+chart.js 
+advantages:
+easy to use, good documentation
+a large amount of chart types
 
-npm -i
+openweather-apis
+advantages:
+easy to use, good documentation
 
-3. Run application
+uuid
 
-npm run dev
-
-4. Create build
-
-npm run build
+development:
+eslint
