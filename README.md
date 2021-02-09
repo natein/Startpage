@@ -6,16 +6,26 @@ Deploy: https://natein-rsclone-startpage.netlify.app/
 
 ## libraties
 
-chart.js 
+chart.js
+
 advantages:
-easy to use, good documentation
-a large amount of chart types
+
+easy to use, good documentation, a large amount of chart types
+
+
 
 openweather-apis
+
 advantages:
+
 easy to use, good documentation
+
+
 
 uuid
 
+
+
 development:
+
 eslint
