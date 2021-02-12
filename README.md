@@ -1,15 +1,24 @@
 # rsclone StartPage
 
-Final project RS School 2020Q3. It is an application for grouping useful widgets — Popular bookmarks, RSS агрегатор, Finance, Weather, Calculator и Custom bookmarks, stored in remoted database.
+**Deploy:** [https://natein-rsclone-startpage.netlify.app/](https://natein-rsclone-startpage.netlify.app/ "https://natein-rsclone-startpage.netlify.app/")
 
-**Deploy:** https://natein-rsclone-startpage.netlify.app/
+Приложение представляет из себя набор полезных виджетов. Виджеты при необходимости можно размещать на разных страницах и группировать по тематике. На текущий момент реализованы виджеты «Ссылки», «RSS агрегатор», «Погода», «Финансовые сводки», «Список задач», «Прогноз погоды» и «Калькулятор». Имеется возможность включить фоновую музыку для релаксации.
 
-## libraries
+## Технологии и инструменты, задействованные в разработке
 
-- **chart.js**
+Разработка клиентской части приложения выполнялась на JavaScript без использования дополнительных фреймворков.
 
-advantages: easy to use, good documentation, a large amount of chart types
+Для ускорения стилизации приложения использовался SCSS.
 
-- **uuid**
+- **chart.js - библиотека для создания графиков**
 
-- **eslint**
+Преимущества: удобный в использовании, подробная документация, много поддерживаемых типов графиков.
+
+- **uuid - генератор идентификаторов**
+- **webpack - сборщик проекта**
+- **eslint - JavaScript линтер**
+
+
+## Backend for Startpage
+
+**Репозиторий:** [https://github.com/natein/startpage-be](https://github.com/natein/startpage-be "https://github.com/natein/startpage-be")
